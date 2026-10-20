@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings &amp; Preferences - BiteHub (EGP)</title>
+
+  <!-- Favicon & App Icons -->
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+  <link rel="alternate icon" type="image/png" href="images/favicon.png" />
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="luxe.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+</head>
+
+<body>
+  <main class="app profile-app">
+
+    <header class="subpage-top-bar">
+      <a href="profile.html" class="subpage-back-btn" aria-label="Back to Account Hub">
+        <i class="fa-solid fa-arrow-left"></i>
+      </a>
+      <div class="subpage-title-box">
+        <h1>Settings &amp; Preferences</h1>
+        <p>Language, notifications &amp; app controls</p>
+      </div>
+      <button class="icon-circle-btn open-cart-btn" aria-label="Shopping Cart">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span class="cart-badge" style="display:none;">0</span>
+      </button>
+    </header>
+
+    <div class="subpage-container">
+
+      <!-- 1. Language -->
+      <section class="subpage-card">
+        <div class="subpage-card-title">
+          <span><i class="fa-solid fa-language" style="color: #0284c7; margin-right: 6px;"></i> App Language / لغة التطبيق</span>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 4px;">
+          <button class="btn-lang-choice" id="settingsLangEn" onclick="AppState.setLanguage('en')">
+            <span style="font-size: 13px; font-weight: 800; letter-spacing: 0.5px; background: var(--surface-alt); padding: 4px 8px; border-radius: 6px; border: 1px solid var(--border);">EN</span>
+            <div><strong>English</strong><small>LTR</small></div>
+            <i class="fa-solid fa-circle-check check-lang-icon" style="margin-left: auto;"></i>
+          </button>
+          <button class="btn-lang-choice" id="settingsLangAr" onclick="AppState.setLanguage('ar')">
+            <span style="font-size: 13px; font-weight: 800; letter-spacing: 0.5px; background: var(--surface-alt); padding: 4px 8px; border-radius: 6px; border: 1px solid var(--border);">AR</span>
+            <div><strong>العربية</strong><small>RTL</small></div>
+            <i class="fa-solid fa-circle-check check-lang-icon" style="margin-left: auto;"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- 2. All Preferences -->
+      <section class="subpage-card">
+        <div class="subpage-card-title">
+          <span><i class="fa-solid fa-sliders" style="color: var(--primary); margin-right: 6px;"></i> Preferences</span>
+        </div>
+
+        <div class="pref-row">
+          <div><strong>Order Notifications</strong><span>Real-time alerts for order status</span></div>
+          <label class="toggle-switch"><input type="checkbox" checked onchange="showToast('Order notifications updated')" /><span class="slider"></span></label>
+        </div>
+        <div class="pref-row" style="border-top: 1px solid var(--border);">
+          <div><strong>Flash Deals</strong><span>Alerts for sales &amp; weekend specials</span></div>
+          <label class="toggle-switch"><input type="checkbox" checked onchange="showToast('Deal alerts updated')" /><span class="slider"></span></label>
+        </div>
+        <div class="pref-row" style="border-top: 1px solid var(--border);">
+          <div><strong>Include Cutlery</strong><span>Cutlery &amp; napkins with every order</span></div>
+          <label class="toggle-switch"><input type="checkbox" checked onchange="showToast('Cutlery preference updated')" /><span class="slider"></span></label>
+        </div>
+        <div class="pref-row" style="border-top: 1px solid var(--border);">
+          <div><strong>Contactless Delivery</strong><span>Leave at door by default</span></div>
+          <label class="toggle-switch"><input type="checkbox" onchange="showToast('Contactless preference updated')" /><span class="slider"></span></label>
+        </div>
+
+        <div style="border-top: 1px solid var(--border); padding-top: 14px; margin-top: 2px;">
+          <button type="button" class="btn-secondary" onclick="clearLocalCache()" style="width:100%; padding:11px; font-size:12px; font-weight:700; border:1.5px solid var(--border); background:var(--surface-alt); border-radius:12px; cursor:pointer;">
+            <i class="fa-solid fa-broom"></i> Clear App Cache
+          </button>
+          <p style="font-size:11px; color:var(--text-secondary); margin:10px 0 0; text-align:center;">BiteHub • v3.2.0 • Alexandria, Egypt</p>
+        </div>
+      </section>
+
+    </div>
+
+    <nav class="bottom-nav">
+      <a href="index.html" class="nav-item"><i class="fa-solid fa-house"></i><span>Home</span></a>
+      <a href="orders.html" class="nav-item">
+        <div class="nav-icon-container"><i class="fa-solid fa-receipt"></i><span class="nav-badge">1</span></div>
+        <span>Orders</span>
+      </a>
+      <a href="deals.html" class="nav-item">
+        <div class="nav-icon-container"><i class="fa-solid fa-tag"></i></div>
+        <span>Deals</span>
+      </a>
+      <a href="profile.html" class="nav-item active"><i class="fa-solid fa-user"></i><span>Profile</span></a>
+    </nav>
+  </main>
+
+  <style>
+    .btn-lang-choice {
+      display: flex; align-items: center; gap: 10px; padding: 12px 10px;
+      border-radius: 12px; border: 1.5px solid var(--border); background: var(--surface-alt);
+      text-align: left; cursor: pointer; transition: all 0.2s ease;
+    }
+    .btn-lang-choice strong { display: block; font-size: 13px; color: var(--text-primary); }
+    .btn-lang-choice small  { display: block; font-size: 10px; color: var(--text-secondary); }
+    .btn-lang-choice .check-lang-icon { font-size: 16px; color: var(--border); }
+    .btn-lang-choice.active { border-color: var(--primary); background: #fff7ed; }
+    .btn-lang-choice.active .check-lang-icon { color: var(--primary); }
+
+    .pref-row {
+      display: flex; align-items: center; justify-content: space-between; padding: 12px 0;
+    }
+    .pref-row strong { font-size: 13px; display: block; color: var(--text-primary); }
+    .pref-row span   { font-size: 11px; color: var(--text-secondary); display: block; margin-top: 2px; }
+  </style>
+
+  <script src="app-state.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const isAr = AppState.getLanguage() === 'ar';
+      document.getElementById('settingsLangEn').classList.toggle('active', !isAr);
+      document.getElementById('settingsLangAr').classList.toggle('active', isAr);
+
+      if (isAr) {
+        document.title = 'الإعدادات والتفضيلات - بايت هَب (ج.م)';
+
+        const backBtn = document.querySelector('.subpage-back-btn');
+        if (backBtn) backBtn.setAttribute('aria-label', 'الرجوع للحساب');
+        const cartBtn = document.querySelector('.open-cart-btn');
+        if (cartBtn) cartBtn.setAttribute('aria-label', 'سلة المشتريات');
+
+        const titleH1 = document.querySelector('.subpage-title-box h1');
+        const titleP  = document.querySelector('.subpage-title-box p');
+        if (titleH1) titleH1.textContent = 'الإعدادات والتفضيلات';
+        if (titleP)  titleP.textContent  = 'لغة التطبيق، الإشعارات وتفضيلات التوصيل';
+
+        const cardTitles = document.querySelectorAll('.subpage-card-title span');
+        if (cardTitles[0]) cardTitles[0].innerHTML = `<i class="fa-solid fa-language" style="color: #0284c7; margin-left: 6px;"></i> لغة التطبيق / App Language`;
+        if (cardTitles[1]) cardTitles[1].innerHTML = `<i class="fa-solid fa-sliders" style="color: var(--primary); margin-left: 6px;"></i> التفضيلات`;
+
+        const rows = document.querySelectorAll('.pref-row');
+        const arTexts = [
+          { strong: 'إشعارات الطلبات',        span: 'تنبيهات فورية لحالة الطلب' },
+          { strong: 'عروض الفلاش',            span: 'تنبيهات للخصومات وعروض الأسبوع' },
+          { strong: 'أدوات الطعام',           span: 'إرفاق ملاعق ومناديل مع كل طلب' },
+          { strong: 'التوصيل بدون تلامس',     span: 'ترك الطلب عند الباب كخيار افتراضي' },
+        ];
+        rows.forEach((row, i) => {
+          if (arTexts[i]) {
+            const st = row.querySelector('strong');
+            const sp = row.querySelector('span');
+            if (st) st.textContent = arTexts[i].strong;
+            if (sp) sp.textContent = arTexts[i].span;
+          }
+        });
+
+        const clearBtn = document.querySelector('.btn-secondary');
+        if (clearBtn) clearBtn.innerHTML = `<i class="fa-solid fa-broom"></i> مسح ذاكرة التخزين المؤقت`;
+        const verP = document.querySelector('.subpage-card:last-child p');
+        if (verP) verP.textContent = 'بايت هَب • الإصدار 3.2.0 • الإسكندرية، مصر';
+
+        const navLabels = ['الرئيسية', 'الطلبات', 'العروض', 'حسابي'];
+        document.querySelectorAll('.bottom-nav .nav-item span:not(.nav-badge)').forEach((sp, idx) => {
+          if (navLabels[idx]) sp.textContent = navLabels[idx];
+        });
+      }
+    });
+
+    function clearLocalCache() {
+      const isAr = AppState.getLanguage() === 'ar';
+      const msg = isAr
+        ? 'هل تريد مسح بيانات التطبيق المؤقتة وإعادة ضبط الحالة الافتراضية؟'
+        : 'Clear cached app data and reset to initial state?';
+      if (confirm(msg)) {
+        localStorage.clear();
+        sessionStorage.clear();
+        showToast(isAr ? 'تم مسح ذاكرة التخزين المؤقت.' : 'App cache cleared.');
+        setTimeout(() => window.location.href = 'index.html', 800);
+      }
+    }
+  </script>
+</body>
+</html>

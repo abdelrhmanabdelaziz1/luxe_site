@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Customize Item - BiteHub</title>
+
+  <!-- Favicon & App Icons -->
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+  <link rel="alternate icon" type="image/png" href="images/favicon.png" />
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+
+  <!-- Modern Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="luxe.css" />
+
+  <!-- FontAwesome Icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  />
+</head>
+
+<body>
+
+  <main class="app product-detail-app">
+
+    <!-- Top Navigation Header -->
+    <header class="detail-header">
+      <button class="back-circle-btn" onclick="window.history.length > 1 ? window.history.back() : window.location.href='index.html'" aria-label="Go Back">
+        <i class="fa-solid fa-arrow-left"></i>
+      </button>
+
+      <h1 class="detail-page-title" id="pageHeaderTitle">Customize Order</h1>
+
+      <div class="header-actions">
+        <button class="icon-circle-btn open-cart-btn" aria-label="Shopping Cart">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="cart-badge" style="display:none;">0</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Product Hero Image & Quick Info -->
+    <section class="detail-hero">
+      <div class="detail-img-container">
+        <img id="productImage" src="images/burger.jpg" alt="Dish visual" />
+        <span class="detail-badge" id="productBadge"><i class="fa-solid fa-fire"></i> Best Seller</span>
+        <button class="hero-fav-btn" id="heroFavBtn" aria-label="Save to favorites">
+          <i class="fa-regular fa-heart"></i>
+        </button>
+      </div>
+
+      <div class="detail-intro">
+        <div class="intro-headline">
+          <h2 id="productTitle">Deluxe Double Smash Burger</h2>
+          <div class="price-display">
+            <span class="current-price" id="displayUnitPrice">195 EGP</span>
+            <span class="original-price-strike" id="displayOriginalPrice">240 EGP</span>
+          </div>
+        </div>
+
+        <div class="intro-meta">
+          <span class="rating">
+            <i class="fa-solid fa-star"></i> <strong id="productRating">4.9</strong>
+            <span class="reviews" id="productReviews">(184 reviews)</span>
+          </span>
+          <span class="meta-dot">•</span>
+          <span class="prep-time">
+            <i class="fa-regular fa-clock"></i> <span id="productPrepTime">15-20 min</span>
+          </span>
+          <span class="meta-dot">•</span>
+          <span class="calories">
+            <i class="fa-solid fa-fire-flame-curved"></i> <span id="productCalories">620 kcal</span>
+          </span>
+        </div>
+
+        <p class="intro-desc" id="productDesc">
+          Two seared angus smash patties, melted aged cheddar, crispy smoked beef bacon, caramelized onions, and house secret sauce on a toasted brioche bun.
+        </p>
+
+        <!-- Ingredients List -->
+        <div class="ingredients-box" id="ingredientsBox">
+          <span class="box-label"><i class="fa-solid fa-seedling"></i> Ingredients:</span>
+          <p id="ingredientsList">100% Angus Beef, Aged Cheddar, Smoked Bacon, Brioche Bun</p>
+        </div>
+
+        <!-- Allergens Badges -->
+        <div class="allergens-box" id="allergensBox">
+          <span class="box-label"><i class="fa-solid fa-triangle-exclamation"></i> Allergens:</span>
+          <div class="allergens-list" id="allergensList">
+            <span class="allergen-pill">Contains Dairy</span>
+            <span class="allergen-pill">Contains Gluten</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Customization Form Sections -->
+    <form class="customization-form" id="customizationForm" onsubmit="event.preventDefault();">
+      <!-- Options injected by JS based on product specs -->
+      <div id="optionsContainer"></div>
+
+      <!-- Special Instructions with Quick Presets & Enhanced Card Style -->
+      <div class="spec-section instructions-section">
+        <div class="spec-section-header">
+          <div>
+            <h3>Special Instructions</h3>
+            <p>Allergies, ingredient exclusions or preparation notes</p>
+          </div>
+          <span class="optional-tag">Optional</span>
+        </div>
+
+        <!-- Quick 1-tap instruction preset chips -->
+        <div class="instruction-presets" id="instructionPresets">
+          <button type="button" class="instruction-chip" onclick="toggleInstructionPreset(this, 'No Onions')">
+            No Onions
+          </button>
+          <button type="button" class="instruction-chip" onclick="toggleInstructionPreset(this, 'Sauce on the Side')">
+            Sauce on Side
+          </button>
+          <button type="button" class="instruction-chip" onclick="toggleInstructionPreset(this, 'Extra Spicy')">
+            Extra Spicy
+          </button>
+          <button type="button" class="instruction-chip" onclick="toggleInstructionPreset(this, 'Extra Crispy')">
+            Extra Crispy
+          </button>
+          <button type="button" class="instruction-chip" onclick="toggleInstructionPreset(this, 'Include Cutlery & Napkins')">
+            Extra Cutlery
+          </button>
+          <button type="button" class="instruction-chip" onclick="toggleInstructionPreset(this, 'Well Done')">
+            Well Done
+          </button>
+        </div>
+
+        <div class="instructions-card-box">
+          <textarea 
+            class="spec-notes-input" 
+            id="orderNotes" 
+            placeholder="E.g., No onions, sauce on the side, extra toasted bun, dressing separately..."
+            rows="3"
+            maxlength="150"
+            oninput="updateCharCount(this)"
+          ></textarea>
+          <div class="instructions-footer">
+            <span class="instructions-hint"><i class="fa-solid fa-kitchen-set"></i> Sent directly to the kitchen chef</span>
+            <span class="char-counter"><strong id="charCount">0</strong> / 150</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Frequently Bought Together Section -->
+      <div class="frequently-bought-section" id="freqBoughtSection">
+        <div class="spec-section-header">
+          <div>
+            <h3>Frequently Bought Together</h3>
+            <p>Complete your delicious meal in 1 tap</p>
+          </div>
+        </div>
+        <div class="freq-items-grid" id="freqItemsGrid"></div>
+      </div>
+    </form>
+
+    <!-- Sticky Bottom Add-to-Cart Action Bar -->
+    <div class="detail-sticky-bar">
+      <div class="quantity-controller">
+        <button class="qty-control-btn" id="qtyMinus" aria-label="Decrease quantity">
+          <i class="fa-solid fa-minus"></i>
+        </button>
+        <span class="qty-display" id="qtyDisplay">1</span>
+        <button class="qty-control-btn" id="qtyPlus" aria-label="Increase quantity">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </div>
+
+      <button class="detail-add-btn" id="addToCartBtn">
+        <span>Add to Cart</span>
+        <span class="btn-divider">•</span>
+        <strong id="btnTotalPrice">195 EGP</strong>
+      </button>
+    </div>
+
+    <!-- Bottom Navigation Bar (Home | Orders | Deals | Profile) -->
+    <nav class="bottom-nav">
+      <a href="index.html" class="nav-item">
+        <i class="fa-solid fa-house"></i>
+        <span>Home</span>
+      </a>
+
+      <a href="orders.html" class="nav-item">
+        <div class="nav-icon-container">
+          <i class="fa-solid fa-receipt"></i>
+          <span class="nav-badge">1</span>
+        </div>
+        <span>Orders</span>
+      </a>
+
+      <a href="deals.html" class="nav-item">
+        <div class="nav-icon-container">
+          <i class="fa-solid fa-tag"></i>
+        </div>
+        <span>Deals</span>
+      </a>
+
+      <a href="profile.html" class="nav-item">
+        <i class="fa-solid fa-user"></i>
+        <span>Profile</span>
+      </a>
+    </nav>
+
+  </main>
+
+  <!-- Central App-State Logic -->
+  <script src="app-state.js"></script>
+
+  <script>
+    let currentItem = null;
+    let currentQuantity = 1;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const pid = urlParams.get('id') || urlParams.get('deal') || 'burger-deluxe';
+      currentItem = AppState.catalog[pid] || AppState.catalog['burger-deluxe'];
+
+      // Track recently viewed
+      AppState.trackRecentlyViewed(currentItem.id);
+
+      renderProductDetails();
+      initFavoriteButton();
+      initQuantityControls();
+      initAddToCart();
+    });
+
+    function renderProductDetails() {
+      const isAr = AppState.getLanguage() === 'ar';
+      document.getElementById('productImage').src = currentItem.image;
+      document.getElementById('productTitle').textContent = isAr ? (currentItem.nameAr || currentItem.name) : currentItem.name;
+      document.getElementById('productDesc').textContent = isAr ? (currentItem.descriptionAr || currentItem.description) : currentItem.description;
+      document.getElementById('productRating').textContent = currentItem.rating;
+      document.getElementById('productReviews').textContent = `(${currentItem.reviews} ${isAr ? 'تقييم' : 'reviews'})`;
+      document.getElementById('productPrepTime').textContent = isAr ? currentItem.prepTime.replace('min', 'دقيقة') : currentItem.prepTime;
+      document.getElementById('productCalories').textContent = isAr ? currentItem.calories.replace('kcal', 'سعرة') : currentItem.calories;
+
+      const pageTitleEl = document.getElementById('pageHeaderTitle');
+      if (pageTitleEl) pageTitleEl.textContent = isAr ? 'تخصيص الوجبة' : 'Customize Order';
+
+      const addBtnText = document.querySelector('#addToCartBtn span:first-child');
+      if (addBtnText) addBtnText.textContent = isAr ? 'أضف للسلة' : 'Add to Cart';
+
+      const instructionsTitle = document.querySelector('.instructions-label');
+      if (instructionsTitle) instructionsTitle.innerHTML = `<i class="fa-solid fa-pen-to-square"></i> ${isAr ? 'تعليمات خاصة للمطبخ' : 'Special Cooking Instructions'}`;
+
+      const instructionsInput = document.getElementById('specialInstructions');
+      if (instructionsInput) {
+        instructionsInput.placeholder = isAr 
+          ? 'مثال: بدون مخلل، صوص إضافي جانبي، مناديل إضافية...' 
+          : 'E.g., No pickles, extra napkins, dressing on the side...';
+      }
+
+      if (isAr) {
+        const chips = document.querySelectorAll('.instruction-chip');
+        if (chips.length >= 4) {
+          chips[0].textContent = 'بدون بصل';
+          chips[1].textContent = 'مناديل إضافية';
+          chips[2].textContent = 'الصوص على جنب';
+          chips[3].textContent = 'أدوات طعام';
+        }
+      }
+
+      if (currentItem.discountPercent) {
+        document.getElementById('productBadge').innerHTML = `<i class="fa-solid fa-bolt"></i> ${currentItem.discountPercent}% OFF`;
+        document.getElementById('displayOriginalPrice').style.display = 'inline';
+        document.getElementById('displayOriginalPrice').textContent = AppState.formatEGP(currentItem.originalPrice);
+      } else {
+        document.getElementById('displayOriginalPrice').style.display = 'none';
+      }
+
+      // Ingredients & Allergens
+      if (currentItem.ingredients && currentItem.ingredients.length) {
+        document.getElementById('ingredientsList').textContent = currentItem.ingredients.join(', ');
+        document.getElementById('ingredientsBox').style.display = 'block';
+      } else {
+        document.getElementById('ingredientsBox').style.display = 'none';
+      }
+
+      const allergensContainer = document.getElementById('allergensList');
+      if (currentItem.allergens && currentItem.allergens.length) {
+        const allergenMap = {
+          'Dairy': 'ألبان',
+          'Gluten': 'جلوتين',
+          'Eggs': 'بيض',
+          'Nuts': 'مكسرات',
+          'Soy': 'صويا'
+        };
+        allergensContainer.innerHTML = currentItem.allergens.map(a => `<span class="allergen-pill">${isAr ? 'يحتوي على ' + (allergenMap[a] || a) : 'Contains ' + a}</span>`).join('');
+        document.getElementById('allergensBox').style.display = 'block';
+      } else {
+        document.getElementById('allergensBox').style.display = 'none';
+      }
+
+      // Render Dynamic Specification Controls (Radios & Checkboxes)
+      const container = document.getElementById('optionsContainer');
+      container.innerHTML = '';
+
+      if (currentItem.specs) {
+        Object.entries(currentItem.specs).forEach(([groupKey, group]) => {
+          const section = document.createElement('div');
+          section.className = 'spec-section';
+
+          const isRadio = (group.type === 'radio');
+          const badgeClass = group.required ? 'required-tag' : 'optional-tag';
+          const badgeText = group.required 
+            ? (isAr ? 'إجباري (اختر 1)' : 'Required (Choose 1)') 
+            : (group.maxSelect ? (isAr ? `اختياري (حتى ${group.maxSelect})` : `Optional (Up to ${group.maxSelect})`) : (isAr ? 'اختياري' : 'Optional'));
+          const groupTitle = isAr ? (group.titleAr || group.title) : group.title;
+
+          section.innerHTML = `
+            <div class="spec-section-header">
+              <div>
+                <h3>${groupTitle}</h3>
+              </div>
+              <span class="${badgeClass}">${badgeText}</span>
+            </div>
+            <div class="spec-options-grid">
+              ${group.options.map((opt, i) => {
+                const inputName = `spec_${groupKey}`;
+                const isChecked = opt.default ? 'checked' : '';
+                const optName = isAr ? (opt.nameAr || opt.name) : opt.name;
+                const deltaLabel = opt.delta > 0 
+                  ? `+${AppState.formatEGP(opt.delta)}` 
+                  : (opt.delta < 0 ? `-${AppState.formatEGP(Math.abs(opt.delta))}` : (isAr ? 'مشمول' : 'Included'));
+
+                return `
+                  <label class="spec-option-card">
+                    <input 
+                      type="${isRadio ? 'radio' : 'checkbox'}" 
+                      name="${inputName}" 
+                      value="${opt.name}" 
+                      data-group="${groupKey}"
+                      data-delta="${opt.delta}"
+                      data-max="${group.maxSelect || 99}"
+                      ${isChecked}
+                      onchange="handleOptionChange(this)"
+                    />
+                    <div class="option-pill-content">
+                      <div class="option-left">
+                        <span class="custom-control-indicator ${isRadio ? 'radio-circle' : 'check-square'}"></span>
+                        <span class="option-name">${optName}</span>
+                      </div>
+                      <span class="option-delta ${opt.delta > 0 ? 'plus' : ''}">${deltaLabel}</span>
+                    </div>
+                  </label>
+                `;
+              }).join('')}
+            </div>
+          `;
+          container.appendChild(section);
+        });
+      }
+
+      // Frequently bought together items
+      renderFrequentlyBought();
+
+      recalculatePrice();
+    }
+
+    function handleOptionChange(input) {
+      // Enforce max selections for checkboxes
+      if (input.type === 'checkbox') {
+        const group = input.getAttribute('data-group');
+        const max = parseInt(input.getAttribute('data-max') || '99', 10);
+        const checkedBoxes = document.querySelectorAll(`input[data-group="${group}"]:checked`);
+        if (checkedBoxes.length > max) {
+          input.checked = false;
+          showToast(`You can select up to ${max} options.`);
+          return;
+        }
+      }
+      recalculatePrice();
+    }
+
+    function recalculatePrice() {
+      let unitPrice = currentItem.basePrice;
+      const selectedOpts = {};
+
+      document.querySelectorAll('#optionsContainer input:checked').forEach(inp => {
+        const delta = parseFloat(inp.getAttribute('data-delta') || 0);
+        const group = inp.getAttribute('data-group');
+        unitPrice += delta;
+
+        if (inp.type === 'radio') {
+          selectedOpts[group] = inp.value;
+        } else {
+          if (!selectedOpts[group]) selectedOpts[group] = [];
+          selectedOpts[group].push(inp.value);
+        }
+      });
+
+      const total = unitPrice * currentQuantity;
+
+      document.getElementById('displayUnitPrice').textContent = AppState.formatEGP(unitPrice);
+      document.getElementById('btnTotalPrice').textContent = AppState.formatEGP(total);
+
+      return { unitPrice, total, selectedOpts };
+    }
+
+    function renderFrequentlyBought() {
+      const container = document.getElementById('freqItemsGrid');
+      if (!container) return;
+
+      const isAr = AppState.getLanguage() === 'ar';
+
+      // Pool of eligible candidates (all standard catalog items excluding current item and deals)
+      const allDishes = Object.values(AppState.catalog).filter(
+        item => item.id !== currentItem.id && item.type !== 'deal'
+      );
+
+      // Start with specified frequentlyBoughtWith if any
+      const pairedIds = [...(currentItem.frequentlyBoughtWith || [])];
+
+      // Eligible items not already in pairedIds
+      const remainingCandidates = allDishes.filter(item => !pairedIds.includes(item.id));
+
+      // Always pick at least 1 random product
+      let randomProduct = null;
+      if (remainingCandidates.length > 0) {
+        const randomIndex = Math.floor(Math.random() * remainingCandidates.length);
+        randomProduct = remainingCandidates[randomIndex];
+      }
+
+      // Build the final items array
+      const displayItems = [];
+
+      // Add paired items
+      pairedIds.forEach(id => {
+        const item = AppState.catalog[id];
+        if (item) displayItems.push({ item, isRandom: false });
+      });
+
+      // Insert the random product
+      if (randomProduct) {
+        displayItems.push({ item: randomProduct, isRandom: true });
+      }
+
+      // If still fewer than 3 items, fill up with more random recommendations
+      const usedIds = new Set(displayItems.map(d => d.item.id));
+      const pool = allDishes.filter(d => !usedIds.has(d.id));
+      while (displayItems.length < 3 && pool.length > 0) {
+        const rIdx = Math.floor(Math.random() * pool.length);
+        displayItems.push({ item: pool.splice(rIdx, 1)[0], isRandom: true });
+      }
+
+      container.innerHTML = displayItems.map(({ item, isRandom }) => {
+        const itemName = isAr ? (item.nameAr || item.name) : item.name;
+        const badgeLabel = isRandom 
+          ? (isAr ? 'اختيار عشوائي' : 'Random Pick') 
+          : (isAr ? 'مزيج شائع' : 'Popular Pair');
+
+        return `
+          <div class="freq-item-card ${isRandom ? 'is-random' : ''}">
+            <div class="freq-img-wrap">
+              <img src="${item.image}" alt="${itemName}" />
+              <span class="freq-badge ${isRandom ? 'random-pick' : 'popular-pair'}">
+                ${badgeLabel}
+              </span>
+            </div>
+            <div class="freq-meta">
+              <strong title="${itemName}">${itemName}</strong>
+              <div class="freq-price-row">
+                <span class="freq-price">${AppState.formatEGP(item.basePrice)}</span>
+                <span class="freq-cal">${item.calories || ''}</span>
+              </div>
+            </div>
+            <button class="freq-add-btn" onclick="quickAddFreqItem('${item.id}', this)" title="Add ${itemName} to order">
+              <i class="fa-solid fa-plus"></i> <span>${isAr ? 'إضافة' : 'Add'}</span>
+            </button>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function quickAddFreqItem(id, btn) {
+      const item = AppState.catalog[id];
+      if (!item) return;
+      AppState.addToCart({
+        id: item.id,
+        name: item.name,
+        nameAr: item.nameAr,
+        image: item.image,
+        unitPrice: item.basePrice,
+        selectedOptions: {},
+        quantity: 1
+      });
+      btn.innerHTML = `<i class="fa-solid fa-check"></i>`;
+      setTimeout(() => btn.innerHTML = `<i class="fa-solid fa-plus"></i>`, 1200);
+    }
+
+    function initQuantityControls() {
+      document.getElementById('qtyMinus').addEventListener('click', () => {
+        if (currentQuantity > 1) {
+          currentQuantity--;
+          document.getElementById('qtyDisplay').textContent = currentQuantity;
+          recalculatePrice();
+        }
+      });
+
+      document.getElementById('qtyPlus').addEventListener('click', () => {
+        currentQuantity++;
+        document.getElementById('qtyDisplay').textContent = currentQuantity;
+        recalculatePrice();
+      });
+    }
+
+    function initFavoriteButton() {
+      const favBtn = document.getElementById('heroFavBtn');
+      const isFav = AppState.isFavorite(currentItem.id);
+      favBtn.classList.toggle('favorited', isFav);
+      favBtn.querySelector('i').className = isFav ? 'fa-solid fa-heart' : 'fa-regular fa-heart';
+
+      favBtn.addEventListener('click', () => {
+        const nowFav = AppState.toggleFavorite(currentItem.id);
+        favBtn.classList.toggle('favorited', nowFav);
+        favBtn.querySelector('i').className = nowFav ? 'fa-solid fa-heart' : 'fa-regular fa-heart';
+      });
+    }
+
+    function initAddToCart() {
+      document.getElementById('addToCartBtn').addEventListener('click', () => {
+        // Validate Required Options
+        let hasError = false;
+        let missingGroupTitle = '';
+
+        if (currentItem.specs) {
+          Object.entries(currentItem.specs).forEach(([k, group]) => {
+            if (group.required) {
+              const checked = document.querySelector(`input[name="spec_${k}"]:checked`);
+              if (!checked) {
+                hasError = true;
+                missingGroupTitle = group.title;
+              }
+            }
+          });
+        }
+
+        if (hasError) {
+          showToast(`Please make a selection for "${missingGroupTitle}" to continue!`);
+          return;
+        }
+
+        const { unitPrice, selectedOpts } = recalculatePrice();
+        const notes = document.getElementById('orderNotes').value.trim();
+
+        AppState.addToCart({
+          id: currentItem.id,
+          name: currentItem.name,
+          nameAr: currentItem.nameAr,
+          image: currentItem.image,
+          unitPrice: unitPrice,
+          selectedOptions: selectedOpts,
+          notes: notes,
+          quantity: currentQuantity
+        });
+
+        const btn = document.getElementById('addToCartBtn');
+        const orig = btn.innerHTML;
+        btn.classList.add('added');
+        btn.innerHTML = `<i class="fa-solid fa-check"></i> Added ${currentQuantity} item(s)!`;
+
+        setTimeout(() => {
+          btn.classList.remove('added');
+          btn.innerHTML = orig;
+          AppState.openCartDrawer();
+        }, 800);
+      });
+    }
+
+    function updateCharCount(textarea) {
+      const countEl = document.getElementById('charCount');
+      if (countEl) {
+        countEl.textContent = textarea.value.length;
+        if (textarea.value.length >= 135) {
+          countEl.parentElement.classList.add('near-limit');
+        } else {
+          countEl.parentElement.classList.remove('near-limit');
+        }
+      }
+    }
+
+    function toggleInstructionPreset(chip, text) {
+      const textarea = document.getElementById('orderNotes');
+      if (!textarea) return;
+
+      const currentNotes = textarea.value.trim();
+      const isActive = chip.classList.contains('active');
+
+      if (isActive) {
+        chip.classList.remove('active');
+        const regex = new RegExp(`(^|,\\s*)${text}`, 'gi');
+        textarea.value = currentNotes.replace(regex, '').replace(/^,\s*/, '').trim();
+      } else {
+        chip.classList.add('active');
+        if (currentNotes.length > 0) {
+          if (!currentNotes.toLowerCase().includes(text.toLowerCase())) {
+            textarea.value = `${currentNotes}, ${text}`;
+          }
+        } else {
+          textarea.value = text;
+        }
+      }
+
+      updateCharCount(textarea);
+    }
+  </script>
+
+</body>
+</html>

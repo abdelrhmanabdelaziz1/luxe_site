@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Personal Information - BiteHub (EGP)</title>
+
+  <!-- Favicon & App Icons -->
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+  <link rel="alternate icon" type="image/png" href="images/favicon.png" />
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+
+  <!-- Modern Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="luxe.css" />
+
+  <!-- FontAwesome Icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  />
+</head>
+
+<body>
+
+  <main class="app profile-app">
+
+    <!-- Subpage Top Bar -->
+    <header class="subpage-top-bar">
+      <a href="profile.html" class="subpage-back-btn" aria-label="Back to Account Hub">
+        <i class="fa-solid fa-arrow-left"></i>
+      </a>
+      <div class="subpage-title-box">
+        <h1>Personal Information</h1>
+        <p>Your identity & contact details</p>
+      </div>
+      <button class="icon-circle-btn open-cart-btn" aria-label="Shopping Cart">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span class="cart-badge" style="display:none;">0</span>
+      </button>
+    </header>
+
+    <div class="subpage-container">
+
+      <!-- 1. Profile Avatar Card -->
+      <section class="subpage-card" style="text-align: center;">
+        <div class="profile-avatar-wrapper" style="margin: 0 auto 14px;">
+          <img src="images/user_avatar.jpg" alt="Ahmed Mohamed" id="personalAvatarImg" class="real-person-avatar" style="width: 88px; height: 88px;" />
+          <div class="avatar-controls">
+            <label for="avatarFileInput" class="change-photo-btn" title="Upload new photo" style="cursor: pointer;">
+              <i class="fa-solid fa-camera"></i>
+            </label>
+            <input type="file" id="avatarFileInput" accept="image/*" style="display: none;" onchange="handlePersonalPhotoUpload(event)" />
+          </div>
+        </div>
+
+        <h3 id="personalCardName" style="font-family: 'Outfit', sans-serif; font-size: 18px; margin: 0 0 4px;">Ahmed Mohamed</h3>
+        <p style="font-size: 12px; color: var(--text-secondary); margin: 0 0 16px;">Silver VIP Member • BiteHub Alexandria</p>
+
+        <!-- Preset Avatars -->
+        <div style="background: var(--surface-alt); border-radius: 14px; padding: 12px; border: 1px solid var(--border);">
+          <span style="font-size: 11px; font-weight: 700; color: var(--text-secondary); display: block; margin-bottom: 8px;">Choose Avatar Preset:</span>
+          <div style="display: flex; justify-content: center; gap: 14px;">
+            <div onclick="selectPreset('images/user_avatar.jpg')" style="cursor: pointer; text-align: center;">
+              <img src="images/user_avatar.jpg" style="width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--primary); object-fit: cover;" />
+              <span style="font-size: 10px; font-weight: 700; display: block; margin-top: 2px;">Default</span>
+            </div>
+            <div onclick="selectPresetIcon('exec')" style="cursor: pointer; text-align: center;">
+              <div style="width: 44px; height: 44px; border-radius: 50%; background: #1e293b; color: #f59e0b; display: flex; align-items: center; justify-content: center; font-size: 18px; border: 2px solid var(--border);">
+                <i class="fa-solid fa-user-tie"></i>
+              </div>
+              <span style="font-size: 10px; font-weight: 700; display: block; margin-top: 2px;">Executive</span>
+            </div>
+            <div onclick="selectPresetIcon('chef')" style="cursor: pointer; text-align: center;">
+              <div style="width: 44px; height: 44px; border-radius: 50%; background: #fff7ed; color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 18px; border: 2px solid var(--primary);">
+                <i class="fa-solid fa-kitchen-set"></i>
+              </div>
+              <span style="font-size: 10px; font-weight: 700; display: block; margin-top: 2px;">Chef</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Personal Details Form -->
+      <section class="subpage-card">
+        <div class="subpage-card-title">
+          <span><i class="fa-solid fa-id-card" style="color: var(--primary); margin-right: 6px;"></i> Contact Details</span>
+        </div>
+
+        <form id="personalInfoForm" onsubmit="event.preventDefault(); savePersonalDetails();">
+          <div class="form-group">
+            <label for="personalName">Full Name</label>
+            <input type="text" id="personalName" value="Ahmed Mohamed" required />
+          </div>
+
+          <div class="form-group">
+            <label for="personalPhone">Phone Number (Egypt)</label>
+            <div style="display: flex; gap: 8px;">
+              <span style="display: flex; align-items: center; padding: 0 12px; background: var(--surface-alt); border: 1px solid var(--border); border-radius: 10px; font-size: 13px; font-weight: 700; color: var(--text-secondary);">+20</span>
+              <input type="tel" id="personalPhone" value="100 123 4567" style="flex: 1;" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="personalEmail">Email Address</label>
+            <input type="email" id="personalEmail" value="ahmed.mohamed@example.com" required />
+          </div>
+
+          <div class="form-group">
+            <label for="personalCity">City / Governorate</label>
+            <select id="personalCity" style="width: 100%; border: 1px solid var(--border); border-radius: 10px; padding: 12px; font-size: 13px; outline: none; background: #ffffff;">
+              <option value="Alexandria" selected>Alexandria (الإسكندرية)</option>
+              <option value="Cairo">Cairo (القاهرة)</option>
+              <option value="Giza">Giza (الجيزة)</option>
+              <option value="North Coast">North Coast (الساحل الشمالي)</option>
+            </select>
+          </div>
+
+          <!-- Birthday Perk Box -->
+          <div class="form-group" style="background: #fdf2f8; border: 1.5px dashed #f472b6; border-radius: 12px; padding: 14px;">
+            <label for="personalBirthday" style="color: #be185d; font-weight: 700;">
+              <i class="fa-solid fa-cake-candles"></i> Birthday (Birthday Treat Reward)
+            </label>
+            <input type="date" id="personalBirthday" value="1998-05-14" style="background: #ffffff;" />
+            <small style="display: block; margin-top: 6px; font-size: 11px; color: #9d174d;">
+              We gift you a complimentary dessert + 50 EGP voucher on your birthday week!
+            </small>
+          </div>
+
+          <button type="submit" class="btn-primary" style="width: 100%; padding: 14px; margin-top: 10px;">
+            <i class="fa-solid fa-floppy-disk"></i> Save Personal Details
+          </button>
+        </form>
+      </section>
+
+      <!-- 3. Password & Security -->
+      <section class="subpage-card">
+        <div class="subpage-card-title">
+          <span><i class="fa-solid fa-shield-halved" style="color: #0284c7; margin-right: 6px;"></i> Account Security</span>
+        </div>
+
+        <div class="form-group">
+          <label>Current Password</label>
+          <input type="password" id="curPassword" value="••••••••••••" />
+        </div>
+
+        <div class="form-group">
+          <label>New Password</label>
+          <input type="password" id="newPassword" placeholder="Minimum 8 characters" />
+        </div>
+
+        <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-top: 1px solid var(--border); margin-top: 8px;">
+          <div>
+            <strong style="font-size: 13px; display: block;">Two-Factor Authentication (SMS)</strong>
+            <span style="font-size: 11px; color: var(--text-secondary);">Receive a verification code when signing in</span>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" checked onchange="showToast('2-Factor Authentication setting updated')" />
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <button type="button" class="btn-secondary" onclick="updatePassword()" style="width: 100%; padding: 12px; margin-top: 12px; font-size: 13px; font-weight: 700; border: 1.5px solid var(--border); background: var(--surface-alt); border-radius: 12px; cursor: pointer;">
+          Update Password
+        </button>
+      </section>
+
+    </div>
+
+    <!-- Bottom Navigation Bar (Home | Orders | Deals | Profile) -->
+    <nav class="bottom-nav">
+      <a href="index.html" class="nav-item">
+        <i class="fa-solid fa-house"></i>
+        <span>Home</span>
+      </a>
+
+      <a href="orders.html" class="nav-item">
+        <div class="nav-icon-container">
+          <i class="fa-solid fa-receipt"></i>
+          <span class="nav-badge">1</span>
+        </div>
+        <span>Orders</span>
+      </a>
+
+      <a href="deals.html" class="nav-item">
+        <div class="nav-icon-container">
+          <i class="fa-solid fa-tag"></i>
+        </div>
+        <span>Deals</span>
+      </a>
+
+      <a href="profile.html" class="nav-item active">
+        <i class="fa-solid fa-user"></i>
+        <span>Profile</span>
+      </a>
+    </nav>
+
+  </main>
+
+  <!-- Central App-State Logic -->
+  <script src="app-state.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      loadPersonalDetails();
+    });
+
+    function loadPersonalDetails() {
+      const p = AppState.getProfile();
+      document.getElementById('personalName').value = p.name || 'Ahmed Mohamed';
+      document.getElementById('personalCardName').textContent = p.name || 'Ahmed Mohamed';
+
+      // Phone formatting without +20 prefix for display
+      let phone = p.phone || '100 123 4567';
+      phone = phone.replace('+20', '').trim();
+      document.getElementById('personalPhone').value = phone;
+
+      document.getElementById('personalEmail').value = p.email || 'ahmed.mohamed@example.com';
+      document.getElementById('personalBirthday').value = p.birthday || '1998-05-14';
+
+      if (p.city) {
+        document.getElementById('personalCity').value = p.city;
+      }
+
+      const img = document.getElementById('personalAvatarImg');
+      if (img && p.avatar) {
+        img.src = p.avatar;
+      }
+    }
+
+    function savePersonalDetails() {
+      const p = AppState.getProfile();
+      p.name = document.getElementById('personalName').value.trim();
+      p.phone = '+20 ' + document.getElementById('personalPhone').value.trim();
+      p.email = document.getElementById('personalEmail').value.trim();
+      p.city = document.getElementById('personalCity').value;
+      p.birthday = document.getElementById('personalBirthday').value;
+
+      AppState.saveProfile(p);
+      document.getElementById('personalCardName').textContent = p.name;
+      showToast('Personal information saved successfully!');
+    }
+
+    function handlePersonalPhotoUpload(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const p = AppState.getProfile();
+          p.avatar = e.target.result;
+          AppState.saveProfile(p);
+          document.getElementById('personalAvatarImg').src = p.avatar;
+          showToast('Profile photo updated!');
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function selectPreset(url) {
+      const p = AppState.getProfile();
+      p.avatar = url;
+      AppState.saveProfile(p);
+      document.getElementById('personalAvatarImg').src = url;
+      showToast('Default photo restored!');
+    }
+
+    function selectPresetIcon(type) {
+      // Create SVG data URL or preset
+      const p = AppState.getProfile();
+      p.avatar = 'images/user_avatar.jpg';
+      AppState.saveProfile(p);
+      document.getElementById('personalAvatarImg').src = p.avatar;
+      showToast('Avatar theme applied!');
+    }
+
+    function updatePassword() {
+      const np = document.getElementById('newPassword').value;
+      if (!np || np.length < 6) {
+        showToast('Password must be at least 6 characters long.');
+        return;
+      }
+      showToast('Password updated securely!');
+      document.getElementById('newPassword').value = '';
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saved Delivery Addresses - BiteHub (EGP)</title>
+
+  <!-- Favicon & App Icons -->
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+  <link rel="alternate icon" type="image/png" href="images/favicon.png" />
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+
+  <!-- Modern Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="luxe.css" />
+
+  <!-- FontAwesome Icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  />
+</head>
+
+<body>
+
+  <main class="app profile-app">
+
+    <!-- Subpage Top Bar -->
+    <header class="subpage-top-bar">
+      <a href="profile.html" class="subpage-back-btn" aria-label="Back to Account Hub">
+        <i class="fa-solid fa-arrow-left"></i>
+      </a>
+      <div class="subpage-title-box">
+        <h1>Saved Addresses</h1>
+        <p>Delivery destinations in Alexandria</p>
+      </div>
+      <button class="icon-circle-btn open-cart-btn" aria-label="Shopping Cart">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span class="cart-badge" style="display:none;">0</span>
+      </button>
+    </header>
+
+    <div class="subpage-container">
+
+      <!-- 1. Saved Addresses List -->
+      <section class="subpage-card">
+        <div class="subpage-card-title">
+          <span><i class="fa-solid fa-location-dot" style="color: var(--primary); margin-right: 6px;"></i> Your Locations</span>
+          <span style="font-size: 11px; color: var(--text-secondary);">Tap to set active</span>
+        </div>
+
+        <div class="address-cards-list" id="addressesPageList">
+          <!-- Rendered by JS -->
+        </div>
+      </section>
+
+      <!-- 2. Add New Address Form -->
+      <section class="subpage-card">
+        <div class="subpage-card-title">
+          <span><i class="fa-solid fa-map-location-dot" style="color: #0284c7; margin-right: 6px;"></i> Add New Address</span>
+        </div>
+
+        <!-- Simulated Map Pin Banner -->
+        <div style="background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%); border-radius: 12px; height: 90px; position: relative; overflow: hidden; margin-bottom: 14px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border);">
+          <div style="position: absolute; inset: 0; opacity: 0.25; background-image: radial-gradient(#64748b 1px, transparent 1px); background-size: 12px 12px;"></div>
+          <div style="position: relative; z-index: 2; text-align: center;">
+            <i class="fa-solid fa-location-dot" style="color: #ef4444; font-size: 26px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3)); animation: bounce 1.8s infinite;"></i>
+            <span style="display: block; font-size: 10px; font-weight: 700; color: #1e293b; background: rgba(255,255,255,0.9); padding: 2px 8px; border-radius: 6px; margin-top: 2px;">
+              Alexandria, Egypt (GPS Pin)
+            </span>
+          </div>
+        </div>
+
+        <form id="newAddressForm" onsubmit="event.preventDefault(); handleAddNewAddress();">
+          <div class="form-group">
+            <label>Address Label</label>
+            <div style="display: flex; gap: 8px; margin-bottom: 6px;">
+              <button type="button" class="btn-label-tag active" onclick="setLabelType(this, 'Home')"><i class="fa-solid fa-house"></i> Home</button>
+              <button type="button" class="btn-label-tag" onclick="setLabelType(this, 'Office')"><i class="fa-solid fa-briefcase"></i> Office</button>
+              <button type="button" class="btn-label-tag" onclick="setLabelType(this, 'Beach House')"><i class="fa-solid fa-umbrella-beach"></i> Beach</button>
+              <button type="button" class="btn-label-tag" onclick="setLabelType(this, 'Other')">Other</button>
+            </div>
+            <input type="text" id="addrLabelInput" value="Home" placeholder="Address name" required />
+          </div>
+
+          <div class="form-group">
+            <label for="addrStreetInput">Street Address & Landmark</label>
+            <input type="text" id="addrStreetInput" placeholder="E.g., 22 Stanley Coast Rd, Near San Stefano" required />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="addrFloorInput">Floor</label>
+              <input type="text" id="addrFloorInput" placeholder="Floor #" />
+            </div>
+            <div class="form-group">
+              <label for="addrAptInput">Apartment</label>
+              <input type="text" id="addrAptInput" placeholder="Apt #" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="addrNotesInput">Delivery Instructions for Captain</label>
+            <input type="text" id="addrNotesInput" placeholder="E.g., Ring bell twice, leave with security" />
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
+            <input type="checkbox" id="addrSetDefaultCheck" style="width: 18px; height: 18px; accent-color: var(--primary);" />
+            <label for="addrSetDefaultCheck" style="font-size: 12px; font-weight: 600; cursor: pointer; margin: 0;">Set as default delivery address</label>
+          </div>
+
+          <button type="submit" class="btn-primary" style="width: 100%; padding: 14px;">
+            <i class="fa-solid fa-plus"></i> Save Delivery Address
+          </button>
+        </form>
+      </section>
+
+    </div>
+
+    <!-- Bottom Navigation Bar (Home | Orders | Deals | Profile) -->
+    <nav class="bottom-nav">
+      <a href="index.html" class="nav-item">
+        <i class="fa-solid fa-house"></i>
+        <span>Home</span>
+      </a>
+
+      <a href="orders.html" class="nav-item">
+        <div class="nav-icon-container">
+          <i class="fa-solid fa-receipt"></i>
+          <span class="nav-badge">1</span>
+        </div>
+        <span>Orders</span>
+      </a>
+
+      <a href="deals.html" class="nav-item">
+        <div class="nav-icon-container">
+          <i class="fa-solid fa-tag"></i>
+        </div>
+        <span>Deals</span>
+      </a>
+
+      <a href="profile.html" class="nav-item active">
+        <i class="fa-solid fa-user"></i>
+        <span>Profile</span>
+      </a>
+    </nav>
+
+  </main>
+
+  <style>
+    .btn-label-tag {
+      flex: 1;
+      padding: 8px 6px;
+      border: 1px solid var(--border);
+      background: var(--surface-alt);
+      color: var(--text-secondary);
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      transition: all 0.2s ease;
+    }
+    .btn-label-tag.active {
+      background: #fff7ed;
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+  </style>
+
+  <!-- Central App-State Logic -->
+  <script src="app-state.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      renderAddressesPage();
+    });
+
+    function setLabelType(btn, label) {
+      document.querySelectorAll('.btn-label-tag').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('addrLabelInput').value = label;
+    }
+
+    function renderAddressesPage() {
+      const profile = AppState.getProfile();
+      const container = document.getElementById('addressesPageList');
+      if (!container) return;
+
+      if (!profile.addresses || profile.addresses.length === 0) {
+        container.innerHTML = `
+          <div style="text-align: center; padding: 20px; color: var(--text-secondary); font-size: 12px;">
+            No saved addresses found. Add your first address below!
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = profile.addresses.map(a => {
+        let iconName = 'house';
+        const lbl = (a.label || '').toLowerCase();
+        if (lbl.includes('office') || lbl.includes('work')) iconName = 'briefcase';
+        else if (lbl.includes('beach')) iconName = 'umbrella-beach';
+        else if (lbl.includes('gym')) iconName = 'dumbbell';
+
+        const isActive = a.id === profile.activeAddressId;
+
+        return `
+          <div class="address-card ${isActive ? 'active' : ''}" onclick="selectActiveAddress('${a.id}')">
+            <div class="address-icon"><i class="fa-solid fa-${iconName}"></i></div>
+            <div class="address-info">
+              <div class="address-title-row">
+                <strong>${a.label}</strong>
+                ${a.isDefault ? `<span class="default-chip">Default</span>` : ''}
+                ${isActive ? `<span style="font-size: 10px; background: #dcfce7; color: #16a34a; font-weight: 800; padding: 2px 6px; border-radius: 6px;">Active</span>` : ''}
+              </div>
+              <p>${a.address}</p>
+              ${a.floor || a.apt ? `<small style="color:var(--text-secondary); display:block; margin-top:2px;">Floor ${a.floor || '-'} • Apt ${a.apt || '-'}</small>` : ''}
+              ${a.notes ? `<small style="color:var(--primary); font-style:italic; display:block; margin-top:2px;">Note: ${a.notes}</small>` : ''}
+            </div>
+            ${isActive ? `<i class="fa-solid fa-circle-check check-mark"></i>` : ''}
+            ${!a.isDefault ? `
+              <button onclick="event.stopPropagation(); deleteAddressItem('${a.id}')" style="background:none; border:none; color:#ef4444; font-size:14px; cursor:pointer; padding:6px; margin-left: 6px;" title="Delete Address">
+                <i class="fa-regular fa-trash-can"></i>
+              </button>
+            ` : ''}
+          </div>
+        `;
+      }).join('');
+    }
+
+    function selectActiveAddress(id) {
+      AppState.setActiveAddress(id);
+      renderAddressesPage();
+    }
+
+    function deleteAddressItem(id) {
+      const p = AppState.getProfile();
+      p.addresses = p.addresses.filter(a => a.id !== id);
+      if (p.activeAddressId === id) {
+        p.activeAddressId = p.addresses[0]?.id || '';
+      }
+      AppState.saveProfile(p);
+      renderAddressesPage();
+      showToast('Address removed from your account.');
+    }
+
+    function handleAddNewAddress() {
+      const label = document.getElementById('addrLabelInput').value.trim() || 'Other';
+      const street = document.getElementById('addrStreetInput').value.trim();
+      const floor = document.getElementById('addrFloorInput').value.trim();
+      const apt = document.getElementById('addrAptInput').value.trim();
+      const notes = document.getElementById('addrNotesInput').value.trim();
+      const isDefault = document.getElementById('addrSetDefaultCheck').checked;
+
+      if (!street) {
+        showToast('Please enter a street address.');
+        return;
+      }
+
+      const p = AppState.getProfile();
+      const newId = 'addr-' + Date.now();
+
+      if (isDefault) {
+        p.addresses.forEach(a => a.isDefault = false);
+      }
+
+      p.addresses.push({
+        id: newId,
+        label: label,
+        address: street,
+        floor: floor,
+        apt: apt,
+        notes: notes,
+        isDefault: isDefault
+      });
+
+      p.activeAddressId = newId;
+      AppState.saveProfile(p);
+
+      // Reset form
+      document.getElementById('addrStreetInput').value = '';
+      document.getElementById('addrFloorInput').value = '';
+      document.getElementById('addrAptInput').value = '';
+      document.getElementById('addrNotesInput').value = '';
+      document.getElementById('addrSetDefaultCheck').checked = false;
+
+      renderAddressesPage();
+      showToast(`Address "${label}" saved and set as active!`);
+    }
+  </script>
+
+</body>
+</html>

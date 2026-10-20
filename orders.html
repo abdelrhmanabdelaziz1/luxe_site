@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Orders & Live Tracking - BiteHub (EGP)</title>
+
+  <!-- Favicon & App Icons -->
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+  <link rel="alternate icon" type="image/png" href="images/favicon.png" />
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+
+  <!-- Modern Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="luxe.css" />
+
+  <!-- FontAwesome Icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  />
+</head>
+
+<body>
+
+  <main class="app orders-app">
+    <div class="luxe-wordmark" aria-label="BiteHub Maison edition"><strong>BITE<span>HUB</span><span class="wordmark-stem"></span></strong><small>THE ART OF<br>GOOD FOOD</small></div>
+
+    <!-- Top Header -->
+    <header class="home-header">
+      <div class="user-greeting-box">
+        <h1>My Orders</h1>
+        <p class="greeting-subtitle">Track live delivery & review past meals</p>
+      </div>
+
+      <div class="header-actions">
+        <button class="icon-circle-btn open-notif-btn" onclick="AppState.openNotifications()" aria-label="Notifications">
+          <i class="fa-regular fa-bell"></i>
+          <span class="notif-badge" style="display:none;">2</span>
+        </button>
+
+        <button class="icon-circle-btn open-cart-btn" onclick="AppState.openCartDrawer()" aria-label="Shopping Cart">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="cart-badge" style="display:none;">0</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Orders Filter Tabs (Active vs Past) -->
+    <section class="order-tabs user-order-tabs">
+      <button class="tab active" id="tabActiveBtn" onclick="switchOrderTab('active')">
+        Active Order
+        <span class="tab-badge" id="activeOrdersBadge">1</span>
+      </button>
+
+      <button class="tab" id="tabPastBtn" onclick="switchOrderTab('past')">
+        Past Orders
+        <span class="tab-badge" id="pastOrdersBadge">2</span>
+      </button>
+    </section>
+
+    <!-- 1. ACTIVE ORDER SECTION WITH 5-STAGE TRACKING -->
+    <section id="activeOrdersSection" class="orders-container">
+
+      <div class="section-headline">
+        <div>
+          <h2>Active Delivery Tracking</h2>
+          <p>Real-time status updates from our kitchen</p>
+        </div>
+        <span class="live-pill"><i class="fa-solid fa-circle"></i> Live Tracking</span>
+      </div>
+
+      <article class="user-order-card active-tracking-card" id="activeOrderCard">
+        <!-- Order Header -->
+        <div class="order-card-top">
+          <div>
+            <div class="order-id-row">
+              <h3 id="activeOrderId">#EGY-8942</h3>
+              <span class="status-chip on-way" id="activeStatusChip">
+                <i class="fa-solid fa-motorcycle"></i> Out for Delivery
+              </span>
+            </div>
+            <p class="order-timestamp" id="activeOrderTimestamp">Placed today at 4:15 PM • Deliver to Smouha</p>
+          </div>
+        </div>
+
+        <!-- 5-STAGE PROGRESS STEPPER TRACKER -->
+        <div class="order-5-stepper" id="orderStepper">
+          <div class="step-node completed" id="stNode1">
+            <div class="step-circle"><i class="fa-solid fa-check"></i></div>
+            <span>Placed</span>
+          </div>
+          <div class="stepper-connector completed" id="stConn1"></div>
+
+          <div class="step-node completed" id="stNode2">
+            <div class="step-circle"><i class="fa-solid fa-thumbs-up"></i></div>
+            <span>Confirmed</span>
+          </div>
+          <div class="stepper-connector completed" id="stConn2"></div>
+
+          <div class="step-node completed" id="stNode3">
+            <div class="step-circle"><i class="fa-solid fa-fire-burner"></i></div>
+            <span>Preparing</span>
+          </div>
+          <div class="stepper-connector active" id="stConn3"></div>
+
+          <div class="step-node active" id="stNode4">
+            <div class="step-circle pulse-circle"><i class="fa-solid fa-motorcycle"></i></div>
+            <span>On Way</span>
+          </div>
+          <div class="stepper-connector" id="stConn4"></div>
+
+          <div class="step-node" id="stNode5">
+            <div class="step-circle"><i class="fa-solid fa-house-chimney"></i></div>
+            <span>Delivered</span>
+          </div>
+        </div>
+
+        <!-- ETA + Advance Stage (compact) -->
+        <div class="eta-box" style="justify-content: space-between;">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div class="eta-icon"><i class="fa-solid fa-stopwatch"></i></div>
+            <div class="eta-info">
+              <span>Estimated Arrival</span>
+              <strong id="activeEta">15 - 25 min</strong>
+            </div>
+          </div>
+          <button class="sim-advance-btn" id="simAdvanceBtn" onclick="advanceLiveStage()" style="flex-shrink:0;">
+            <span id="simStatusHeadline">Advance</span>
+            <i class="fa-solid fa-forward-step"></i>
+          </button>
+        </div>
+
+        <!-- Courier Information -->
+        <div class="courier-card">
+          <div class="courier-avatar">
+            <i class="fa-solid fa-helmet-safety"></i>
+          </div>
+          <div class="courier-info">
+            <strong id="courierName">Captain Mostafa</strong>
+            <p id="courierRole">Express Delivery Partner • Rating: 4.9</p>
+          </div>
+          <button class="call-courier-btn" title="Call Courier" onclick="openDriverCallModal()">
+            <i class="fa-solid fa-phone"></i> Call
+          </button>
+        </div>
+
+        <!-- Itemized Order Details -->
+        <div class="order-items-wrapper">
+          <h4>Order Items</h4>
+          <div class="ordered-items-list" id="activeItemsList"></div>
+
+          <div class="order-price-summary">
+            <div class="summary-line">
+              <span>Subtotal</span>
+              <strong id="activeSubtotal">305 EGP</strong>
+            </div>
+            <div class="summary-line" id="activeDiscountRow" style="display:none; color:var(--green)">
+              <span>Coupon Discount (<strong id="activeDiscountCode"></strong>)</span>
+              <strong id="activeDiscountVal">-0 EGP</strong>
+            </div>
+            <div class="summary-line">
+              <span>Delivery Fee</span>
+              <strong id="activeDeliveryFee" style="color:var(--green)">FREE</strong>
+            </div>
+            <div class="summary-line total-highlight">
+              <span>Total Paid</span>
+              <strong id="activeTotal">305 EGP</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cancel Order Section -->
+        <div class="cancel-order-box" style="border-top: 1px solid var(--border); padding-top: 12px; margin-top: 4px;">
+          <button class="cancel-order-btn" id="cancelOrderBtn" onclick="AppState.cancelActiveOrder()">
+            Cancel Order
+          </button>
+          <p class="cancel-policy-note" id="cancelPolicyNote" style="margin-top:6px; text-align:center; font-size:11px;"></p>
+        </div>
+
+      </article>
+
+      <!-- Empty State for Active Orders -->
+      <div class="empty-state" id="noActiveOrderState" style="display:none;">
+        <i class="fa-solid fa-utensils"></i>
+        <h4>No active orders right now</h4>
+        <p>Your freshly made meals will appear here as soon as you order.</p>
+        <button class="explore-btn" onclick="window.location.href='index.html'">Explore Menu</button>
+      </div>
+
+    </section>
+
+    <!-- 2. PAST ORDERS SECTION WITH REORDER & RATINGS -->
+    <section id="pastOrdersSection" class="orders-container" style="display:none;">
+
+      <div class="section-headline">
+        <div>
+          <h2>Past Order History</h2>
+          <p>Tap Reorder to add items back to your cart</p>
+        </div>
+      </div>
+
+      <div id="pastOrdersList">
+        <!-- Rendered by JS from AppState.getPastOrders() -->
+      </div>
+
+    </section>
+
+    <!-- RATE YOUR ORDER MODAL (1-5 STARS) -->
+    <div class="rating-modal" id="ratingModal">
+      <div class="rating-modal-content">
+        <div class="rating-header">
+          <h3>Rate Your Order</h3>
+          <button onclick="closeRatingModal()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <p class="rating-subtitle" id="ratingOrderTitle">How was order #EGY-7814?</p>
+
+        <!-- Rating Criteria -->
+        <div class="rating-category-block">
+          <label>Food Quality & Taste</label>
+          <div class="star-rating" data-target="food">
+            <span class="star" onclick="setStars('food', 1)"><i class="fa-solid fa-star"></i></span>
+            <span class="star" onclick="setStars('food', 2)"><i class="fa-solid fa-star"></i></span>
+            <span class="star" onclick="setStars('food', 3)"><i class="fa-solid fa-star"></i></span>
+            <span class="star" onclick="setStars('food', 4)"><i class="fa-solid fa-star"></i></span>
+            <span class="star" onclick="setStars('food', 5)"><i class="fa-solid fa-star"></i></span>
+          </div>
+        </div>
+
+        <div class="rating-category-block">
+          <label>Delivery Speed & Courier</label>
+          <div class="star-rating" data-target="delivery">
+            <span class="star" onclick="setStars('delivery', 1)"><i class="fa-solid fa-star"></i></span>
+            <span class="star" onclick="setStars('delivery', 2)"><i class="fa-solid fa-star"></i></span>
+            <span class="star" onclick="setStars('delivery', 3)"><i class="fa-solid fa-star"></i></span>
+            <span class="star" onclick="setStars('delivery', 4)"><i class="fa-solid fa-star"></i></span>
+            <span class="star" onclick="setStars('delivery', 5)"><i class="fa-solid fa-star"></i></span>
+          </div>
+        </div>
+
+        <div class="rating-category-block">
+          <label>Written Feedback (Optional)</label>
+          <textarea id="ratingComments" placeholder="Tell us what you loved or how we can improve..." rows="3"></textarea>
+        </div>
+
+        <button class="submit-rating-btn" onclick="submitRating()">Submit Rating</button>
+      </div>
+    </div>
+
+    <!-- DRIVER CALL MODAL -->
+    <div class="driver-call-modal" id="driverCallModal">
+      <div class="driver-call-content">
+        <div class="driver-call-avatar">
+          <i class="fa-solid fa-helmet-safety"></i>
+        </div>
+        <h3 id="callModalDriverName">Captain Mostafa</h3>
+        <p style="font-size:12px; color:var(--muted); margin-bottom:12px;">Express Courier • Assigned to your order</p>
+        <p style="font-size:16px; font-weight:800; color:var(--primary); margin-bottom:6px;" id="callModalDriverPhone">+20 112 345 6789</p>
+        <p style="font-size:11px; color:var(--green); font-weight:700;"><i class="fa-solid fa-circle-check"></i> Verified Driver On Duty</p>
+
+        <div class="driver-call-actions">
+          <a href="tel:+201123456789" class="driver-call-btn-main" id="directDialLink">
+            <i class="fa-solid fa-phone"></i> Dial Now
+          </a>
+          <button class="driver-call-btn-close" onclick="closeDriverCallModal()">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Navigation Bar (Home | Orders | Deals | Profile) -->
+    <nav class="bottom-nav">
+      <a href="index.html" class="nav-item">
+        <i class="fa-solid fa-house"></i>
+        <span>Home</span>
+      </a>
+
+      <a href="orders.html" class="nav-item active">
+        <div class="nav-icon-container">
+          <i class="fa-solid fa-receipt"></i>
+          <span class="nav-badge">1</span>
+        </div>
+        <span>Orders</span>
+      </a>
+
+      <a href="deals.html" class="nav-item">
+        <div class="nav-icon-container">
+          <i class="fa-solid fa-tag"></i>
+        </div>
+        <span>Deals</span>
+      </a>
+
+      <a href="profile.html" class="nav-item">
+        <i class="fa-solid fa-user"></i>
+        <span>Profile</span>
+      </a>
+    </nav>
+
+  </main>
+
+  <!-- Central App-State Logic -->
+  <script src="app-state.js"></script>
+
+  <script>
+    let activeRatingOrderId = null;
+    const ratingValues = { food: 5, delivery: 5 };
+    let liveSeconds = 840; // ~14 mins
+    let liveCountdownInterval = null;
+
+    const STAGE_CONFIG = {
+      1: {
+        chipClass: 'placed',
+        chipIcon: 'fa-regular fa-clock',
+        chipText: 'Order Placed',
+        headline: 'Stage 1 of 5: Placed at Kitchen',
+        etaText: '25 - 35 Minutes (Estimating ~5:00 PM)',
+        telemetry: 'Order ticket printed at Smouha Kitchen',
+        speed: '0 km/h',
+        scooterPos: { top: '80%', left: '16%' }
+      },
+      2: {
+        chipClass: 'confirmed',
+        chipIcon: 'fa-solid fa-thumbs-up',
+        chipText: 'Order Confirmed',
+        headline: 'Stage 2 of 5: Order Accepted',
+        etaText: '20 - 30 Minutes (Estimated arrival 4:55 PM)',
+        telemetry: 'Kitchen verified order & queued for grill',
+        speed: '0 km/h',
+        scooterPos: { top: '75%', left: '18%' }
+      },
+      3: {
+        chipClass: 'preparing',
+        chipIcon: 'fa-solid fa-fire-burner',
+        chipText: 'Preparing in Kitchen',
+        headline: 'Stage 3 of 5: Chef Grilling & Baking',
+        etaText: '15 - 20 Minutes (Fresh from oven)',
+        telemetry: 'Chef Mahmoud is searing patties and packaging',
+        speed: '0 km/h',
+        scooterPos: { top: '70%', left: '22%' }
+      },
+      4: {
+        chipClass: 'on-way',
+        chipIcon: 'fa-solid fa-motorcycle',
+        chipText: 'Out for Delivery',
+        headline: 'Stage 4 of 5: Driver En Route',
+        etaText: '12 - 18 Minutes (Arriving soon)',
+        telemetry: 'GPS Live: On Albert Al Awal St (1.2 km away)',
+        speed: '38 km/h',
+        scooterPos: { top: '50%', left: '55%' }
+      },
+      5: {
+        chipClass: 'delivered',
+        chipIcon: 'fa-solid fa-house-chimney',
+        chipText: 'Delivered Successfully',
+        headline: 'Stage 5 of 5: Order Delivered! Enjoy your meal',
+        etaText: 'Arrived & Handed to Customer',
+        telemetry: 'Courier arrived at destination building',
+        speed: '0 km/h',
+        scooterPos: { top: '25%', left: '85%' }
+      }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderActiveOrder();
+      renderPastOrders();
+      startLiveTicker();
+    });
+
+    function startLiveTicker() {
+      if (liveCountdownInterval) clearInterval(liveCountdownInterval);
+      liveCountdownInterval = setInterval(() => {
+        const order = AppState.getActiveOrder();
+        if (!order || order.statusStep === 5) return;
+        if (liveSeconds > 60) {
+          liveSeconds--;
+          const m = Math.floor(liveSeconds / 60);
+          const s = liveSeconds % 60;
+          const etaEl = document.getElementById('activeEta');
+          if (etaEl && order.statusStep === 4) {
+            etaEl.textContent = `${m}m ${s < 10 ? '0' : ''}${s}s (Live GPS Tracking)`;
+          }
+        }
+      }, 1000);
+    }
+
+    function switchOrderTab(tab) {
+      const activeSec = document.getElementById('activeOrdersSection');
+      const pastSec = document.getElementById('pastOrdersSection');
+      const tabActive = document.getElementById('tabActiveBtn');
+      const tabPast = document.getElementById('tabPastBtn');
+
+      if (tab === 'active') {
+        activeSec.style.display = 'block';
+        pastSec.style.display = 'none';
+        tabActive.classList.add('active');
+        tabPast.classList.remove('active');
+      } else {
+        activeSec.style.display = 'none';
+        pastSec.style.display = 'block';
+        tabPast.classList.add('active');
+        tabActive.classList.remove('active');
+      }
+    }
+
+    function renderActiveOrder() {
+      const order = AppState.getActiveOrder();
+      const card = document.getElementById('activeOrderCard');
+      const empty = document.getElementById('noActiveOrderState');
+
+      if (!order) {
+        if (card) card.style.display = 'none';
+        if (empty) empty.style.display = 'flex';
+        document.getElementById('activeOrdersBadge').textContent = '0';
+        return;
+      }
+
+      if (card) card.style.display = 'block';
+      if (empty) empty.style.display = 'none';
+
+      document.getElementById('activeOrderId').textContent = order.id;
+      document.getElementById('activeOrderTimestamp').textContent = `Placed ${order.placedAt} • ${order.address}`;
+
+      const isAr = AppState.getLanguage() === 'ar';
+      const step = order.statusStep || 4;
+      const cfg = STAGE_CONFIG[step] || STAGE_CONFIG[4];
+
+      const chipText = isAr ? ({
+        1: 'تم الطلب',
+        2: 'تم تأكيد الطلب',
+        3: 'قيد التحضير في المطبخ',
+        4: 'في الطريق إليك',
+        5: 'تم التوصيل بنجاح'
+      }[step] || cfg.chipText) : cfg.chipText;
+
+      const headlineText = isAr ? ({
+        1: 'المرحلة 1 من 5: تم استلام الطلب في المطبخ',
+        2: 'المرحلة 2 من 5: تم تأكيد الطلب من المطعم',
+        3: 'المرحلة 3 من 5: الشيف يقوم بالتحضير والشوي',
+        4: 'المرحلة 4 من 5: المندوب في الطريق إليك',
+        5: 'المرحلة 5 من 5: تم تسليم الطلب! بالهناء والشفاء'
+      }[step] || cfg.headline) : cfg.headline;
+
+      const etaText = isAr ? ({
+        1: '25 - 35 دقيقة (تقريباً 5:00 م)',
+        2: '20 - 30 دقيقة (تقريباً 4:55 م)',
+        3: '15 - 20 دقيقة (طازج من الفرن)',
+        4: '12 - 18 دقيقة (يصل قريباً)',
+        5: 'وصل المندوب وتم التسليم للعميل'
+      }[step] || cfg.etaText) : cfg.etaText;
+
+      // Update Chip
+      const chip = document.getElementById('activeStatusChip');
+      if (chip) {
+        chip.className = `status-chip ${cfg.chipClass}`;
+        chip.innerHTML = `<i class="${cfg.chipIcon}"></i> ${chipText}`;
+      }
+
+      // Update ETA
+      document.getElementById('activeEta').textContent = etaText;
+      document.getElementById('simStatusHeadline').textContent = isAr ? 'تقديم المرحلة' : (step >= 5 ? 'Rate' : 'Advance');
+
+      // Update Stepper Labels
+      if (isAr) {
+        const n1 = document.querySelector('#stNode1 span');
+        const n2 = document.querySelector('#stNode2 span');
+        const n3 = document.querySelector('#stNode3 span');
+        const n4 = document.querySelector('#stNode4 span');
+        const n5 = document.querySelector('#stNode5 span');
+        if (n1) n1.textContent = 'تم الطلب';
+        if (n2) n2.textContent = 'تم التأكيد';
+        if (n3) n3.textContent = 'قيد التحضير';
+        if (n4) n4.textContent = 'في الطريق';
+        if (n5) n5.textContent = 'تم التوصيل';
+      }
+
+      // Update Stepper Stage
+      for (let i = 1; i <= 5; i++) {
+        const node = document.getElementById(`stNode${i}`);
+        if (node) {
+          node.classList.toggle('completed', i < step);
+          node.classList.toggle('active', i === step);
+        }
+        if (i <= 4) {
+          const conn = document.getElementById(`stConn${i}`);
+          if (conn) {
+            conn.classList.toggle('completed', i < step);
+            conn.classList.toggle('active', i === step);
+          }
+        }
+      }
+
+      // Courier
+      if (order.courier) {
+        document.getElementById('courierName').textContent = order.courier.name;
+        document.getElementById('courierRole').textContent = `${isAr ? 'كابتن التوصيل السريع' : order.courier.badge} • ${isAr ? 'التقييم' : 'Rating'}: ${order.courier.rating}`;
+        document.getElementById('callModalDriverName').textContent = order.courier.name;
+        document.getElementById('callModalDriverPhone').textContent = order.courier.phone || '+20 112 345 6789';
+      }
+
+      // Items
+      const itemsList = document.getElementById('activeItemsList');
+      if (itemsList && order.items) {
+        itemsList.innerHTML = order.items.map(it => {
+          const catItem = AppState.catalog[it.id];
+          const itemName = isAr ? (it.nameAr || (catItem && catItem.nameAr) || it.name) : it.name;
+          return `
+            <div class="ordered-item-row">
+              <span class="item-qty">${it.quantity}×</span>
+              <div class="item-meta">
+                <strong>${itemName}</strong>
+                ${it.options ? `<p class="item-specs">${it.options}</p>` : ''}
+              </div>
+              <strong class="item-price">${AppState.formatEGP(it.unitPrice * it.quantity)}</strong>
+            </div>
+          `;
+        }).join('');
+      }
+
+      document.getElementById('activeSubtotal').textContent = AppState.formatEGP(order.subtotal);
+      
+      const discRow = document.getElementById('activeDiscountRow');
+      const discTag = document.getElementById('activeDiscountCode');
+      const discVal = document.getElementById('activeDiscountVal');
+      if (discRow && discVal) {
+        if (order.discount && order.discount > 0) {
+          discRow.style.display = 'flex';
+          if (discTag) discTag.textContent = order.voucherCode || (isAr ? 'كوبون' : 'COUPON');
+          discVal.textContent = `-${AppState.formatEGP(order.discount)}`;
+        } else {
+          discRow.style.display = 'none';
+        }
+      }
+
+      const delFeeEl = document.getElementById('activeDeliveryFee');
+      if (delFeeEl) {
+        delFeeEl.textContent = (!order.deliveryFee || order.deliveryFee === 0) ? (isAr ? 'مجاناً' : 'FREE') : AppState.formatEGP(order.deliveryFee);
+      }
+
+      document.getElementById('activeTotal').textContent = AppState.formatEGP(order.total);
+
+      // Cancel button status
+      const cancelBtn = document.getElementById('cancelOrderBtn');
+      const cancelPolicy = document.getElementById('cancelPolicyNote');
+      if (order.statusStep >= 3) {
+        cancelBtn.disabled = true;
+        cancelBtn.classList.add('disabled');
+        cancelBtn.textContent = isAr ? 'لا يمكن الإلغاء حالياً' : 'Cancellation Unavailable';
+        if (cancelPolicy) cancelPolicy.textContent = isAr ? 'لا يمكن الإلغاء بعد بدء التحضير.' : 'Cannot cancel after cooking starts.';
+      } else {
+        cancelBtn.disabled = false;
+        cancelBtn.classList.remove('disabled');
+        cancelBtn.textContent = isAr ? 'إلغاء الطلب' : 'Cancel Order';
+        if (cancelPolicy) cancelPolicy.textContent = '';
+      }
+
+      // Advance Button
+      const advBtn = document.getElementById('simAdvanceBtn');
+      if (advBtn) {
+        if (step >= 5) {
+          advBtn.innerHTML = `<span>${isAr ? 'تقييم' : 'Rate'}</span>`;
+          advBtn.onclick = () => openRatingModal(order.id);
+        } else {
+          advBtn.innerHTML = `<span id="simStatusHeadline">${isAr ? 'تقديم' : 'Advance'}</span> <i class="fa-solid fa-forward-step"></i>`;
+          advBtn.onclick = advanceLiveStage;
+        }
+      }
+    }
+
+    function advanceLiveStage() {
+      const order = AppState.getActiveOrder();
+      if (!order) return;
+      let nextStep = (order.statusStep || 1) + 1;
+      if (nextStep > 5) nextStep = 1; // cycle back for demonstration
+
+      order.statusStep = nextStep;
+      order.status = STAGE_CONFIG[nextStep].chipText;
+      AppState.saveActiveOrder(order);
+
+      const isAr = AppState.getLanguage() === 'ar';
+      showToast(isAr ? 'تم تحديث حالة الطلب!' : `Order status updated to: ${STAGE_CONFIG[nextStep].chipText}`);
+      renderActiveOrder();
+
+      if (nextStep === 5) {
+        const past = AppState.getPastOrders();
+        if (!past.some(p => p.id === order.id)) {
+          past.unshift({
+            id: order.id,
+            date: isAr ? 'اليوم، الآن' : 'Today, Just Now',
+            status: isAr ? 'تم التوصيل بنجاح' : 'Delivered',
+            items: order.items,
+            subtotal: order.subtotal,
+            discount: order.discount || 0,
+            deliveryFee: order.deliveryFee || 0,
+            voucherCode: order.voucherCode || null,
+            total: order.total,
+            rated: false
+          });
+          localStorage.setItem(AppState.STORAGE_KEYS.PAST_ORDERS, JSON.stringify(past));
+          renderPastOrders();
+        }
+      }
+    }
+
+    function openDriverCallModal() {
+      document.getElementById('driverCallModal')?.classList.add('open');
+    }
+
+    function closeDriverCallModal() {
+      document.getElementById('driverCallModal')?.classList.remove('open');
+    }
+
+    function renderPastOrders() {
+      const isAr = AppState.getLanguage() === 'ar';
+      const past = AppState.getPastOrders();
+      const container = document.getElementById('pastOrdersList');
+      if (!container) return;
+
+      document.getElementById('pastOrdersBadge').textContent = past.length;
+
+      if (past.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            <h4>${isAr ? 'لا توجد طلبات سابقة' : 'No past orders yet'}</h4>
+            <p>${isAr ? 'طلباتك المكتملة ستظهر هنا.' : 'Your completed orders will appear here.'}</p>
+            <button class="explore-btn" onclick="window.location.href='index.html'">${isAr ? 'استكشف القائمة' : 'Explore Menu'}</button>
+          </div>`;
+        return;
+      }
+
+      container.innerHTML = past.map(o => `
+        <article class="user-order-card past-order-card">
+
+          <!-- Header -->
+          <div class="order-card-top">
+            <div class="order-id-row">
+              <h3>${o.id}</h3>
+              <span class="status-chip delivered">${isAr ? 'تم التوصيل' : 'Delivered'}</span>
+            </div>
+            <p class="order-timestamp">${o.date}</p>
+          </div>
+
+          <!-- Items (compact) -->
+          <div class="ordered-items-list">
+            ${o.items.map(it => {
+              const catItem = AppState.catalog[it.id];
+              const name = isAr ? (it.nameAr || (catItem && catItem.nameAr) || it.name) : it.name;
+              return `
+                <div class="ordered-item-row">
+                  <span class="item-qty">${it.quantity}×</span>
+                  <div class="item-meta"><strong>${name}</strong></div>
+                  <strong class="item-price">${AppState.formatEGP(it.unitPrice * it.quantity)}</strong>
+                </div>`;
+            }).join('')}
+          </div>
+
+          <!-- Total row -->
+          <div class="past-order-footer">
+            <div class="past-total">
+              <span>${isAr ? 'المجموع المدفوع' : 'Paid Total'}</span>
+              <strong>${AppState.formatEGP(o.total)}</strong>
+              ${o.discount && o.discount > 0 ? `
+                <span style="display:block; font-size:11px; color:var(--green); font-weight:700; margin-top:2px;">
+                  <i class="fa-solid fa-ticket"></i> ${isAr ? 'وفرت بالكوبون:' : 'Saved with coupon:'} -${AppState.formatEGP(o.discount)} ${o.voucherCode ? '(' + o.voucherCode + ')' : ''}
+                </span>
+              ` : ''}
+            </div>
+            <div class="past-actions-group">
+              <button class="rate-order-btn" onclick="openRatingModal('${o.id}')">
+                <i class="fa-regular fa-star"></i>
+                <span>${isAr ? 'تقييم' : 'Rate'}</span>
+              </button>
+              <button class="reorder-btn" onclick='AppState.reorder(${JSON.stringify(o.items)})'>
+                <i class="fa-solid fa-arrow-rotate-right"></i>
+                <span>${isAr ? 'إعادة الطلب' : 'Order Again'}</span>
+              </button>
+            </div>
+          </div>
+
+        </article>
+      `).join('');
+    }
+
+    function handleReorderClick(orderId) {
+      const past = AppState.getPastOrders();
+      const found = past.find(o => o.id === orderId);
+      if (found && found.items) {
+        AppState.reorder(found.items);
+      }
+    }
+
+    function openRatingModal(orderId) {
+      activeRatingOrderId = orderId;
+      document.getElementById('ratingOrderTitle').textContent = `How was your experience with ${orderId}?`;
+      document.getElementById('ratingModal')?.classList.add('open');
+      setStars('food', 5);
+      setStars('delivery', 5);
+    }
+
+    function closeRatingModal() {
+      document.getElementById('ratingModal')?.classList.remove('open');
+    }
+
+    function setStars(target, stars) {
+      ratingValues[target] = stars;
+      const container = document.querySelector(`.star-rating[data-target="${target}"]`);
+      if (container) {
+        container.querySelectorAll('.star').forEach((st, i) => {
+          st.classList.toggle('active', i < stars);
+        });
+      }
+    }
+
+    function submitRating() {
+      const comments = document.getElementById('ratingComments').value.trim();
+      AppState.rateOrder(activeRatingOrderId, {
+        food: ratingValues.food,
+        delivery: ratingValues.delivery,
+        comments: comments
+      });
+      closeRatingModal();
+      renderPastOrders();
+    }
+  </script>
+
+</body>
+</html>

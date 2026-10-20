@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loyalty & Rewards Club - BiteHub (EGP)</title>
+
+  <!-- Favicon & App Icons -->
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+  <link rel="alternate icon" type="image/png" href="images/favicon.png" />
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+
+  <!-- Modern Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="luxe.css" />
+
+  <!-- FontAwesome Icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  />
+</head>
+
+<body>
+
+  <main class="app profile-app">
+
+    <!-- Subpage Top Bar -->
+    <header class="subpage-top-bar">
+      <a href="profile.html" class="subpage-back-btn" aria-label="Back to Account Hub">
+        <i class="fa-solid fa-arrow-left"></i>
+      </a>
+      <div class="subpage-title-box">
+        <h1>Loyalty & Rewards</h1>
+        <p>Convert your bites into cash rewards</p>
+      </div>
+      <button class="icon-circle-btn open-cart-btn" aria-label="Shopping Cart">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span class="cart-badge" style="display:none;">0</span>
+      </button>
+    </header>
+
+    <div class="subpage-container">
+
+      <!-- 1. Hero Points Card -->
+      <section class="loyalty-hero-card">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px;">
+          <div>
+            <span class="account-tier-chip" style="background: rgba(255, 255, 255, 0.2); font-size: 11px;">
+              <i class="fa-solid fa-crown" style="color: #fbbf24;"></i> Silver VIP Member
+            </span>
+            <div style="margin-top: 10px;">
+              <span style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.8px; opacity: 0.8; display: block;">Total Available Balance</span>
+              <div style="display: flex; align-items: baseline; gap: 8px;">
+                <h2 id="loyaltyPointsHero" style="font-family: 'Outfit', sans-serif; font-size: 38px; font-weight: 900; margin: 0; color: #fbbf24;">1,250</h2>
+                <span style="font-size: 15px; font-weight: 700; opacity: 0.9;">Points</span>
+              </div>
+            </div>
+          </div>
+          <div style="background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(8px); padding: 8px 12px; border-radius: 12px; text-align: right; border: 1px solid rgba(255, 255, 255, 0.2);">
+            <span style="font-size: 10px; opacity: 0.8; display: block;">Cash Value</span>
+            <strong id="loyaltyCashValue" style="font-size: 15px; color: #ffffff;">125 EGP</strong>
+          </div>
+        </div>
+
+        <!-- Tier Progress Bar -->
+        <div style="background: rgba(0, 0, 0, 0.25); border-radius: 14px; padding: 14px; border: 1px solid rgba(255, 255, 255, 0.1);">
+          <div style="display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; margin-bottom: 6px;">
+            <span style="color: #fca5a5;">Bronze</span>
+            <span style="color: #fbbf24;"><i class="fa-solid fa-circle-check"></i> Silver (Active)</span>
+            <span style="color: #93c5fd;">Gold (Next)</span>
+          </div>
+          <div class="tier-bar-track" style="height: 8px; background: rgba(255, 255, 255, 0.2); border-radius: 6px; overflow: hidden; margin-bottom: 8px;">
+            <div class="tier-bar-fill" style="width: 78%; height: 100%; background: linear-gradient(90deg, #f59e0b, #fbbf24); border-radius: 6px;"></div>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 10px; opacity: 0.85;">
+            <span><i class="fa-solid fa-fire"></i> <strong>350 points</strong> to Gold VIP status</span>
+            <span>78% completed</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Redeem Points for Discounts Store -->
+      <section class="subpage-card">
+        <div class="subpage-card-title">
+          <span><i class="fa-solid fa-gift" style="color: var(--primary); margin-right: 6px;"></i> Instant Redemption Store</span>
+          <span style="font-size: 11px; color: var(--text-secondary); font-weight: 600;">Tap to redeem voucher</span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <!-- 25 EGP -->
+          <div class="redeem-option" onclick="handleSubpageRedeem(250, 25)">
+            <strong style="color: var(--primary); font-size: 16px;">25 EGP OFF</strong>
+            <span style="font-size: 11px; color: var(--text-secondary); margin: 2px 0 8px;">250 Points</span>
+            <button class="redeem-action" style="width: 100%;"><i class="fa-solid fa-tag"></i> Redeem</button>
+          </div>
+
+          <!-- 50 EGP -->
+          <div class="redeem-option" onclick="handleSubpageRedeem(500, 50)">
+            <strong style="color: var(--primary); font-size: 16px;">50 EGP OFF</strong>
+            <span style="font-size: 11px; color: var(--text-secondary); margin: 2px 0 8px;">500 Points</span>
+            <button class="redeem-action" style="width: 100%;"><i class="fa-solid fa-tag"></i> Redeem</button>
+          </div>
+
+          <!-- Free Delivery -->
+          <div class="redeem-option" onclick="handleSubpageRedeem(300, 'free-del')">
+            <strong style="color: #0284c7; font-size: 16px;">Free Delivery</strong>
+            <span style="font-size: 11px; color: var(--text-secondary); margin: 2px 0 8px;">300 Points</span>
+            <button class="redeem-action" style="width: 100%; background: #0284c7;"><i class="fa-solid fa-motorcycle"></i> Redeem</button>
+          </div>
+
+          <!-- 100 EGP Feast -->
+          <div class="redeem-option" onclick="handleSubpageRedeem(900, 100)">
+            <strong style="color: #16a34a; font-size: 16px;">100 EGP Feast</strong>
+            <span style="font-size: 11px; color: var(--text-secondary); margin: 2px 0 8px;">900 Points</span>
+            <button class="redeem-action" style="width: 100%; background: #16a34a;"><i class="fa-solid fa-crown"></i> Redeem</button>
+          </div>
+        </div>
+
+        <div style="background: #fff7ed; border-radius: 10px; padding: 10px; margin-top: 14px; display: flex; align-items: center; gap: 8px; font-size: 11px; color: #9a3412;">
+          <i class="fa-solid fa-circle-info" style="font-size: 14px;"></i>
+          <span>Redeemed discounts are immediately added to your <a href="vouchers.html" style="font-weight: 800; color: #ea580c; text-decoration: underline;">Vouchers Hub</a> and applied at checkout.</span>
+        </div>
+      </section>
+
+      <!-- 3. VIP Tier Benefits Comparison Table -->
+      <section class="subpage-card">
+        <div class="subpage-card-title">
+          <span><i class="fa-solid fa-layer-group" style="color: #8b5cf6; margin-right: 6px;"></i> VIP Tier Comparison</span>
+        </div>
+
+        <div class="tier-perks-table-wrap">
+          <table class="tier-perks-table">
+            <thead>
+              <tr>
+                <th>Benefit</th>
+                <th>Bronze</th>
+                <th class="active-col">Silver</th>
+                <th>Gold</th>
+                <th>Platinum</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Point Multiplier</td>
+                <td>1.0x</td>
+                <td class="active-col">1.25x</td>
+                <td>1.5x</td>
+                <td>2.0x</td>
+              </tr>
+              <tr>
+                <td>Birthday Reward</td>
+                <td>Free Drink</td>
+                <td class="active-col">Free Cake + 50 EGP</td>
+                <td>100 EGP Feast</td>
+                <td>200 EGP Banquet</td>
+              </tr>
+              <tr>
+                <td>Free Deliveries</td>
+                <td>Over 300 EGP</td>
+                <td class="active-col">Over 250 EGP</td>
+                <td>2x Any Order</td>
+                <td>Unlimited Free</td>
+              </tr>
+              <tr>
+                <td>Kitchen Priority</td>
+                <td>Standard</td>
+                <td class="active-col">Express Prep</td>
+                <td>VIP Fast-Track</td>
+                <td>Chef Special</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 4. Points Activity Log -->
+      <section class="subpage-card">
+        <div class="subpage-card-title">
+          <span><i class="fa-solid fa-clock-rotate-left" style="color: #10b981; margin-right: 6px;"></i> Recent Points Activity</span>
+        </div>
+
+        <div class="activity-log-list" id="loyaltyActivityList">
+          <div class="activity-log-item">
+            <div class="activity-log-left">
+              <div class="activity-log-icon plus"><i class="fa-solid fa-plus"></i></div>
+              <div class="activity-log-info">
+                <strong>Order #EGY-8942 Delivered</strong>
+                <span>Today, 2:45 PM • 1.25x Silver Bonus</span>
+              </div>
+            </div>
+            <span class="activity-log-points earned">+380 Pts</span>
+          </div>
+
+          <div class="activity-log-item">
+            <div class="activity-log-left">
+              <div class="activity-log-icon plus"><i class="fa-solid fa-user-plus"></i></div>
+              <div class="activity-log-info">
+                <strong>Friend Referral (Sara K.)</strong>
+                <span>Yesterday, 7:10 PM • Code AHMED50</span>
+              </div>
+            </div>
+            <span class="activity-log-points earned">+50 Pts</span>
+          </div>
+
+          <div class="activity-log-item">
+            <div class="activity-log-left">
+              <div class="activity-log-icon minus"><i class="fa-solid fa-minus"></i></div>
+              <div class="activity-log-info">
+                <strong>Redeemed 25 EGP Voucher</strong>
+                <span>18 Sep 2026, 4:20 PM</span>
+              </div>
+            </div>
+            <span class="activity-log-points spent">-250 Pts</span>
+          </div>
+
+          <div class="activity-log-item">
+            <div class="activity-log-left">
+              <div class="activity-log-icon plus"><i class="fa-solid fa-plus"></i></div>
+              <div class="activity-log-info">
+                <strong>Order #EGY-7814 Delivered</strong>
+                <span>15 Sep 2026, 9:15 PM</span>
+              </div>
+            </div>
+            <span class="activity-log-points earned">+400 Pts</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. How to Earn More Points -->
+      <section class="subpage-card">
+        <div class="subpage-card-title">
+          <span><i class="fa-solid fa-lightbulb" style="color: #f59e0b; margin-right: 6px;"></i> How to Earn More Points</span>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 12px; font-size: 12px;">
+          <div style="display: flex; gap: 12px; align-items: center;">
+            <div style="width: 32px; height: 32px; border-radius: 8px; background: #e0f2fe; color: #0284c7; display: flex; align-items: center; justify-content: center; font-size: 14px;">
+              <i class="fa-solid fa-utensils"></i>
+            </div>
+            <div>
+              <strong>Order Your Favorite Meals</strong>
+              <p style="margin: 0; color: var(--text-secondary); font-size: 11px;">Earn 1 point for every 1 EGP spent on all orders.</p>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 12px; align-items: center;">
+            <div style="width: 32px; height: 32px; border-radius: 8px; background: #fdf2f8; color: #db2777; display: flex; align-items: center; justify-content: center; font-size: 14px;">
+              <i class="fa-solid fa-camera"></i>
+            </div>
+            <div>
+              <strong>Leave a Photo Review</strong>
+              <p style="margin: 0; color: var(--text-secondary); font-size: 11px;">Get +25 bonus points every time you rate and share a photo.</p>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 12px; align-items: center;">
+            <div style="width: 32px; height: 32px; border-radius: 8px; background: #ecfdf5; color: #059669; display: flex; align-items: center; justify-content: center; font-size: 14px;">
+              <i class="fa-solid fa-users"></i>
+            </div>
+            <div>
+              <strong>Invite Your Foodie Friends</strong>
+              <p style="margin: 0; color: var(--text-secondary); font-size: 11px;">Earn +50 points + 50 EGP voucher for every friend who orders.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Bottom Navigation Bar (Home | Orders | Deals | Profile) -->
+    <nav class="bottom-nav">
+      <a href="index.html" class="nav-item">
+        <i class="fa-solid fa-house"></i>
+        <span>Home</span>
+      </a>
+
+      <a href="orders.html" class="nav-item">
+        <div class="nav-icon-container">
+          <i class="fa-solid fa-receipt"></i>
+          <span class="nav-badge">1</span>
+        </div>
+        <span>Orders</span>
+      </a>
+
+      <a href="deals.html" class="nav-item">
+        <div class="nav-icon-container">
+          <i class="fa-solid fa-tag"></i>
+        </div>
+        <span>Deals</span>
+      </a>
+
+      <a href="profile.html" class="nav-item active">
+        <i class="fa-solid fa-user"></i>
+        <span>Profile</span>
+      </a>
+    </nav>
+
+  </main>
+
+  <!-- Central App-State Logic -->
+  <script src="app-state.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      renderLoyaltyData();
+    });
+
+    function renderLoyaltyData() {
+      const p = AppState.getProfile();
+      const pts = p.loyaltyPoints || 1250;
+      document.getElementById('loyaltyPointsHero').textContent = pts.toLocaleString();
+      document.getElementById('loyaltyCashValue').textContent = `${Math.round(pts / 10)} EGP`;
+    }
+
+    function handleSubpageRedeem(points, rewardVal) {
+      const p = AppState.getProfile();
+      if ((p.loyaltyPoints || 0) < points) {
+        showToast('Not enough points for this reward.');
+        return;
+      }
+
+      p.loyaltyPoints -= points;
+      AppState.saveProfile(p);
+
+      // Create voucher
+      const vouchers = AppState.getVouchers();
+      const code = `LOYALTY${points}`;
+      const newV = {
+        code: code,
+        title: rewardVal === 'free-del' ? 'Loyalty Free Delivery' : `Loyalty ${rewardVal} EGP Reward`,
+        titleAr: rewardVal === 'free-del' ? 'توصيل مجاني من المكافآت' : `مكافأة ولاء ${rewardVal} ج.م`,
+        amount: rewardVal === 'free-del' ? 0 : rewardVal,
+        freeDelivery: rewardVal === 'free-del',
+        percent: 0,
+        minOrder: 100,
+        status: 'available',
+        expiry: '30 Nov 2026'
+      };
+      vouchers.unshift(newV);
+      localStorage.setItem(AppState.STORAGE_KEYS.VOUCHERS, JSON.stringify(vouchers));
+
+      // Append to activity log in UI
+      const list = document.getElementById('loyaltyActivityList');
+      if (list) {
+        const item = document.createElement('div');
+        item.className = 'activity-log-item';
+        item.innerHTML = `
+          <div class="activity-log-left">
+            <div class="activity-log-icon minus"><i class="fa-solid fa-minus"></i></div>
+            <div class="activity-log-info">
+              <strong>Redeemed ${rewardVal === 'free-del' ? 'Free Delivery' : rewardVal + ' EGP'} Reward</strong>
+              <span>Just now • Code ${code} created</span>
+            </div>
+          </div>
+          <span class="activity-log-points spent">-${points} Pts</span>
+        `;
+        list.prepend(item);
+      }
+
+      renderLoyaltyData();
+      showToast(`Redeemed ${points} points! Code ${code} is ready in your Vouchers.`);
+    }
+  </script>
+
+</body>
+</html>

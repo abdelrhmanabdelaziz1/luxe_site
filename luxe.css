@@ -1,0 +1,367 @@
+/* BITEHUB — MAISON EDITION
+   Art direction: warm ivory · ink · antique brass · editorial typography.
+   A self-contained design layer shared by every existing page. */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+:root {
+  --primary: #917545;
+  --primary-dark: #755b34;
+  --primary-glow: rgba(145,117,69,.12);
+  --primary-gradient: linear-gradient(135deg,#9e8352 0%,#79613d 100%);
+  --fire-gradient: linear-gradient(135deg,#36382f,#22251f);
+  --gold-gradient: linear-gradient(135deg,#c2a97c,#927348);
+  --green: #607363;
+  --green-dark: #405a49;
+  --green-light: #eef2eb;
+  --orange-light: #f4ede0;
+  --amber: #a58042;
+  --amber-light: #f7f0e2;
+  --background: #faf8f3;
+  --surface: #fffefb;
+  --surface-alt: #f5f1e9;
+  --text: #272822;
+  --text-primary: #272822;
+  --text-secondary: #68695f;
+  --muted: #909187;
+  --border: #e8e3d9;
+  --border-light: #f2eee7;
+  --shadow-sm: 0 2px 10px rgba(36,35,26,.025);
+  --card-shadow: 0 8px 30px rgba(36,35,26,.035);
+  --card-hover-shadow: 0 14px 34px rgba(36,35,26,.09);
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 13px;
+  --radius-xl: 18px;
+  --font-display: 'Playfair Display', 'Iowan Old Style', Georgia, serif;
+  --font-body: 'DM Sans','Manrope',Arial,sans-serif;
+}
+* { -webkit-tap-highlight-color: transparent; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); background: #eae6dd; color: var(--text); letter-spacing: -.01em; }
+body::before,body::after { display: none !important; }
+button,input,select,textarea { font-family: var(--font-body); }
+button,a { transition: background-color .18s ease,color .18s ease,border-color .18s ease,transform .18s ease; }
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible { outline: 2px solid #b89c6f; outline-offset: 3px; }
+img { filter: saturate(.86) contrast(.99); }
+a { color: inherit; }
+.app { background: var(--background); padding: 24px 21px 108px; box-shadow: 0 20px 75px rgba(35,34,25,.1); }
+.app::selection { background: #dfd1bb; color: #272822; }
+.luxe-wordmark { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 2px 0 18px; margin-bottom: 19px; border-bottom: 1px solid #dcd5c8; color: var(--text); }
+.luxe-wordmark strong { font: 600 19px/1 var(--font-display); letter-spacing: .13em; }
+.luxe-wordmark strong span { color: var(--primary); }
+.luxe-wordmark small { color: #99896e; font: 700 8px/1.5 var(--font-body); text-transform: uppercase; letter-spacing: .21em; text-align: right; }
+.luxe-wordmark .wordmark-stem { display: inline-block; width: 17px; height: 1px; background: #af986f; vertical-align: middle; margin-right: 9px; }
+
+/* Utility language & basic headings */
+[dir="rtl"] body,[dir="rtl"] button,[dir="rtl"] input { font-family: 'Cairo', var(--font-body); }
+[dir="rtl"] .luxe-wordmark small { text-align: left; }
+:is(.section-headline h2,.oah-title-group h2,.subpage-title-box h1,.home-welcome-box h1,.user-greeting-box h1,.detail-intro h1,.account-user-name,.deals-hero-banner h2,.loyalty-hero-card h2,.referral-hero-card h2,.slide-body-content h3,.hero-deal-content h3) { font-family: var(--font-display) !important; font-weight: 600 !important; letter-spacing: -.035em; }
+.section-headline { align-items: start; margin-bottom: 17px; }
+.section-headline h2,.oah-title-group h2 { font-size: 22px; line-height: 1.21; }
+.section-headline p,.oah-left p { margin-top: 6px; color: var(--muted); font-size: 11px; line-height: 1.45; }
+.section-headline h2 i,.section-headline h2 .fa-star { color: #ae9470; }
+:is(.view-all-link,.order-history-badge-btn,.see-all-link) { border: 0; background: transparent; box-shadow: none; border-radius: 0; padding: 5px 0; font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--primary); font-weight: 700; }
+:is(.view-all-link,.order-history-badge-btn):hover { background: transparent; color: var(--text); box-shadow: none; transform: none; }
+
+/* Top navigation and location */
+.home-top-bar,.home-header { margin-bottom: 24px; align-items: center; }
+.home-location-pill,.location-picker { border-radius: 9px; background: #fffefb; border: 1px solid var(--border); box-shadow: none; }
+.home-location-pill { max-width: calc(100% - 106px); padding: 7px 11px 7px 7px; }
+.loc-pin-bubble,.loc-pin { background: #f1ecdf; color: #876c40; border-radius: 7px; width: 33px; height: 33px; }
+.loc-pill-text .deliver-tag,.loc-label { color: #a1947e; letter-spacing: .13em; font-size: 9px; font-weight: 700; }
+.loc-pill-text strong,.loc-details strong { font-weight: 600; font-size: 11.5px; }
+.header-actions { gap: 8px; }
+.icon-circle-btn { width: 39px; height: 39px; border: 1px solid var(--border); border-radius: 8px; background: #fffefb; box-shadow: none; color: #48483d; }
+.icon-circle-btn:hover { background: #f1ede4; color: var(--primary); border-color: #d9cbb4; }
+.cart-badge,.notif-badge { background: #8c744e; border-color: #fffdf8; color: white; box-shadow: none; font-weight: 700; }
+.user-greeting-box h1 { font-size: 23px; line-height: 1.2; }
+.greeting-subtitle { margin-top: 5px; font-size: 11px; color: #969188; line-height: 1.55; }
+.home-welcome-box { padding: 3px 1px 2px; margin-bottom: 19px; }
+.home-welcome-box h1 { font-size: 31px; line-height: 1.17; margin-bottom: 8px; }
+.home-welcome-box p { font-size: 12px; line-height: 1.55; }
+
+/* Search and discovery: a clean boutique filter rail */
+.search-discovery-section { margin-bottom: 20px; }
+.search-bar { border-radius: 8px; border: 1px solid #ded8cd; background: #fffefb; padding: 5px 6px 5px 13px; box-shadow: none; }
+.search-bar:focus-within { border-color: #9f875b; box-shadow: 0 0 0 3px rgba(159,135,91,.08); }
+.search-bar input { font-size: 12px; padding: 11px 0; }
+.search-icon { color: #aa9676; }
+.filter-btn { border-radius: 6px; background: #f0ebe1; color: #4d4c40; }
+.suggest-label { color: #9a8462; font-size: 10px; }
+.suggest-label i { color: #b49b73; }
+.search-suggestions { gap: 7px; margin-top: 11px; }
+.suggest-pill { background: transparent; border-color: #e2dacd; border-radius: 4px; color: #68675c; padding: 6px 10px; font-size: 10px; }
+.suggest-pill:hover,.suggest-pill.active { background: #35372f; border-color: #35372f; color: #fff; box-shadow: none; }
+.search-dropdown { border-radius: 8px !important; box-shadow: 0 16px 35px rgba(36,34,25,.12) !important; }
+.sdrop-img { border-radius: 5px !important; }
+.sdrop-add-btn { background: #30332c !important; border-radius: 5px !important; }
+
+/* Featured offers: editorial photography, quiet badges and heritage gold */
+.home-carousel-section { margin-bottom: 31px; }
+.home-carousel-wrapper { border-radius: 11px; box-shadow: none; }
+.carousel-slide-item { height: 275px; padding: 22px 22px 24px; border-radius: 11px; }
+.carousel-slide-item::before { background: linear-gradient(180deg,rgba(12,13,11,.22) 0%,rgba(17,19,16,.12) 23%,rgba(17,19,16,.52) 53%,rgba(11,12,11,.94) 100%); }
+.slide-header-badges { top: 18px;left: 20px;right: 20px; gap: 7px; }
+.slide-main-badge,.slide-main-badge.flash,.slide-main-badge.day-deal,.slide-main-badge.offer { background: #f3eee3; color: #4c4232; box-shadow: none; border-radius: 3px; padding: 6px 9px; font-size: 9px; font-weight: 700; letter-spacing: .12em; }
+.slide-timer-chip { color: #e5d7bf; border: 1px solid rgba(255,255,255,.26); background: rgba(25,25,23,.45); border-radius: 4px; box-shadow: none; font-size: 10px; padding: 5px 9px; }
+.slide-body-content h3 { font-size: 25px; line-height: 1.1; margin-bottom: 8px; max-width: 290px; }
+.slide-body-content p { font-size: 11px; line-height: 1.5; color: #e0dcd5; opacity: 1; margin-bottom: 14px; }
+.slide-price-stack { gap: 7px; flex-wrap: wrap; }
+.slide-price-stack .current-val { color: #e7d6b9; font-family: var(--font-display); font-size: 23px; font-weight: 600; }
+.slide-price-stack .original-val { font-size: 10px; color: #bcb3a4; }
+.slide-cta-btn { background: #f6f1e7; color: #292a26; box-shadow: none; font-weight: 700; border-radius: 4px; padding: 10px 12px; font-size: 10px; white-space: nowrap; }
+.slide-cta-btn:hover { background: #c9ab7e; color: #272822; }
+.carousel-dots-row { margin-top: 14px; gap: 6px; }
+.carousel-dot-indicator { width: 5px; height: 5px; background: #d9d2c6; border-radius: 50%; }
+.carousel-dot-indicator.active { width: 20px; height: 5px; border-radius: 4px; background: #92764d; }
+.carousel-nav-btn { background: #faf7ed; border-radius: 5px; box-shadow: none; }
+
+/* Sections, filters and category tiles */
+.order-again-header-row { align-items: flex-start; margin-bottom: 16px; gap: 7px; }
+.oah-title-group { gap: 7px; }
+.oah-fav-badge { color: #97805a; background: #f0e8d9; border-radius: 3px; font-weight: 600; padding: 3px 6px; font-size: 9px; }
+.order-history-badge-btn { padding: 4px 0; gap: 5px; font-size: 9px; flex-wrap: nowrap; }
+.order-history-badge-btn .ohb-icon { background: none; color: #a78d66; width: 14px; height: 14px; }
+.order-history-badge-btn .ohb-count { background: #ece4d7; color: #816d4b; box-shadow: none; border-radius: 3px; font-size: 9px; }
+.order-again-scroller-v2 { gap: 10px; padding: 1px 0 15px; }
+.reorder-card-item { width: 176px; min-width: 176px; border: 1px solid #e6dfd4; border-radius: 8px; box-shadow: none; }
+.reorder-card-item:hover { border-color: #c9b89b; box-shadow: var(--card-shadow); }
+.rc-media-box { height: 125px; background: #e8dfd0; }
+.rc-media-overlay { top: 9px; left: 9px; right: 9px; }
+.rc-tag-reorder,.rc-tag-rating { border-radius: 3px; box-shadow: none; font-size: 9px; }
+.rc-tag-reorder { background: rgba(35,37,32,.81); }
+.rc-tag-rating i { color: #b9a076; }
+.rc-body { padding: 13px 12px 12px; }
+.rc-date { font-size: 9px; letter-spacing: .06em; font-weight: 600; }
+.rc-title { font-size: 15px; font-weight: 600; font-family: var(--font-display); margin: 5px 0 6px; }
+.rc-options { color: var(--muted); font-size: 10px; margin-bottom: 14px; }
+.rc-price { color: #302f28; font-size: 16px; font-family: var(--font-display); font-weight: 700; }
+.rc-reorder-btn { background: #30352c; color: #fff; border-radius: 4px; box-shadow: none; font-weight: 600; padding: 8px 10px; font-size: 10px; }
+.rc-reorder-btn:hover { background: #796442; box-shadow: none; }
+.filters-sorting-bar { margin-top: 8px; padding-top: 15px; border-top: 1px solid #e5dfd4; }
+.filter-tag-pill,.deal-pill,.category-chip { border-radius: 5px; background: transparent; color: #66655c; border: 1px solid #ded8cd; box-shadow: none; font-size: 10px; letter-spacing: .012em; }
+.filter-tag-pill.active,.deal-pill.active,.category-chip.active { background: #30332e; border-color: #30332e; color: #fdfbf4; box-shadow: none; }
+.filter-tag-pill:hover,.deal-pill:hover,.category-chip:hover { border-color: #978366; color: #6b573b; box-shadow: none; transform: none; }
+.sort-selector-wrapper select { background: #fffdf8; border: 1px solid #e2dcd0; border-radius: 5px; color: #666257; }
+.category-modern-card { background: #fffefb; border: 1px solid #e6e0d4; box-shadow: none; border-radius: 8px; }
+.category-modern-card.active { border-color: #927d5d; background: #f5f0e6; box-shadow: none; }
+.category-modern-label { color: #36392f; font-weight: 600; }
+
+/* Product discovery: images dominate, details are quietly composed */
+.products-grid { gap: 15px; }
+.product-card { border: 1px solid #e7e1d7; border-radius: 9px; background: #fffefb; box-shadow: none; }
+.product-card:hover { transform: translateY(-2px); border-color: #cbbba0; box-shadow: var(--card-shadow); }
+.product-img-box { height: 190px; background: #eee7da; }
+.product-info { padding: 17px; }
+.product-meta { font-size: 10px; margin-bottom: 10px; }
+.product-title { font-family: var(--font-display); font-size: 20px; font-weight: 600; line-height: 1.15; margin-bottom: 7px; }
+.product-desc { font-size: 11px; line-height: 1.6; color: #858277; margin-bottom: 12px; }
+.rating { color: #a38d69; }
+.product-tag,.product-tag.best-seller,.product-tag.new-tag { border-radius: 3px; background: #ede5d7; color: #605036; letter-spacing: .08em; font-size: 9px; box-shadow: none; }
+.fav-btn { background: #fffdf6; color: #5e5d52; border: 1px solid rgba(255,255,255,.9); border-radius: 5px; box-shadow: none; }
+.fav-btn.favorited { color: #a07a65; }
+.allergen-tag { background: #f4f0e8; color: #838174; border-radius: 3px; }
+.product-footer { border-top: 1px solid #ede9e0; padding-top: 13px; }
+.price,.discounted-deal-price { font-family: var(--font-display); font-size: 21px; color: #77603d; font-weight: 600; }
+.original-price { color: #a8a298; }
+.add-to-cart-btn,.customize-deal-btn,.detail-add-btn { border-radius: 5px; background: #30342e; color: #fff; font-weight: 600; box-shadow: none; }
+.add-to-cart-btn:hover,.customize-deal-btn:hover,.detail-add-btn:hover { background: #806948; box-shadow: none; transform: none; }
+.customize-link-btn { border-radius: 5px; background: #f3efe6; color: #706c60; }
+.items-found { background: #eee7da; color: #826d4b; border-radius: 3px; font-size: 9px; padding: 6px 8px; white-space: nowrap; }
+
+/* Deals index */
+.deals-hero-banner,.account-hub-header,.loyalty-hero-card,.referral-hero-card { background: #30352e; color: #fdfcf7; border-radius: 10px; box-shadow: none; border: 1px solid #434639; }
+.deals-hero-banner { padding: 25px 23px; margin-bottom: 22px; }
+.deals-hero-banner::after { background: transparent; border: 1px solid rgba(209,184,143,.24); width: 165px; height: 165px; top: -94px; right: -60px; }
+.hero-badge-tag { background: none; padding: 0; border: 0; color: #cdb893; border-radius: 0; font-size: 9px; letter-spacing: .18em; margin-bottom: 17px; }
+.deals-hero-banner h2 { font-size: 26px; line-height: 1.15; margin-bottom: 11px; }
+.deals-hero-banner p { font-size: 11px; line-height: 1.65; color: #d2d1c8; }
+.deal-category-filters { gap: 7px; padding-bottom: 19px; }
+.deal-pill { padding: 10px 13px; }
+.deal-card { border-radius: 9px; border: 1px solid #e7e1d7; box-shadow: none; background: #fffefb; }
+.deal-card:hover { box-shadow: var(--card-shadow); border-color: #d7cab5; }
+.deal-card-media img { filter: saturate(.83); }
+.deal-card-tags :is(.discount-pill-glow,.timer-pill,.offer-tag-pill) { background: #f5f0e6; color: #514936; border-radius: 3px; box-shadow: none; font-size: 9px; }
+.deal-card-body h3 { font-family: var(--font-display); font-size: 20px; font-weight: 600; letter-spacing: -.025em; }
+.deal-card-body p { color: var(--muted); font-size: 11px; }
+.deal-card-footer { border-top: 1px solid #eee8de; }
+.savings-badge { color: #657963; background: #eef1ea; font-weight: 600; border-radius: 3px; }
+.customize-deal-btn { padding: 10px 12px; font-size: 11px; }
+
+/* Account overview and account subpages */
+.subpage-top-bar { padding: 15px 18px; background: #faf8f3; border-bottom: 1px solid #e4ded2; }
+.subpage-back-btn { background: #fffdf7; border: 1px solid #e2dbcf; color: #3e4036; border-radius: 7px; width: 36px; height: 36px; }
+.subpage-back-btn:hover { background: #30352d; border-color: #30352d; color: white; transform: none; }
+.subpage-title-box h1 { font-size: 18px; color: #262921; line-height: 1.2; }
+.subpage-title-box p { color: #8f8b80; font-size: 10px; }
+.subpage-container { padding: 21px 16px 104px; }
+.account-hub-header { padding: 23px 20px 21px; border-radius: 0 0 10px 10px; margin-bottom: 25px; }
+.account-avatar-img { border: 2px solid #c5ab81; box-shadow: none; filter: saturate(.8); }
+.account-avatar-badge { background: #a98b5a; border-color: #30352e; }
+.account-user-name { font-size: 22px; line-height: 1.25; color: #fdfbf5; }
+.account-tier-chip { background: rgba(210,185,141,.14); color: #e2c99f; border: 1px solid rgba(210,185,141,.23); border-radius: 3px; font-size: 9px; }
+.account-contact-info { font-size: 11px; color: #bdbeb2; }
+.account-quick-edit-btn { background: transparent; border: 1px solid rgba(211,199,174,.46); border-radius: 4px; color: #e4dac8; }
+.account-stats-row { background: rgba(255,255,255,.04); border: 1px solid rgba(229,221,201,.18); border-radius: 7px; gap: 0; padding: 11px 4px; }
+.account-stat-box { border-radius: 0; border-right: 1px solid rgba(225,218,196,.14); }
+.account-stat-box:last-child { border-right: 0; }
+.account-stat-val { font-family: var(--font-display); font-size: 19px; color: #d8c29f; font-weight: 600; }
+.account-stat-label { color: #bfc0b5; font-size: 9px; }
+.account-menu-group { margin: 0 16px 23px; }
+.account-group-title { font-size: 10px; letter-spacing: .17em; font-weight: 700; padding-left: 0; margin-bottom: 11px; color: #9a886d; }
+.account-menu-card { background: #fffefb; box-shadow: none; border: 1px solid var(--border); border-radius: 8px; }
+.account-menu-item { padding: 16px 13px; border-bottom: 1px solid #f0ece5; }
+.account-menu-item:hover { background: #f7f3ec; transform: none; }
+.menu-item-left { gap: 12px; }
+.menu-icon-box,.menu-icon-box.blue,.menu-icon-box.orange,.menu-icon-box.purple,.menu-icon-box.green,.menu-icon-box.red,.menu-icon-box.amber,.menu-icon-box.teal,.menu-icon-box.indigo,.menu-icon-box.rose { width: 35px; height: 35px; border-radius: 5px; background: #f4eee4; color: #927b54; font-size: 14px; }
+.menu-text-box h3 { color: #34362f; font-weight: 600; font-size: 12px; }
+.menu-text-box p { color: #9a958a; font-size: 10px; }
+.menu-item-badge,.menu-item-badge.highlight { border-radius: 3px; background: #f3eee5; color: #8f7650; font-size: 9px; font-weight: 600; }
+.menu-chevron { color: #a99b89; }
+.subpage-card { background: #fffefb; border: 1px solid #e8e3d9; border-radius: 9px; box-shadow: none; }
+.subpage-card-title,.subpage-card h2,.subpage-card h3 { color: #34352e; }
+.subpage-card-title { font-family: var(--font-display); font-size: 19px; font-weight: 600; }
+.loyalty-hero-card { padding: 23px; }
+.loyalty-hero-card::after { opacity: .08; }
+.referral-hero-card { padding: 25px; }
+.tier-bar-fill,.progress-bar-fill { background: #b59a6a; }
+
+/* Forms, preferences, wallets, vouchers, and service cards */
+.form-input,.form-group input,.form-group select,.form-group textarea,.voucher-manual-input input, input[type="email"],input[type="tel"] { border: 1px solid #dfd9cd; background: #fffdf9; border-radius: 6px; color: #35362c; }
+.form-group label { color: #6d6e61; font-size: 11px; font-weight: 600; }
+.form-input:focus,.form-group input:focus,.form-group select:focus,.form-group textarea:focus { border-color: #b2976d; box-shadow: 0 0 0 3px rgba(178,151,109,.08); }
+.payment-card,.address-card,.voucher-card,.redeem-option,.pref-row,.faq-item { border-radius: 7px; box-shadow: none; border-color: #e7e1d6; }
+.payment-card.active,.address-card.active,.voucher-card.active { border-color: #aa936e; background: #fbf8f1; }
+.pay-icon { background: #f4eee4; color: #957d55; border-radius: 6px; }
+.voucher-status-tabs,.order-tabs { border-radius: 7px; background: #f3f0e8; }
+.voucher-status-tab.active,.order-tab.active { color: #fff; background: #30352e; border-radius: 5px; box-shadow: none; }
+:is(.voucher-card,.subpage-card,.payment-card,.address-card,.user-order-card) :is(.badge,.tag,.chip) { box-shadow: none; }
+.toggle-switch input:checked + .toggle-slider { background: #827050; }
+.support-big-call-btn,.support-send-btn { background: #30352e; box-shadow: none; border-radius: 6px; }
+.chat-bubble.bot { background: #f2eee6; color: #3a3c34; }
+.chat-bubble.user { background: #383b33; color: #fff; }
+
+/* Order history, tracking and customizer */
+.user-order-card { border-radius: 9px; box-shadow: none; border: 1px solid #e5e0d6; }
+.order-tabs button { font-weight: 600; }
+.order-5-stepper .step-node.completed .step-circle,.order-5-stepper .step-node.active .step-circle { background: #927b54; }
+.order-card-top { border-color: var(--border); }
+.detail-header { background: var(--background); border-color: var(--border); }
+.detail-img-container,.detail-hero img { border-radius: 9px; }
+.detail-intro h1 { font-size: 27px; }
+.detail-intro .price-display { color: #987e51; }
+.ingredients-box,.allergens-box { background: #f4f0e8; border: 1px solid #e7dfd2; border-radius: 7px; }
+.customization-group,.option-group { border-color: #e6e0d6; }
+.detail-sticky-bar { border-radius: 10px; box-shadow: 0 8px 35px rgba(34,31,24,.13); background: #fffdf8; }
+.quantity-controller { border-radius: 6px; background: #f1ede5; }
+.qty-control-btn { border-radius: 4px; }
+
+/* Shared buttons and prominent CTAs throughout all secondary pages */
+:is(.primary-btn,.btn-primary,.save-btn,.redeem-btn,.apply-voucher-btn,.checkout-btn,.support-submit-btn,.referral-share-btn,.form-submit-btn,.order-again-btn,.flash-action-btn,.hero-claim-btn,.confirm-btn,.modal-primary-btn,.reset-filter-btn) { background: #30352e; color: #fff; border: 1px solid #30352e; border-radius: 5px; box-shadow: none; }
+:is(.primary-btn,.btn-primary,.save-btn,.redeem-btn,.apply-voucher-btn,.checkout-btn,.support-submit-btn,.referral-share-btn,.form-submit-btn,.order-again-btn,.flash-action-btn,.hero-claim-btn,.confirm-btn,.modal-primary-btn,.reset-filter-btn):hover { background: #806b49; border-color: #806b49; box-shadow: none; }
+:is(.discount-pill-glow,.flash-tag-glow,.exclusive-badge,.deal-discount-tag) { background: #33382f; color: #f4eade; border-radius: 4px; border: none; box-shadow: none; }
+:is(.flash-sale-section,.promo-card,.flash-card-spotlight) { background: #f3eee4; border: 1px solid #e5dbca; border-radius: 8px; box-shadow: none; }
+.home-order-tracker-card { background: #30352e; border: 1px solid #41453b; border-radius: 9px; box-shadow: none; }
+.hot-card-glow { display: none; }
+.hot-icon-circle { background: rgba(205,185,149,.13); color: #d2b993; border-color: rgba(205,185,149,.28); border-radius: 6px; }
+.hot-pulse-ring { border-color: #c5a67c; border-radius: 7px; }
+.hot-status-chip { background: rgba(167,186,148,.15); color: #a9c29b; border-radius: 3px; }
+.hot-id,.hot-desc { color: #b7b9ae; }
+.hot-eta { color: #d4b98d; }
+.hot-track-link { background: #e2d4bd; color: #30352e; border-radius: 4px; box-shadow: none; }
+
+/* Bottom navigation: an anchored ivory gallery shelf */
+.bottom-nav { border-top: 1px solid #e1dbd0; background: rgba(255,254,250,.98); backdrop-filter: blur(14px); box-shadow: 0 -6px 24px rgba(41,39,27,.04); }
+.nav-item { color: #929083; font-weight: 600; }
+.nav-item.active { color: #806a48; }
+.nav-item.active i { color: #806a48; }
+.nav-item span { letter-spacing: .025em; font-size: 10px; }
+.nav-icon-container { border-radius: 5px; }
+.nav-item.active .nav-icon-container { background: #f1eadc; }
+
+/* Cart / overlays / notifications — do not modify their JS-driven visibility */
+.cart-drawer,.notif-drawer,.modal-content,.modal-card,.all-cat-card,.notification-sheet,.rating-modal-card { background: #fffdf8; border-color: #e7dfd2; box-shadow: 0 12px 50px rgba(27,27,20,.15); }
+.cart-drawer-header,.notif-header { border-bottom: 1px solid #e7dfd2; }
+.cart-drawer h2,.notif-drawer h2 { font-family: var(--font-display); font-weight: 600; }
+.cart-drawer-overlay,.notif-overlay { background: rgba(16,18,15,.65); }
+.toast { border-radius: 6px; box-shadow: 0 8px 28px rgba(0,0,0,.13); }
+
+/* Desktop gallery setting — centered luxury mobile boutique with natural window scroll */
+@media (min-width:480px) {
+  html,body { background: #eae6dd !important; margin: 0; padding: 0; }
+  body { display: flex; justify-content: center; overflow-x: hidden; overflow-y: auto; }
+  .app { width: 100%; max-width: 480px; min-height: 100vh; margin: 0 auto; overflow: visible; padding-bottom: 125px; box-shadow: 0 0 60px rgba(35,34,25,.08); border-radius: 0; }
+  .bottom-nav { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 480px; border-radius: 0; z-index: 1000; }
+}
+@media (min-width:1024px) {
+  .app { max-width: 480px; min-height: 100vh; max-height: none; }
+  .bottom-nav { max-width: 480px; }
+}
+@media (min-width:1440px) {
+  .app { max-width: 480px; max-height: none; }
+  .bottom-nav { max-width: 480px; }
+}
+@media (max-width:479px) {
+  .app { padding: 20px 16px 120px; }
+  .subpage-container { padding-left: 0; padding-right: 0; }
+  .home-welcome-box h1 { font-size: 29px; }
+  .carousel-slide-item { height: 280px; padding: 18px; }
+  .slide-header-badges { left: 16px; right: 16px; }
+  .slide-body-content h3 { font-size: 23px; }
+  .order-history-badge-btn .ohb-icon,.order-history-badge-btn .ohb-arrow { display: none; }
+  .detail-sticky-bar { width: calc(100% - 24px); }
+}
+.product-detail-app { padding-bottom: 175px !important; }
+@media (max-width:360px) {
+  .slide-timer-chip { font-size: 9px; }
+  .slide-main-badge { font-size: 8px !important; }
+  .slide-cta-btn { padding: 9px 7px; font-size: 9px; }
+  .home-welcome-box h1 { font-size: 26px; }
+  .account-stat-label { font-size: 8px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  *,*::before,*::after { animation-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+
+/* Finish polish for highly-coloured legacy banners and reward controls */
+.deal-card.featured-day-card { border: 1px solid #c9b896 !important; box-shadow: 0 0 0 1px rgba(166,140,91,.06) !important; }
+.deal-card.featured-day-card .deal-card-media { border-bottom: 1px solid #efe7d8; }
+#loyaltyPointsHero { color: #dbc59e !important; font-family: var(--font-display) !important; font-weight: 600 !important; }
+.loyalty-hero-card .tier-bar-fill { background: #c9aa79 !important; }
+.loyalty-hero-card .tier-bar-track { background: rgba(255,255,255,.19) !important; }
+.loyalty-hero-card .account-tier-chip { background: rgba(218,194,153,.19) !important; color: #e2ccab !important; }
+.loyalty-hero-card .account-tier-chip i { color: #d8c199 !important; }
+.loyalty-hero-card .tier-bar-track + div { color: #d2d0c8; }
+.redeem-option { background: #faf8f3; border: 1px solid #e8e1d5; padding: 14px 10px; border-radius: 6px; }
+.redeem-option strong { color: #7c694a !important; font-family: var(--font-display); font-size: 17px !important; }
+.redeem-option .redeem-action { background: #30352e !important; color: #fff !important; border-radius: 5px; box-shadow: none; padding: 8px 10px; }
+.redeem-option .redeem-action:hover { background: #806b49 !important; }
+.tier-perks-table th.active-col { color: #9a825f; background: #f3eddf; }
+.tier-perks-table td.active-col { background: #faf6ee; }
+.voucher-status-tabs .v-tab { background: transparent; color: #8a877c; border-radius: 5px; }
+.voucher-status-tabs .v-tab.active { background: #fffdf9; color: #31362d; box-shadow: none; font-weight: 700; }
+.voucher-manual-input button { background: #30352e; border-radius: 5px; color: #fff; }
+.voucher-manual-input button:hover { background: #806b49; }
+.luxe-combo-promo { background: #f2ecdf !important; border: 1px solid #e3d8c5 !important; border-radius: 7px !important; }
+.luxe-combo-promo > div > div:first-child { background: #88704b !important; border-radius: 5px !important; }
+.luxe-combo-promo strong { color: #4e4739 !important; }
+.luxe-combo-promo span { color: #7c725e !important; }
+.luxe-combo-promo .btn-primary { white-space: nowrap; }
+.status-chip.on-way { color: #8b6f4b; border-color: #dfd1b8; background: #f8f2e6; }
+.live-pill { color: #657b68; border-color: #cfddd0; background: #f0f5ef; }
+.eta-box { border: 1px solid #e5d6bb; background: #f5f0e6; box-shadow: none; border-radius: 7px; }
+.eta-icon { color: #806942; background: #ddd0b7; border-radius: 5px; }
+.sim-advance-btn,.call-courier-btn { background: #7e6948; border-radius: 5px; color: #fff; box-shadow: none; }
+.courier-card { border: 1px solid #e6dfd3; border-radius: 7px; background: #f4f0e8; }
+.courier-avatar { background: #383d34; color: #efe4d0; }
+.order-5-stepper .step-node.completed .step-circle { background: #a58b63; border-color: #9d8664; }
+.order-5-stepper .step-node.active .step-circle { background: #8d764e; border-color: #8d764e; }
+.order-5-stepper .stepper-connector.completed,.order-5-stepper .stepper-connector.active { background: #a58b63; }
+.detail-intro .intro-headline h2 { font: 600 23px/1.12 var(--font-display); letter-spacing: -.03em; }
+.detail-badge { background: #8f744b; color: #fffdf8; border-radius: 4px; }
+.allergen-pill { background: #f0e9df; color: #88694f; border-radius: 3px; }
+.spec-section { background: #fffefb; border: 1px solid #e8e1d6; border-radius: 9px; box-shadow: none; }
+.spec-section-header h3 { font-family: var(--font-display); font-weight: 600; font-size: 19px; }
+.instruction-chip { background: #f7f3ec; border: 1px solid #e5dfd2; border-radius: 5px; color: #5f5d50; }
+.instruction-chip.active { background: #ede5d6; color: #605138; border-color: #bba884; }
+.spec-notes-input { background: #fffcf7; border-color: #e5ded3; border-radius: 5px; }

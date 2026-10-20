@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Customer Account Hub - BiteHub (EGP)</title>
+
+  <!-- Favicon & App Icons -->
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+  <link rel="alternate icon" type="image/png" href="images/favicon.png" />
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+
+  <!-- Modern Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="luxe.css" />
+
+  <!-- FontAwesome Icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  />
+</head>
+
+<body>
+
+  <main class="app profile-app">
+    <div class="luxe-wordmark" aria-label="BiteHub Maison edition"><strong>BITE<span>HUB</span><span class="wordmark-stem"></span></strong><small>THE ART OF<br>GOOD FOOD</small></div>
+
+    <!-- Top Header -->
+    <header class="home-header">
+      <div class="user-greeting-box">
+        <h1>My Account</h1>
+        <p class="greeting-subtitle">Account overview & preferences</p>
+      </div>
+
+      <div class="header-actions">
+        <button class="icon-circle-btn open-notif-btn" onclick="AppState.openNotifications()" aria-label="Notifications">
+          <i class="fa-regular fa-bell"></i>
+          <span class="notif-badge" style="display:none;">2</span>
+        </button>
+
+        <button class="icon-circle-btn open-cart-btn" onclick="AppState.openCartDrawer()" aria-label="Shopping Cart">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="cart-badge" style="display:none;">0</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- 1. Hero Account Card -->
+    <section class="account-hub-header">
+      <div class="account-profile-main">
+        <div class="account-avatar-wrapper">
+          <img src="images/user_avatar.jpg" alt="Ahmed Mohamed" id="hubAvatarImg" class="account-avatar-img" />
+          <a href="profile-personal.html" class="account-avatar-badge" title="Change photo">
+            <i class="fa-solid fa-camera"></i>
+          </a>
+        </div>
+
+        <div class="account-meta-info">
+          <h2 class="account-user-name">
+            <span id="hubUserName">Ahmed Mohamed</span>
+            <span class="account-tier-chip">
+              <i class="fa-solid fa-crown" style="color: #fbbf24;"></i> Silver
+            </span>
+          </h2>
+          <div class="account-contact-info">
+            <i class="fa-solid fa-phone" style="font-size: 11px;"></i>
+            <span id="hubUserPhone">+20 100 123 4567</span>
+          </div>
+          <div class="account-contact-info">
+            <i class="fa-solid fa-envelope" style="font-size: 11px;"></i>
+            <span id="hubUserEmail">ahmed.mohamed@example.com</span>
+          </div>
+          <a href="profile-personal.html" class="account-quick-edit-btn">
+            <i class="fa-solid fa-user-pen"></i> Edit Profile
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Metrics Bar -->
+      <div class="account-stats-row">
+        <a href="loyalty.html" class="account-stat-box" title="View Points">
+          <span class="account-stat-val" id="statPoints">1,250</span>
+          <span class="account-stat-label">Points</span>
+        </a>
+
+        <a href="vouchers.html" class="account-stat-box" title="View Vouchers">
+          <span class="account-stat-val" id="statVouchers">3</span>
+          <span class="account-stat-label">Vouchers</span>
+        </a>
+
+        <a href="addresses.html" class="account-stat-box" title="View Addresses">
+          <span class="account-stat-val" id="statAddresses">2</span>
+          <span class="account-stat-label">Places</span>
+        </a>
+
+        <a href="favorites.html" class="account-stat-box" title="View Favorites">
+          <span class="account-stat-val" id="statFavorites">3</span>
+          <span class="account-stat-label">Favorites</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 2. Menu Group: Account & Delivery -->
+    <div class="account-menu-group">
+      <div class="account-group-title">Account & Delivery</div>
+      <div class="account-menu-card">
+        <!-- Personal Information -->
+        <a href="profile-personal.html" class="account-menu-item">
+          <div class="menu-item-left">
+            <div class="menu-icon-box blue">
+              <i class="fa-solid fa-user"></i>
+            </div>
+            <div class="menu-text-box">
+              <h3>Personal Information</h3>
+              <p>Name, phone, birthday & photo</p>
+            </div>
+          </div>
+          <div class="menu-item-right">
+            <i class="fa-solid fa-chevron-right menu-chevron"></i>
+          </div>
+        </a>
+
+        <!-- Saved Addresses -->
+        <a href="addresses.html" class="account-menu-item">
+          <div class="menu-item-left">
+            <div class="menu-icon-box amber">
+              <i class="fa-solid fa-location-dot"></i>
+            </div>
+            <div class="menu-text-box">
+              <h3>Saved Delivery Addresses</h3>
+              <p>Home, Office & Alexandria locations</p>
+            </div>
+          </div>
+          <div class="menu-item-right">
+            <span class="menu-item-badge" id="badgeAddresses">2 Saved</span>
+            <i class="fa-solid fa-chevron-right menu-chevron"></i>
+          </div>
+        </a>
+
+        <!-- Payment Methods -->
+        <a href="payments.html" class="account-menu-item">
+          <div class="menu-item-left">
+            <div class="menu-icon-box green">
+              <i class="fa-solid fa-credit-card"></i>
+            </div>
+            <div class="menu-text-box">
+              <h3>Payment Methods & Wallets</h3>
+              <p>Visa, Vodafone Cash, InstaPay (EGP)</p>
+            </div>
+          </div>
+          <div class="menu-item-right">
+            <span class="menu-item-badge">Default: Cash</span>
+            <i class="fa-solid fa-chevron-right menu-chevron"></i>
+          </div>
+        </a>
+
+        <!-- My Favorites -->
+        <a href="favorites.html" class="account-menu-item">
+          <div class="menu-item-left">
+            <div class="menu-icon-box red">
+              <i class="fa-solid fa-heart"></i>
+            </div>
+            <div class="menu-text-box">
+              <h3>My Favorite Dishes</h3>
+              <p>Fast 1-tap reordering</p>
+            </div>
+          </div>
+          <div class="menu-item-right">
+            <span class="menu-item-badge" id="badgeFavorites">3 Items</span>
+            <i class="fa-solid fa-chevron-right menu-chevron"></i>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- 3. Menu Group: Rewards & Savings -->
+    <div class="account-menu-group">
+      <div class="account-group-title">Savings & Rewards</div>
+      <div class="account-menu-card">
+        <!-- Loyalty Rewards -->
+        <a href="loyalty.html" class="account-menu-item">
+          <div class="menu-item-left">
+            <div class="menu-icon-box purple">
+              <i class="fa-solid fa-crown"></i>
+            </div>
+            <div class="menu-text-box">
+              <h3>Loyalty & Rewards Club</h3>
+              <p>Redeem points for instant cash vouchers</p>
+            </div>
+          </div>
+          <div class="menu-item-right">
+            <span class="menu-item-badge highlight" id="badgeLoyalty">1,250 Pts</span>
+            <i class="fa-solid fa-chevron-right menu-chevron"></i>
+          </div>
+        </a>
+
+        <!-- Vouchers & Promo Codes -->
+        <a href="vouchers.html" class="account-menu-item">
+          <div class="menu-item-left">
+            <div class="menu-icon-box orange">
+              <i class="fa-solid fa-ticket"></i>
+            </div>
+            <div class="menu-text-box">
+              <h3>Vouchers & Promo Codes</h3>
+              <p>Apply discounts & promo coupons</p>
+            </div>
+          </div>
+          <div class="menu-item-right">
+            <span class="menu-item-badge highlight" id="badgeVouchers">3 Active</span>
+            <i class="fa-solid fa-chevron-right menu-chevron"></i>
+          </div>
+        </a>
+
+        <!-- Refer a Friend -->
+        <a href="referral.html" class="account-menu-item">
+          <div class="menu-item-left">
+            <div class="menu-icon-box teal">
+              <i class="fa-solid fa-gift"></i>
+            </div>
+            <div class="menu-text-box">
+              <h3>Refer a Friend & Earn</h3>
+              <p>Invite friends, you both get 50 EGP</p>
+            </div>
+          </div>
+          <div class="menu-item-right">
+            <span class="menu-item-badge highlight">Earn 50 EGP</span>
+            <i class="fa-solid fa-chevron-right menu-chevron"></i>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- 4. Menu Group: Preferences & Care -->
+    <div class="account-menu-group">
+      <div class="account-group-title">Preferences & Care</div>
+      <div class="account-menu-card">
+        <!-- Settings & Language -->
+        <a href="settings.html" class="account-menu-item">
+          <div class="menu-item-left">
+            <div class="menu-icon-box indigo">
+              <i class="fa-solid fa-gear"></i>
+            </div>
+            <div class="menu-text-box">
+              <h3>Settings & Preferences</h3>
+              <p>English / العربية (RTL) & notifications</p>
+            </div>
+          </div>
+          <div class="menu-item-right">
+            <span class="menu-item-badge" id="badgeLang">English</span>
+            <i class="fa-solid fa-chevron-right menu-chevron"></i>
+          </div>
+        </a>
+
+        <!-- Help Center & Support -->
+        <a href="support.html" class="account-menu-item">
+          <div class="menu-item-left">
+            <div class="menu-icon-box rose">
+              <i class="fa-solid fa-headset"></i>
+            </div>
+            <div class="menu-text-box">
+              <h3>Help Center & Live Support</h3>
+              <p>Hotline 19888, Live Chat & FAQs</p>
+            </div>
+          </div>
+          <div class="menu-item-right">
+            <span class="menu-item-badge" style="color: #16a34a; font-weight: 800;">24/7 Care</span>
+            <i class="fa-solid fa-chevron-right menu-chevron"></i>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- 5. Account Actions (Logout & Delete) -->
+    <div class="account-menu-group" style="margin-bottom: 90px;">
+      <div class="account-menu-card">
+        <button class="account-menu-item" onclick="handleHubLogout()" style="width: 100%; border: none; background: transparent; cursor: pointer; text-align: left;">
+          <div class="menu-item-left">
+            <div class="menu-icon-box" style="background: #f1f5f9; color: #475569;">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            </div>
+            <div class="menu-text-box">
+              <h3 style="color: #475569;">Sign Out</h3>
+              <p>Log out of your current session</p>
+            </div>
+          </div>
+          <div class="menu-item-right">
+            <i class="fa-solid fa-chevron-right menu-chevron"></i>
+          </div>
+        </button>
+
+        <button class="account-menu-item" onclick="handleHubDeleteAccount()" style="width: 100%; border: none; background: transparent; cursor: pointer; text-align: left; border-top: 1px solid var(--border);">
+          <div class="menu-item-left">
+            <div class="menu-icon-box" style="background: #fee2e2; color: #dc2626;">
+              <i class="fa-regular fa-trash-can"></i>
+            </div>
+            <div class="menu-text-box">
+              <h3 style="color: #dc2626;">Delete Account</h3>
+              <p>Permanently remove data & saved addresses</p>
+            </div>
+          </div>
+          <div class="menu-item-right">
+            <i class="fa-solid fa-chevron-right menu-chevron"></i>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <!-- Bottom Navigation Bar (Home | Orders | Deals | Profile) -->
+    <nav class="bottom-nav">
+      <a href="index.html" class="nav-item">
+        <i class="fa-solid fa-house"></i>
+        <span>Home</span>
+      </a>
+
+      <a href="orders.html" class="nav-item">
+        <div class="nav-icon-container">
+          <i class="fa-solid fa-receipt"></i>
+          <span class="nav-badge">1</span>
+        </div>
+        <span>Orders</span>
+      </a>
+
+      <a href="deals.html" class="nav-item">
+        <div class="nav-icon-container">
+          <i class="fa-solid fa-tag"></i>
+        </div>
+        <span>Deals</span>
+      </a>
+
+      <a href="profile.html" class="nav-item active">
+        <i class="fa-solid fa-user"></i>
+        <span>Profile</span>
+      </a>
+    </nav>
+
+  </main>
+
+  <!-- Central App-State Logic -->
+  <script src="app-state.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      renderAccountHub();
+    });
+
+    function renderAccountHub() {
+      const isAr = AppState.getLanguage() === 'ar';
+      const p = AppState.getProfile();
+      document.getElementById('hubUserName').textContent = isAr ? (p.nameAr || 'أحمد محمد') : (p.name || 'Ahmed Mohamed');
+      document.getElementById('hubUserPhone').textContent = p.phone || '+20 100 123 4567';
+      document.getElementById('hubUserEmail').textContent = p.email || 'ahmed.mohamed@example.com';
+
+      const avatar = document.getElementById('hubAvatarImg');
+      if (avatar && p.avatar) {
+        avatar.src = p.avatar;
+      }
+
+      // Quick Stat values
+      const pts = p.loyaltyPoints || 1250;
+      document.getElementById('statPoints').textContent = pts.toLocaleString();
+      document.getElementById('badgeLoyalty').textContent = isAr ? `${pts.toLocaleString()} نقطة` : `${pts.toLocaleString()} Pts`;
+
+      const vouchers = AppState.getVouchers();
+      const activeVouchers = vouchers.filter(v => v.status === 'available').length;
+      document.getElementById('statVouchers').textContent = activeVouchers;
+      document.getElementById('badgeVouchers').textContent = isAr ? `${activeVouchers} متاحة` : `${activeVouchers} Active`;
+
+      const addrs = p.addresses || [];
+      document.getElementById('statAddresses').textContent = addrs.length;
+      document.getElementById('badgeAddresses').textContent = isAr ? `${addrs.length} محفوظ` : `${addrs.length} Saved`;
+
+      const favs = AppState.getFavorites();
+      document.getElementById('statFavorites').textContent = favs.length;
+      document.getElementById('badgeFavorites').textContent = isAr ? `${favs.length} أطباق` : `${favs.length} Items`;
+
+      // Current Language
+      document.getElementById('badgeLang').textContent = isAr ? 'العربية' : 'English';
+
+      if (isAr) {
+        // Also ensure translateProfilePageAr runs
+        AppState.translateProfilePageAr();
+      }
+    }
+
+    function handleHubLogout() {
+      const isAr = AppState.getLanguage() === 'ar';
+      showToast(isAr ? 'تم تسجيل الخروج بنجاح.' : 'Logged out securely.');
+      setTimeout(() => window.location.href = 'index.html', 800);
+    }
+
+    function handleHubDeleteAccount() {
+      const isAr = AppState.getLanguage() === 'ar';
+      const msg = isAr 
+        ? 'هل أنت متأكد من رغبتك في حذف الحساب؟ سيتم مسح كافة النقاط والعناوين المحفوظة والكوبونات نهائياً.' 
+        : 'Are you sure you want to delete your account? All points, saved addresses, and vouchers will be permanently cleared.';
+      if (confirm(msg)) {
+        localStorage.clear();
+        sessionStorage.clear();
+        showToast(isAr ? 'تم حذف الحساب بنجاح.' : 'Account deleted.');
+        setTimeout(() => window.location.href = 'index.html', 1000);
+      }
+    }
+  </script>
+
+</body>
+</html>

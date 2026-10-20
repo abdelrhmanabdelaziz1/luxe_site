@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="rtl-mode">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>عروض حصرية ووجبات كومبو - بايت هَب (ج.م)</title>
+
+  <!-- Favicon & App Icons -->
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+  <link rel="alternate icon" type="image/png" href="images/favicon.png" />
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+
+  <!-- Modern Google Fonts with Cairo Arabic -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="luxe.css" />
+
+  <!-- FontAwesome Icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  />
+</head>
+
+<body>
+
+  <main class="app deals-app">
+    <div class="luxe-wordmark" aria-label="BiteHub Maison edition"><strong>BITE<span>HUB</span><span class="wordmark-stem"></span></strong><small>فن الطعام<br>الراقي</small></div>
+
+    <!-- Top Header -->
+    <header class="home-header">
+      <div class="user-greeting-box">
+        <h1 class="dynamic-deals-title">أقوى العروض والكومبو</h1>
+        <p class="greeting-subtitle">خصومات حصرية تصل إلى 49% • قابلة للتخصيص بالكامل</p>
+      </div>
+
+      <div class="header-actions">
+        <button class="icon-circle-btn open-notif-btn" aria-label="الإشعارات">
+          <i class="fa-regular fa-bell"></i>
+          <span class="notif-badge" style="display:none;">2</span>
+        </button>
+
+        <button class="icon-circle-btn open-cart-btn" aria-label="سلة المشتريات">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="cart-badge" style="display:none;">0</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Hero Value Banner -->
+    <section class="deals-hero-banner">
+      <div class="hero-badge-tag">
+        <i class="fa-solid fa-fire"></i> توفير استثنائي
+      </div>
+      <h2>صواني الكومبو والوجبات العائلية</h2>
+      <p>وفّر حتى 49% مع صواني المشاركة وصناديق البرجر والبيتزا. خصص إضافاتك ونكهات الصوص ونوع الجبن بكل سهولة!</p>
+    </section>
+
+    <!-- Deal Category Filters -->
+    <section class="deal-category-filters">
+      <button class="deal-pill active" onclick="filterDealsTab('all', this)">جميع العروض</button>
+      <button class="deal-pill" onclick="filterDealsTab('day', this)">عرض اليوم</button>
+      <button class="deal-pill" onclick="filterDealsTab('flash', this)">فلاش سيل</button>
+      <button class="deal-pill" onclick="filterDealsTab('family', this)">وجبات عائلية</button>
+      <button class="deal-pill" onclick="filterDealsTab('pizza', this)">عروض البيتزا</button>
+    </section>
+
+    <!-- Deals Listing Grid -->
+    <section class="deals-list-section" id="dealsCardsContainer">
+
+      <!-- Deal 1: Deal of the Day (49% OFF) -->
+      <article class="deal-card featured-day-card" data-category="day family">
+        <div class="deal-card-media">
+          <img src="images/deal_combo.jpg" alt="صينية الكومبو العائلية الضخمة" />
+          <div class="deal-card-tags">
+            <span class="discount-pill-glow">
+              <i class="fa-solid fa-bolt"></i> خصم 49%
+            </span>
+            <span class="timer-pill">
+              <i class="fa-regular fa-clock"></i> <span class="deal-of-day-timer">23h : 59m : 59s</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="deal-card-body">
+          <div class="deal-type-indicator">
+            <i class="fa-solid fa-crown"></i> عرض اليوم • متاح لمدة 24 ساعة فقط
+          </div>
+
+          <h3 class="deal-title">وليمة العائلة الكبرى (ميجا كومبو)</h3>
+          <p class="deal-description">
+            1 بيتزا كبيرة من اختيارك + 2 برجر أنجوس سماش فاخر + 8 أجنحة دجاج مقرمشة + بطاطس كيرلي متبلة + 4 صوصات مميزة + مشروب 1.5 لتر. توفير عائلي لا يُقاوم!
+          </p>
+
+          <div class="deal-included-tags">
+            <span>1x بيتزا كبيرة (12 بوصة)</span>
+            <span>2x دبل سماش برجر أنجوس</span>
+            <span>8x أجنحة دجاج مقرمشة</span>
+            <span>بطاطس كيرلي و4 صوصات</span>
+            <span>مشروب غازي 1.5 لتر</span>
+          </div>
+
+          <div class="deal-card-footer">
+            <div class="deal-pricing-block">
+              <div class="discounted-deal-price">420 ج.م</div>
+              <div class="original-deal-price">825 ج.م</div>
+              <span class="savings-badge">وفّر 405 ج.م</span>
+            </div>
+
+            <a href="product-detail.html?deal=deal-day-combo" class="customize-deal-btn">
+              <span>تخصيص وطلب العرض</span>
+              <i class="fa-solid fa-arrow-left"></i>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Deal 2: Duo Pizza & Pasta Night (46% OFF) -->
+      <article class="deal-card" data-category="pizza">
+        <div class="deal-card-media">
+          <img src="images/banner2.jpg" alt="ليلة البيتزا والباستا الإيطالية" />
+          <div class="deal-card-tags">
+            <span class="discount-pill">
+              <i class="fa-solid fa-tag"></i> خصم 46%
+            </span>
+            <span class="timer-pill">
+              <i class="fa-regular fa-clock"></i> ينتهي خلال 6 ساعات
+            </span>
+          </div>
+        </div>
+
+        <div class="deal-card-body">
+          <div class="deal-type-indicator">
+            <i class="fa-solid fa-utensils"></i> كومبو البيتزا والباستا الإيطالية
+          </div>
+
+          <h3 class="deal-title">ليلة البيتزا والباستا الإيطالية</h3>
+          <p class="deal-description">
+            اختيارك من أي 2 بيتزا كبيرة مخبوزة على الحجر والخشب + خبز بالثوم والأعشاب الإيطالية بالجبن الذائب + مشروب 1 لتر مثلج.
+          </p>
+
+          <div class="deal-included-tags">
+            <span>2x بيتزا كبيرة (12 بوصة)</span>
+            <span>خبز ثوم وأعشاب بالجبن</span>
+            <span>مشروب منعش 1 لتر</span>
+          </div>
+
+          <div class="deal-card-footer">
+            <div class="deal-pricing-block">
+              <div class="discounted-deal-price">320 ج.م</div>
+              <div class="original-deal-price">590 ج.م</div>
+              <span class="savings-badge">وفّر 270 ج.م</span>
+            </div>
+
+            <a href="product-detail.html?deal=deal-pizza-night" class="customize-deal-btn">
+              <span>تخصيص وطلب العرض</span>
+              <i class="fa-solid fa-arrow-left"></i>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Deal 3: Flash Sale Burger & Wings Duo (45% OFF) -->
+      <article class="deal-card" data-category="flash">
+        <div class="deal-card-media">
+          <img src="images/banner1.jpg" alt="فلاش سيل: دبل برجر وأجنحة دجاج" />
+          <div class="deal-card-tags">
+            <span class="discount-pill-hot">
+              <i class="fa-solid fa-fire"></i> خصم 45% فلاش
+            </span>
+            <span class="timer-pill">
+              <i class="fa-regular fa-clock"></i> <span class="flash-sale-timer">01:42:35</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="deal-card-body">
+          <div class="deal-type-indicator flash-indicator">
+            <i class="fa-solid fa-bolt"></i> فلاش سيل لفترة محدودة جداً
+          </div>
+
+          <h3 class="deal-title">فلاش سيل: دبل برجر وأجنحة دجاج مقرمشة</h3>
+          <p class="deal-description">
+            برجر أنجوس دبل سماش بالجبن الشيدر المعتق الذائب + 6 أجنحة دجاج مقرمشة بصوص الباربيكيو والعسل + بطاطس كيرلي ذهبية + مشروب غازي مثلج.
+          </p>
+
+          <div class="deal-included-tags">
+            <span>دبل سماش برجر أنجوس</span>
+            <span>6x أجنحة دجاج مقرمشة</span>
+            <span>بطاطس كيرلي ذهبية</span>
+            <span>مشروب غازي بارد</span>
+          </div>
+
+          <div class="deal-card-footer">
+            <div class="deal-pricing-block">
+              <div class="discounted-deal-price">245 ج.م</div>
+              <div class="original-deal-price">450 ج.م</div>
+              <span class="savings-badge">وفّر 205 ج.م</span>
+            </div>
+
+            <a href="product-detail.html?deal=deal-flash-smash" class="customize-deal-btn">
+              <span>تخصيص وطلب العرض</span>
+              <i class="fa-solid fa-arrow-left"></i>
+            </a>
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- Bottom Navigation Bar (Home | Orders | Deals | Profile) -->
+    <nav class="bottom-nav">
+      <a href="index.html" class="nav-item">
+        <i class="fa-solid fa-house"></i>
+        <span>الرئيسية</span>
+      </a>
+
+      <a href="orders.html" class="nav-item">
+        <div class="nav-icon-container">
+          <i class="fa-solid fa-receipt"></i>
+          <span class="nav-badge">1</span>
+        </div>
+        <span>الطلبات</span>
+      </a>
+
+      <a href="deals-ar.html" class="nav-item active">
+        <div class="nav-icon-container">
+          <i class="fa-solid fa-tag"></i>
+        </div>
+        <span>العروض</span>
+      </a>
+
+      <a href="profile.html" class="nav-item">
+        <i class="fa-solid fa-user"></i>
+        <span>حسابي</span>
+      </a>
+    </nav>
+
+  </main>
+
+  <!-- Central App-State Logic -->
+  <script src="app-state.js"></script>
+
+  <script>
+    // Ensure Arabic state is stored in localStorage
+    try {
+      localStorage.setItem('gb_lang_v3', 'ar');
+    } catch(e) {}
+
+    function filterDealsTab(cat, btn) {
+      document.querySelectorAll('.deal-pill').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+
+      const cards = document.querySelectorAll('.deal-card');
+      cards.forEach(card => {
+        const cardCats = card.getAttribute('data-category') || '';
+        if (cat === 'all' || cardCats.includes(cat)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    function switchToEnglish() {
+      if (window.AppState && AppState.setLanguage) {
+        AppState.setLanguage('en');
+      } else {
+        localStorage.setItem('gb_lang_v3', 'en');
+      }
+      window.location.href = 'deals.html';
+    }
+  </script>
+
+</body>
+</html>

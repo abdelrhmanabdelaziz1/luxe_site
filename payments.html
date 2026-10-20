@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment Methods & Wallets - BiteHub (EGP)</title>
+
+  <!-- Favicon & App Icons -->
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+  <link rel="alternate icon" type="image/png" href="images/favicon.png" />
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+
+  <!-- Modern Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="luxe.css" />
+
+  <!-- FontAwesome Icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  />
+</head>
+
+<body>
+
+  <main class="app profile-app">
+
+    <!-- Subpage Top Bar -->
+    <header class="subpage-top-bar">
+      <a href="profile.html" class="subpage-back-btn" aria-label="Back to Account Hub">
+        <i class="fa-solid fa-arrow-left"></i>
+      </a>
+      <div class="subpage-title-box">
+        <h1>Payment Methods</h1>
+        <p>Cards, Wallets & Cash (EGP)</p>
+      </div>
+      <button class="icon-circle-btn open-cart-btn" aria-label="Shopping Cart">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span class="cart-badge" style="display:none;">0</span>
+      </button>
+    </header>
+
+    <div class="subpage-container">
+
+      <!-- 1. Saved Methods List -->
+      <section class="subpage-card">
+        <div class="subpage-card-title">
+          <span><i class="fa-solid fa-credit-card" style="color: var(--primary); margin-right: 6px;"></i> Active Payment Choices</span>
+          <span style="font-size: 11px; color: var(--text-secondary);">Tap to set default</span>
+        </div>
+
+        <div class="payment-methods-list" id="paymentsListContainer">
+          <!-- COD -->
+          <div class="payment-card active" onclick="setSubpagePayment(this, 'Cash on Delivery (EGP)')">
+            <div class="pay-icon"><i class="fa-solid fa-money-bill-wave"></i></div>
+            <div class="pay-info">
+              <div style="display: flex; align-items: center; gap: 6px;">
+                <strong>Cash on Delivery (EGP)</strong>
+                <span class="default-chip">Default</span>
+              </div>
+              <span>Pay in cash upon doorstep delivery</span>
+            </div>
+            <i class="fa-solid fa-circle-check check-mark"></i>
+          </div>
+
+          <!-- Visa Card -->
+          <div class="payment-card" onclick="setSubpagePayment(this, 'Visa •••• 4242')">
+            <div class="pay-icon"><i class="fa-brands fa-cc-visa"></i></div>
+            <div class="pay-info">
+              <strong>Visa •••• 4242</strong>
+              <span>Expires 08/28 • CIB Platinum</span>
+            </div>
+          </div>
+
+          <!-- Vodafone Cash -->
+          <div class="payment-card" onclick="setSubpagePayment(this, 'Vodafone Cash Wallet')">
+            <div class="pay-icon"><i class="fa-solid fa-mobile-screen"></i></div>
+            <div class="pay-info">
+              <strong>Vodafone Cash Wallet</strong>
+              <span>+20 100 123 4567 • Instant PIN confirmation</span>
+            </div>
+          </div>
+
+          <!-- InstaPay Egypt -->
+          <div class="payment-card" onclick="setSubpagePayment(this, 'InstaPay Egypt')">
+            <div class="pay-icon" style="background: #e0e7ff; color: #4338ca;"><i class="fa-solid fa-bolt"></i></div>
+            <div class="pay-info">
+              <strong>InstaPay Egypt (CBE)</strong>
+              <span>ahmed@instapay • Instant Account Transfer</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Add New Payment Method Form -->
+      <section class="subpage-card">
+        <div class="subpage-card-title">
+          <span><i class="fa-solid fa-plus-circle" style="color: #16a34a; margin-right: 6px;"></i> Add New Method</span>
+        </div>
+
+        <!-- Method Type Selector -->
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 16px;">
+          <button type="button" class="btn-label-tag active" id="btnTypeCard" onclick="switchPayFormTab('card', this)">
+            <i class="fa-solid fa-credit-card"></i> Card
+          </button>
+          <button type="button" class="btn-label-tag" id="btnTypeWallet" onclick="switchPayFormTab('wallet', this)">
+            <i class="fa-solid fa-mobile-screen"></i> Wallet
+          </button>
+          <button type="button" class="btn-label-tag" id="btnTypeInstapay" onclick="switchPayFormTab('instapay', this)">
+            <i class="fa-solid fa-bolt"></i> InstaPay
+          </button>
+        </div>
+
+        <form id="addPaymentForm" onsubmit="event.preventDefault(); handleAddNewPayment();">
+          <!-- Card Fields -->
+          <div id="cardFields">
+            <div class="form-group">
+              <label>Cardholder Name</label>
+              <input type="text" id="payCardName" placeholder="Name as printed on card" />
+            </div>
+            <div class="form-group">
+              <label>16-Digit Card Number</label>
+              <input type="text" id="payCardNum" placeholder="4000 1234 5678 9010" maxlength="19" />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Expiry (MM/YY)</label>
+                <input type="text" id="payCardExp" placeholder="12/28" maxlength="5" />
+              </div>
+              <div class="form-group">
+                <label>CVV / CVC</label>
+                <input type="password" id="payCardCvv" placeholder="123" maxlength="4" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Wallet Fields (Hidden by default) -->
+          <div id="walletFields" style="display: none;">
+            <div class="form-group">
+              <label>Mobile Wallet Provider</label>
+              <select id="payWalletProvider" style="width: 100%; border: 1px solid var(--border); border-radius: 10px; padding: 12px; font-size: 13px; outline: none; background: #ffffff;">
+                <option value="Vodafone Cash">Vodafone Cash (فودافون كاش)</option>
+                <option value="Orange Money">Orange Cash (أورنچ كاش)</option>
+                <option value="Etisalat Cash">Etisalat Cash (اتصالات كاش)</option>
+                <option value="WE Pay">WE Pay (وي باي)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Registered Mobile Number</label>
+              <input type="tel" id="payWalletPhone" placeholder="010 1234 5678" />
+            </div>
+          </div>
+
+          <!-- InstaPay Fields (Hidden by default) -->
+          <div id="instapayFields" style="display: none;">
+            <div class="form-group">
+              <label>InstaPay Address (IPA)</label>
+              <input type="text" id="payInstaIpa" placeholder="username@instapay" />
+            </div>
+            <p style="font-size: 11px; color: var(--text-secondary); margin: 0 0 14px;">
+              InstaPay payments are confirmed instantly through Egypt's National Payment Scheme.
+            </p>
+          </div>
+
+          <button type="submit" class="btn-primary" style="width: 100%; padding: 14px; margin-top: 6px;">
+            <i class="fa-solid fa-lock"></i> Save Payment Method Securely
+          </button>
+        </form>
+      </section>
+
+      <!-- 3. Security Assurance Badge -->
+      <section class="subpage-card" style="background: #f8fafc; border: 1px solid #e2e8f0; text-align: center; padding: 18px;">
+        <div style="font-size: 26px; color: #059669; margin-bottom: 6px;">
+          <i class="fa-solid fa-shield-halved"></i>
+        </div>
+        <strong style="font-size: 13px; display: block; color: #0f172a; margin-bottom: 4px;">
+          PCI-DSS Level 1 & Central Bank of Egypt (CBE) Certified
+        </strong>
+        <p style="font-size: 11px; color: #64748b; margin: 0; line-height: 1.5;">
+          All sensitive transactions are encrypted with 256-bit TLS security. We never store full card CVVs on our servers.
+        </p>
+      </section>
+
+    </div>
+
+    <!-- Bottom Navigation Bar (Home | Orders | Deals | Profile) -->
+    <nav class="bottom-nav">
+      <a href="index.html" class="nav-item">
+        <i class="fa-solid fa-house"></i>
+        <span>Home</span>
+      </a>
+
+      <a href="orders.html" class="nav-item">
+        <div class="nav-icon-container">
+          <i class="fa-solid fa-receipt"></i>
+          <span class="nav-badge">1</span>
+        </div>
+        <span>Orders</span>
+      </a>
+
+      <a href="deals.html" class="nav-item">
+        <div class="nav-icon-container">
+          <i class="fa-solid fa-tag"></i>
+        </div>
+        <span>Deals</span>
+      </a>
+
+      <a href="profile.html" class="nav-item active">
+        <i class="fa-solid fa-user"></i>
+        <span>Profile</span>
+      </a>
+    </nav>
+
+  </main>
+
+  <style>
+    .btn-label-tag {
+      padding: 10px 8px;
+      border: 1px solid var(--border);
+      background: var(--surface-alt);
+      color: var(--text-secondary);
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .btn-label-tag.active {
+      background: #fff7ed;
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+  </style>
+
+  <!-- Central App-State Logic -->
+  <script src="app-state.js"></script>
+
+  <script>
+    let activePayType = 'card';
+
+    function switchPayFormTab(type, btn) {
+      document.querySelectorAll('.btn-label-tag').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activePayType = type;
+
+      document.getElementById('cardFields').style.display = (type === 'card') ? 'block' : 'none';
+      document.getElementById('walletFields').style.display = (type === 'wallet') ? 'block' : 'none';
+      document.getElementById('instapayFields').style.display = (type === 'instapay') ? 'block' : 'none';
+    }
+
+    function setSubpagePayment(cardEl, title) {
+      document.querySelectorAll('#paymentsListContainer .payment-card').forEach(c => {
+        c.classList.remove('active');
+        const cm = c.querySelector('.check-mark');
+        if (cm) cm.remove();
+        const chip = c.querySelector('.default-chip');
+        if (chip) chip.remove();
+      });
+
+      cardEl.classList.add('active');
+
+      const check = document.createElement('i');
+      check.className = 'fa-solid fa-circle-check check-mark';
+      cardEl.appendChild(check);
+
+      const titleDiv = cardEl.querySelector('.pay-info > div') || cardEl.querySelector('.pay-info strong');
+      if (titleDiv) {
+        const chip = document.createElement('span');
+        chip.className = 'default-chip';
+        chip.textContent = 'Default';
+        chip.style.marginLeft = '6px';
+        titleDiv.appendChild(chip);
+      }
+
+      showToast(`Default payment set to: ${title}`);
+    }
+
+    function handleAddNewPayment() {
+      const container = document.getElementById('paymentsListContainer');
+      let title = '';
+      let desc = '';
+      let iconHtml = '<i class="fa-solid fa-credit-card"></i>';
+
+      if (activePayType === 'card') {
+        const num = document.getElementById('payCardNum').value.trim() || '4532 9988 7766 1122';
+        const last4 = num.slice(-4) || '1122';
+        title = `Visa •••• ${last4}`;
+        desc = `Expires ${document.getElementById('payCardExp').value.trim() || '10/29'} • Cardholder Saved`;
+        iconHtml = '<i class="fa-brands fa-cc-visa"></i>';
+      } else if (activePayType === 'wallet') {
+        const provider = document.getElementById('payWalletProvider').value;
+        const phone = document.getElementById('payWalletPhone').value.trim() || '010 1234 5678';
+        title = provider;
+        desc = `+20 ${phone} • Mobile Wallet`;
+        iconHtml = '<i class="fa-solid fa-mobile-screen"></i>';
+      } else {
+        const ipa = document.getElementById('payInstaIpa').value.trim() || 'user@instapay';
+        title = 'InstaPay Egypt';
+        desc = `${ipa} • Instant Bank Transfer`;
+        iconHtml = '<i class="fa-solid fa-bolt"></i>';
+      }
+
+      const newCard = document.createElement('div');
+      newCard.className = 'payment-card';
+      newCard.onclick = function() { setSubpagePayment(this, title); };
+      newCard.innerHTML = `
+        <div class="pay-icon">${iconHtml}</div>
+        <div class="pay-info">
+          <div style="display:flex; align-items:center; gap:6px;">
+            <strong>${title}</strong>
+          </div>
+          <span>${desc}</span>
+        </div>
+      `;
+
+      container.appendChild(newCard);
+      setSubpagePayment(newCard, title);
+      showToast(`Payment method "${title}" saved!`);
+
+      // Reset fields
+      document.getElementById('payCardNum').value = '';
+      document.getElementById('payCardName').value = '';
+      document.getElementById('payCardExp').value = '';
+      document.getElementById('payCardCvv').value = '';
+      document.getElementById('payWalletPhone').value = '';
+      document.getElementById('payInstaIpa').value = '';
+    }
+  </script>
+
+</body>
+</html>

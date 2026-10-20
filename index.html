@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BiteHub - Fast, Fresh Food Ordering & Deals (EGP)</title>
+
+  <!-- Favicon & App Icons -->
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+  <link rel="alternate icon" type="image/png" href="images/favicon.png" />
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+
+  <!-- Modern Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="luxe.css" />
+
+  <!-- FontAwesome Icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  />
+</head>
+
+<body>
+
+  <main class="app home-app">
+    <div class="luxe-wordmark" aria-label="BiteHub Maison edition"><strong>BITE<span>HUB</span><span class="wordmark-stem"></span></strong><small>THE ART OF<br>GOOD FOOD</small></div>
+
+    <!-- 1. LOCATION ON LEFT & ICONS ON RIGHT -->
+    <header class="home-top-bar">
+      <!-- Location on Left -->
+      <div class="home-location-pill location-picker" title="Switch Delivery Location">
+        <div class="loc-pin-bubble">
+          <i class="fa-solid fa-location-dot"></i>
+        </div>
+        <div class="loc-pill-text">
+          <span class="deliver-tag">Deliver to</span>
+          <strong class="dynamic-active-address">Home – Alexandria</strong>
+        </div>
+        <i class="fa-solid fa-chevron-down loc-chevron"></i>
+      </div>
+
+      <div class="header-actions">
+        <!-- Notification Bell with Unread Badge -->
+        <button class="icon-circle-btn open-notif-btn" aria-label="Notifications" title="Notifications">
+          <i class="fa-regular fa-bell"></i>
+          <span class="notif-badge" style="display:none;">2</span>
+        </button>
+
+        <!-- Shopping Cart Icon with Item Count Badge -->
+        <button class="icon-circle-btn open-cart-btn" aria-label="Shopping Cart" title="Shopping Cart">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="cart-badge" style="display:none;">0</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- 2. NAME & WELCOME -->
+    <section class="home-welcome-box">
+      <h1 class="dynamic-user-greeting">Good Morning, Ahmed</h1>
+      <p class="greeting-subtitle">What would you like to feast on today in Alexandria?</p>
+    </section>
+
+    <!-- 3. SEARCH -->
+    <section class="search-discovery-section" style="position:relative;">
+      <div class="search-bar" id="searchBarWrapper">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search burgers, pizzas, wings, deals..."
+          autocomplete="off"
+        />
+        <button class="clear-search-btn" id="clearSearchBtn" aria-label="Clear search" style="display: none;">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <button class="filter-btn" id="filterModalBtn" aria-label="Filter" onclick="toggleSortMenu()">
+          <i class="fa-solid fa-sliders"></i>
+        </button>
+      </div>
+
+      <!-- Live Search Dropdown -->
+      <div id="searchDropdown" class="search-dropdown" style="display:none;"></div>
+
+      <!-- Quick Suggested Searches -->
+      <div class="search-suggestions" id="searchSuggestions">
+        <span class="suggest-label" id="suggestLabel"><i class="fa-solid fa-fire"></i> <span id="trendingLabelText">Trending:</span></span>
+        <button class="suggest-pill" data-tag-en="Smash Burger" data-tag-ar="سماش برجر" onclick="applySearchTag(this)">Smash Burger</button>
+        <button class="suggest-pill" data-tag-en="Pepperoni Pizza" data-tag-ar="بيتزا بيبيروني" onclick="applySearchTag(this)">Pepperoni Pizza</button>
+        <button class="suggest-pill" data-tag-en="Hot Wings" data-tag-ar="أجنحة دجاج" onclick="applySearchTag(this)">Hot Wings</button>
+        <button class="suggest-pill" data-tag-en="Truffle Fries" data-tag-ar="بطاطس بالكمأة" onclick="applySearchTag(this)">Truffle Fries</button>
+        <button class="suggest-pill" data-tag-en="Mojito" data-tag-ar="موهيتو" onclick="applySearchTag(this)">Mojito</button>
+        <button class="suggest-pill" data-tag-en="Lotus Cheesecake" data-tag-ar="تشيز كيك لوتس" onclick="applySearchTag(this)">Lotus Cheesecake</button>
+      </div>
+    </section>
+
+    <style>
+      .search-dropdown {
+        position: absolute;
+        top: calc(100% - 8px);
+        left: 0; right: 0;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        box-shadow: 0 16px 40px rgba(0,0,0,0.13);
+        z-index: 500;
+        overflow: hidden;
+        max-height: 340px;
+        overflow-y: auto;
+        scrollbar-width: none;
+      }
+      .search-dropdown::-webkit-scrollbar { display: none; }
+      .sdrop-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 14px;
+        border-bottom: 1px solid var(--border-light);
+        cursor: pointer;
+        transition: background 0.15s;
+      }
+      .sdrop-item:last-child { border-bottom: none; }
+      .sdrop-item:hover { background: var(--surface-alt); }
+      .sdrop-img {
+        width: 44px; height: 44px;
+        border-radius: 10px;
+        object-fit: cover;
+        flex-shrink: 0;
+      }
+      .sdrop-info { flex: 1; min-width: 0; }
+      .sdrop-name {
+        font-size: 13px; font-weight: 700;
+        color: var(--text);
+        white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      }
+      .sdrop-price {
+        font-size: 11px; color: var(--primary); font-weight: 700; margin-top: 2px;
+      }
+      .sdrop-add-btn {
+        background: var(--primary-gradient);
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 6px 12px;
+        font-size: 12px;
+        font-weight: 700;
+        cursor: pointer;
+        flex-shrink: 0;
+        transition: opacity 0.15s;
+      }
+      .sdrop-add-btn:hover { opacity: 0.88; }
+      .sdrop-empty {
+        padding: 20px;
+        text-align: center;
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .sdrop-count {
+        padding: 8px 14px 6px;
+        font-size: 10px;
+        font-weight: 700;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+        border-bottom: 1px solid var(--border-light);
+      }
+    </style>
+
+    <!-- 4. FLASH SALE, DEAL OF THE DAY & SPECIAL OFFERS (CAROUSEL) -->
+    <section class="home-carousel-section" aria-label="Featured Feasts Carousel">
+      <div class="home-carousel-wrapper" id="dealsCarouselWrapper">
+        <div class="home-carousel-track" id="dealsCarouselTrack">
+
+          <!-- Slide 1: Flash Sale (45% OFF) -->
+          <article class="carousel-slide-item" style="background-image: url('images/banner1.jpg');">
+            <div class="slide-header-badges">
+              <span class="slide-main-badge flash">
+                <i class="fa-solid fa-bolt"></i> Flash Sale – 45% OFF
+              </span>
+              <span class="slide-timer-chip">
+                <i class="fa-regular fa-clock"></i> <strong class="flash-sale-timer">01:42:35</strong>
+              </span>
+            </div>
+            <div class="slide-body-content">
+              <h3>Double Burger & Wings Duo</h3>
+              <p>Double Angus smash burger + 6 honey BBQ wings + seasoned curly fries + chilled drink.</p>
+              <div class="slide-footer-row">
+                <div class="slide-price-stack">
+                  <span class="current-val">245 EGP</span>
+                  <span class="original-val">450 EGP</span>
+                </div>
+                <a href="product-detail.html?deal=deal-flash-smash" class="slide-cta-btn">
+                  <span>Claim Flash Deal</span> <i class="fa-solid fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Slide 2: Deal of the Day (49% OFF) -->
+          <article class="carousel-slide-item" style="background-image: url('images/deal_combo.jpg');">
+            <div class="slide-header-badges">
+              <span class="slide-main-badge day-deal">
+                <i class="fa-solid fa-crown"></i> Deal of the Day – 49% OFF
+              </span>
+              <span class="slide-timer-chip">
+                <i class="fa-solid fa-stopwatch"></i> <strong class="deal-of-day-timer">23h : 59m : 59s</strong>
+              </span>
+            </div>
+            <div class="slide-body-content">
+              <h3>Mega Family Feast Platter</h3>
+              <p>Large Pizza + 2 Angus Burgers + 8 Crispy Wings + Seasoned Fries & 4 Secret Dips + 1.5L Drink.</p>
+              <div class="slide-footer-row">
+                <div class="slide-price-stack">
+                  <span class="current-val">420 EGP</span>
+                  <span class="original-val">825 EGP</span>
+                </div>
+                <a href="product-detail.html?deal=deal-day-combo" class="slide-cta-btn">
+                  <span>Customize & Order</span> <i class="fa-solid fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Slide 3: Duo Italian Feast (46% OFF) -->
+          <article class="carousel-slide-item" style="background-image: url('images/banner2.jpg');">
+            <div class="slide-header-badges">
+              <span class="slide-main-badge offer">
+                <i class="fa-solid fa-pizza-slice"></i> Italian Feast – 46% OFF
+              </span>
+              <span class="slide-timer-chip" style="color: #93c5fd; border-color: rgba(147, 197, 253, 0.4);">
+                <i class="fa-solid fa-fire"></i> Best Seller
+              </span>
+            </div>
+            <div class="slide-body-content">
+              <h3>Duo Pizza & Pasta Feast</h3>
+              <p>Any 2 Large Stone-Oven Pizzas + Fresh Cheesy Garlic Bread + 1L Chilled Beverage.</p>
+              <div class="slide-footer-row">
+                <div class="slide-price-stack">
+                  <span class="current-val">320 EGP</span>
+                  <span class="original-val">590 EGP</span>
+                </div>
+                <a href="product-detail.html?deal=deal-pizza-night" class="slide-cta-btn">
+                  <span>Order Feast</span> <i class="fa-solid fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Slide 4: Welcome Promo (50 EGP OFF) -->
+          <article class="carousel-slide-item" style="background-image: url('images/burger.jpg');">
+            <div class="slide-header-badges">
+              <span class="slide-main-badge offer" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                <i class="fa-solid fa-ticket"></i> Promo Voucher
+              </span>
+              <span class="slide-timer-chip" style="color: #6ee7b7; border-color: rgba(110, 231, 183, 0.4);">
+                Code: WELCOME50
+              </span>
+            </div>
+            <div class="slide-body-content">
+              <h3>Save 50 EGP on First Order</h3>
+              <p>Apply code WELCOME50 at checkout for an instant 50 EGP discount on orders 250+ EGP!</p>
+              <div class="slide-footer-row">
+                <div class="slide-price-stack">
+                  <span class="current-val" style="color: #34d399;">50 EGP OFF</span>
+                  <span class="original-val" style="text-decoration:none; opacity:0.9;">Min. 250 EGP</span>
+                </div>
+                <button onclick="AppState.applyVoucher('WELCOME50')" class="slide-cta-btn" style="border:none; cursor:pointer;">
+                  <span>Apply Code</span> <i class="fa-solid fa-check"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- Carousel Dot Indicators -->
+      <div class="carousel-dots-row" id="carouselDots">
+        <span class="carousel-dot-indicator active" onclick="goToDealSlide(0)"></span>
+        <span class="carousel-dot-indicator" onclick="goToDealSlide(1)"></span>
+        <span class="carousel-dot-indicator" onclick="goToDealSlide(2)"></span>
+        <span class="carousel-dot-indicator" onclick="goToDealSlide(3)"></span>
+      </div>
+    </section>
+
+
+
+      <!-- Section Headline with Dedicated "Order History" Pill Button -->
+      <div class="order-again-header-row">
+        <div class="oah-left">
+          <div class="oah-title-group">
+            <h2>Order Again</h2>
+            <span class="oah-fav-badge"><i class="fa-solid fa-heart"></i> Favorites</span>
+          </div>
+          <p>1-tap fast reorder from your past feasts</p>
+        </div>
+        <a href="orders.html" class="order-history-badge-btn" title="View Full Order History & Receipts">
+          <div class="ohb-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
+          <span class="ohb-text">Order History</span>
+          <span class="ohb-count" id="homePastOrdersCount">2</span>
+          <i class="fa-solid fa-chevron-right ohb-arrow"></i>
+        </a>
+      </div>
+
+      <!-- Modern Visual Cards Scroller -->
+      <div class="order-again-scroller-v2" id="orderAgainScroller">
+        
+        <!-- Reorder Item 1: Burger -->
+        <article class="reorder-card-item">
+          <div class="rc-media-box">
+            <img src="images/burger.jpg" alt="Deluxe Double Smash Burger" />
+            <div class="rc-media-overlay">
+              <span class="rc-tag-reorder"><i class="fa-solid fa-arrow-rotate-right"></i> Reorder</span>
+              <span class="rc-tag-rating"><i class="fa-solid fa-star"></i> 4.9</span>
+            </div>
+          </div>
+          <div class="rc-body">
+            <span class="rc-date">Ordered Mon • #EGY-7814</span>
+            <h4 class="rc-title" title="Double Smash Burger">Double Smash Burger</h4>
+            <p class="rc-options">Double 300g • Cheddar Cheese</p>
+            <div class="rc-footer">
+              <div class="rc-price-box">
+                <span class="rc-price">195</span>
+                <span class="rc-curr">EGP</span>
+              </div>
+              <button class="rc-reorder-btn" onclick="quickReorderDirect('burger-deluxe')" aria-label="Reorder Double Smash Burger">
+                <i class="fa-solid fa-plus"></i>
+                <span>Reorder</span>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Reorder Item 2: Pizza -->
+        <article class="reorder-card-item">
+          <div class="rc-media-box">
+            <img src="images/pizza.jpg" alt="Artisanal Margherita Pizza" />
+            <div class="rc-media-overlay">
+              <span class="rc-tag-reorder"><i class="fa-solid fa-arrow-rotate-right"></i> Reorder</span>
+              <span class="rc-tag-rating"><i class="fa-solid fa-star"></i> 4.8</span>
+            </div>
+          </div>
+          <div class="rc-body">
+            <span class="rc-date">Ordered Sep 21</span>
+            <h4 class="rc-title" title="Margherita Pizza">Margherita Pizza</h4>
+            <p class="rc-options">Large (12") • Cheesy Stuffed Crust</p>
+            <div class="rc-footer">
+              <div class="rc-price-box">
+                <span class="rc-price">220</span>
+                <span class="rc-curr">EGP</span>
+              </div>
+              <button class="rc-reorder-btn" onclick="quickReorderDirect('pizza-margherita')" aria-label="Reorder Margherita Pizza">
+                <i class="fa-solid fa-plus"></i>
+                <span>Reorder</span>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Reorder Item 3: Wings -->
+        <article class="reorder-card-item">
+          <div class="rc-media-box">
+            <img src="images/deal_combo.jpg" alt="Crispy Honey Glazed Wings" />
+            <div class="rc-media-overlay">
+              <span class="rc-tag-reorder"><i class="fa-solid fa-arrow-rotate-right"></i> Reorder</span>
+              <span class="rc-tag-rating"><i class="fa-solid fa-star"></i> 4.9</span>
+            </div>
+          </div>
+          <div class="rc-body">
+            <span class="rc-date">Ordered Sep 18</span>
+            <h4 class="rc-title" title="Honey BBQ Wings">Honey BBQ Wings</h4>
+            <p class="rc-options">12 Pcs Box • Honey BBQ Glaze</p>
+            <div class="rc-footer">
+              <div class="rc-price-box">
+                <span class="rc-price">240</span>
+                <span class="rc-curr">EGP</span>
+              </div>
+              <button class="rc-reorder-btn" onclick="quickReorderDirect('wings-crispy')" aria-label="Reorder Honey BBQ Wings">
+                <i class="fa-solid fa-plus"></i>
+                <span>Reorder</span>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Reorder Item 4: Mojito -->
+        <article class="reorder-card-item">
+          <div class="rc-media-box">
+            <img src="images/drinks.jpg" alt="Passion Fruit Mojito" />
+            <div class="rc-media-overlay">
+              <span class="rc-tag-reorder"><i class="fa-solid fa-arrow-rotate-right"></i> Reorder</span>
+              <span class="rc-tag-rating"><i class="fa-solid fa-star"></i> 4.7</span>
+            </div>
+          </div>
+          <div class="rc-body">
+            <span class="rc-date">Ordered Sep 18</span>
+            <h4 class="rc-title" title="Passion Fruit Mojito">Passion Fruit Mojito</h4>
+            <p class="rc-options">Large Jar (650ml) • Regular Ice</p>
+            <div class="rc-footer">
+              <div class="rc-price-box">
+                <span class="rc-price">100</span>
+                <span class="rc-curr">EGP</span>
+              </div>
+              <button class="rc-reorder-btn" onclick="quickReorderDirect('drinks-passion')" aria-label="Reorder Passion Fruit Mojito">
+                <i class="fa-solid fa-plus"></i>
+                <span>Reorder</span>
+              </button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+    <!-- 4. CATEGORIES HORIZONTAL SCROLLER -->
+    <section class="categories-section">
+      <div class="section-headline">
+        <div>
+          <h2>Culinary Categories</h2>
+          <p>Handcrafted gourmet dishes prepared fresh daily</p>
+        </div>
+        <button class="see-all-link" id="seeAllCategoriesBtn" onclick="openAllCategoriesModal()">
+          See All (6) <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+      <div class="categories-modern-scroller" id="categoryChips">
+        <button class="category-modern-card active" data-category="all" aria-label="All Categories">
+          <div class="category-icon-squircle all"><i class="fa-solid fa-border-all"></i></div>
+          <span class="category-modern-label">All</span>
+        </button>
+        <button class="category-modern-card" data-category="burgers" aria-label="Burgers">
+          <div class="category-icon-squircle burgers"><i class="fa-solid fa-burger"></i></div>
+          <span class="category-modern-label">Burgers</span>
+        </button>
+        <button class="category-modern-card" data-category="pizza" aria-label="Pizza">
+          <div class="category-icon-squircle pizza"><i class="fa-solid fa-pizza-slice"></i></div>
+          <span class="category-modern-label">Pizza</span>
+        </button>
+        <button class="category-modern-card" data-category="chicken" aria-label="Chicken">
+          <div class="category-icon-squircle chicken"><i class="fa-solid fa-drumstick-bite"></i></div>
+          <span class="category-modern-label">Crispy</span>
+        </button>
+        <button class="category-modern-card" data-category="meals" aria-label="Meals">
+          <div class="category-icon-squircle meals"><i class="fa-solid fa-bowl-rice"></i></div>
+          <span class="category-modern-label">Meals</span>
+        </button>
+        <button class="category-modern-card" data-category="drinks" aria-label="Drinks">
+          <div class="category-icon-squircle drinks"><i class="fa-solid fa-wine-glass"></i></div>
+          <span class="category-modern-label">Drinks</span>
+        </button>
+        <button class="category-modern-card" data-category="desserts" aria-label="Desserts">
+          <div class="category-icon-squircle desserts"><i class="fa-solid fa-cake-candles"></i></div>
+          <span class="category-modern-label">Desserts</span>
+        </button>
+      </div>
+    </section>
+    
+    <!-- Product Discovery Filters & Sorting -->
+    <section class="filters-sorting-bar">
+      <div class="filter-pills-list">
+        <button class="filter-tag-pill active" onclick="setProductFilter('all', this)">All</button>
+        <button class="filter-tag-pill" onclick="setProductFilter('popular', this)">Popular</button>
+        <button class="filter-tag-pill" onclick="setProductFilter('bestseller', this)">Best Seller</button>
+        <button class="filter-tag-pill" onclick="setProductFilter('spicy', this)">Spicy</button>
+        <button class="filter-tag-pill" onclick="setProductFilter('veg', this)">Vegetarian</button>
+        <button class="filter-tag-pill" onclick="setProductFilter('new', this)">New</button>
+      </div>
+
+      <div class="sort-selector-wrapper">
+        <select id="sortSelect" onchange="applySorting(this.value)">
+          <option value="recommended">Sort: Recommended</option>
+          <option value="popular">Most Popular</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="rating">Highest Rated</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Food Menu Items Grid -->
+    <section class="featured-section">
+      <div class="section-headline">
+        <div>
+          <h2>Our Gourmet Menu</h2>
+          <p>Tap any dish to customize sauces, crusts & ingredients</p>
+        </div>
+        <span class="items-found" id="itemsCountBadge">12 items</span>
+      </div>
+
+      <div class="products-grid" id="mainProductsGrid">
+        <!-- Injected and filtered dynamically by JS -->
+      </div>
+
+      <!-- Empty State -->
+      <div class="empty-state" id="emptyState" style="display: none;">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <h4 id="emptyStateTitle">No dishes found</h4>
+        <p id="emptyStateDesc">Try searching for a different dish, ingredient, or reset filters.</p>
+        <button class="reset-filter-btn" id="emptyStateResetBtn" onclick="resetAllFilters()">Reset All Filters</button>
+      </div>
+    </section>
+
+    <!-- ALL CATEGORIES MODAL -->
+    <div class="all-categories-modal" id="allCategoriesModal">
+      <div class="all-cat-card">
+        <div class="all-cat-header">
+          <h3 id="allCatModalTitle">All Food Categories</h3>
+          <button onclick="closeAllCategoriesModal()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="all-cat-grid">
+          <div class="cat-modal-item" onclick="selectModalCategory('pizza')"><span><i class="fa-solid fa-pizza-slice"></i></span><strong class="cat-modal-name">Pizza</strong></div>
+          <div class="cat-modal-item" onclick="selectModalCategory('burgers')"><span><i class="fa-solid fa-burger"></i></span><strong class="cat-modal-name">Burgers</strong></div>
+          <div class="cat-modal-item" onclick="selectModalCategory('chicken')"><span><i class="fa-solid fa-drumstick-bite"></i></span><strong class="cat-modal-name">Chicken & Wings</strong></div>
+          <div class="cat-modal-item" onclick="selectModalCategory('meals')"><span><i class="fa-solid fa-bowl-rice"></i></span><strong class="cat-modal-name">Bowls & Meals</strong></div>
+          <div class="cat-modal-item" onclick="selectModalCategory('drinks')"><span><i class="fa-solid fa-wine-glass"></i></span><strong class="cat-modal-name">Artisan Drinks</strong></div>
+          <div class="cat-modal-item" onclick="selectModalCategory('desserts')"><span><i class="fa-solid fa-cake-candles"></i></span><strong class="cat-modal-name">Desserts</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. BOTTOM NAVIGATION BAR (4 DESTINATIONS: HOME | ORDERS | DEALS | PROFILE) -->
+    <nav class="bottom-nav">
+      <a href="index.html" class="nav-item active">
+        <i class="fa-solid fa-house"></i>
+        <span>Home</span>
+      </a>
+
+      <a href="orders.html" class="nav-item">
+        <div class="nav-icon-container">
+          <i class="fa-solid fa-receipt"></i>
+          <span class="nav-badge">1</span>
+        </div>
+        <span>Orders</span>
+      </a>
+
+      <a href="deals.html" class="nav-item">
+        <div class="nav-icon-container">
+          <i class="fa-solid fa-tag"></i>
+        </div>
+        <span>Deals</span>
+      </a>
+
+      <a href="profile.html" class="nav-item">
+        <i class="fa-solid fa-user"></i>
+        <span>Profile</span>
+      </a>
+    </nav>
+
+  </main>
+
+  <!-- Central App-State Logic -->
+  <script src="app-state.js"></script>
+
+  <!-- Home Dynamic Logic, Carousel & Filter Script -->
+  <script>
+    let currentCategory = 'all';
+    let currentTagFilter = 'all';
+    let currentSort = 'recommended';
+
+    // Carousel State
+    let currentSlide = 0;
+    const totalSlides = 4;
+    let carouselInterval = null;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderProductsGrid();
+      initHomeInteractions();
+      initDealsCarousel();
+      initHomeOrderWidgets();
+      translateHomeElementsAr();
+    });
+
+    function translateHomeElementsAr() {
+      const isAr = AppState.getLanguage() === 'ar';
+      if (!isAr) return;
+
+      // 0. Page Title & Welcome Subtitle
+      document.title = 'بايت هَب - أشهى الأطباق وعروض التوصيل (ج.م)';
+      const welcomeSub = document.querySelector('.greeting-subtitle');
+      if (welcomeSub) welcomeSub.textContent = 'ماذا تحب أن تطلب اليوم في الإسكندرية؟';
+
+      // 1. Search Bar & Trending Suggestions
+      const searchInput = document.getElementById('searchInput');
+      if (searchInput) {
+        searchInput.placeholder = 'ابحث عن برجر، بيتزا، أجنحة، عروض...';
+      }
+      const trendingLabel = document.getElementById('trendingLabelText');
+      if (trendingLabel) trendingLabel.textContent = 'الأكثر طلباً:';
+
+      document.querySelectorAll('.suggest-pill').forEach(pill => {
+        const ar = pill.getAttribute('data-tag-ar');
+        if (ar) pill.textContent = ar;
+      });
+
+      // 2. Carousel Slides
+      const slide1Title = document.querySelector('.carousel-slide-item:nth-child(1) .slide-body-content h3');
+      const slide1Desc = document.querySelector('.carousel-slide-item:nth-child(1) .slide-body-content p');
+      const slide1Badge = document.querySelector('.carousel-slide-item:nth-child(1) .slide-main-badge');
+      const slide1Cta = document.querySelector('.carousel-slide-item:nth-child(1) .slide-cta-btn span');
+      if (slide1Title) slide1Title.textContent = 'فلاش سيل: دبل برجر وأجنحة دجاج';
+      if (slide1Desc) slide1Desc.textContent = 'برجر أنجوس دبل سماش بالجبن الشيدر + 6 أجنحة دجاج مقرمشة + بطاطس كيرلي + مشروب بارد.';
+      if (slide1Badge) slide1Badge.innerHTML = `<i class="fa-solid fa-bolt"></i> فلاش سيل – خصم 45%`;
+      if (slide1Cta) slide1Cta.textContent = 'اطلب الفلاش سيل';
+
+      const slide2Title = document.querySelector('.carousel-slide-item:nth-child(2) .slide-body-content h3');
+      const slide2Desc = document.querySelector('.carousel-slide-item:nth-child(2) .slide-body-content p');
+      const slide2Badge = document.querySelector('.carousel-slide-item:nth-child(2) .slide-main-badge');
+      const slide2Cta = document.querySelector('.carousel-slide-item:nth-child(2) .slide-cta-btn span');
+      if (slide2Title) slide2Title.textContent = 'صينية الكومبو العائلية الضخمة';
+      if (slide2Desc) slide2Desc.textContent = 'بيتزا كبيرة + 2 برجر أنجوس سماش + 8 أجنحة دجاج + بطاطس و4 صصوصات + مشروب 1.5 لتر.';
+      if (slide2Badge) slide2Badge.innerHTML = `<i class="fa-solid fa-crown"></i> عرض اليوم – خصم 49%`;
+      if (slide2Cta) slide2Cta.textContent = 'تخصيص وطلب العرض';
+
+      const slide3Title = document.querySelector('.carousel-slide-item:nth-child(3) .slide-body-content h3');
+      const slide3Desc = document.querySelector('.carousel-slide-item:nth-child(3) .slide-body-content p');
+      const slide3Badge = document.querySelector('.carousel-slide-item:nth-child(3) .slide-main-badge');
+      const slide3Chip = document.querySelector('.carousel-slide-item:nth-child(3) .slide-timer-chip');
+      const slide3Cta = document.querySelector('.carousel-slide-item:nth-child(3) .slide-cta-btn span');
+      if (slide3Title) slide3Title.textContent = 'وليمة البيتزا والباستا المزدوجة';
+      if (slide3Desc) slide3Desc.textContent = 'اختيارك من أي 2 بيتزا كبيرة + خبز ثوم بالجبنة + مشروب 1 لتر منعش.';
+      if (slide3Badge) slide3Badge.innerHTML = `<i class="fa-solid fa-pizza-slice"></i> وليمة إيطالية – خصم 46%`;
+      if (slide3Chip) slide3Chip.innerHTML = `<i class="fa-solid fa-fire"></i> الأكثر طلباً`;
+      if (slide3Cta) slide3Cta.textContent = 'اطلب الوليمة';
+
+      const slide4Title = document.querySelector('.carousel-slide-item:nth-child(4) .slide-body-content h3');
+      const slide4Desc = document.querySelector('.carousel-slide-item:nth-child(4) .slide-body-content p');
+      const slide4Badge = document.querySelector('.carousel-slide-item:nth-child(4) .slide-main-badge');
+      const slide4Cta = document.querySelector('.carousel-slide-item:nth-child(4) .slide-cta-btn span');
+      if (slide4Title) slide4Title.textContent = 'وفّر 50 ج.م على أول طلب لك';
+      if (slide4Desc) slide4Desc.textContent = 'استخدم كود WELCOME50 عند الدفع لتحصل على خصم فوري 50 ج.م للطلبات من 250 ج.م!';
+      if (slide4Badge) slide4Badge.innerHTML = `<i class="fa-solid fa-ticket"></i> كود ترحيبي`;
+      if (slide4Cta) slide4Cta.textContent = 'تطبيق الكود';
+
+      // 3. Order Again Section Titles & Cards
+      const oahTitle = document.querySelector('.oah-title-group h2');
+      const oahFav = document.querySelector('.oah-fav-badge');
+      const oahSub = document.querySelector('.oah-left p');
+      const ohbText = document.querySelector('.ohb-text');
+      if (oahTitle) oahTitle.textContent = 'اطلب مجدداً';
+      if (oahFav) oahFav.innerHTML = `<i class="fa-solid fa-heart"></i> المفضلة`;
+      if (oahSub) oahSub.textContent = 'إعادة طلب سريعة بنقرة واحدة من وجباتك السابقة';
+      if (ohbText) ohbText.textContent = 'سجل الطلبات';
+
+      const reorderCards = document.querySelectorAll('.reorder-card-item');
+      if (reorderCards.length >= 3) {
+        // Burger
+        const t0 = reorderCards[0].querySelector('.rc-title');
+        const o0 = reorderCards[0].querySelector('.rc-options');
+        const c0 = reorderCards[0].querySelector('.rc-curr');
+        const b0 = reorderCards[0].querySelector('.rc-reorder-btn span');
+        const tg0 = reorderCards[0].querySelector('.rc-tag-reorder');
+        if (t0) t0.textContent = 'ديلوكس دبل سماش برجر';
+        if (o0) o0.textContent = 'شريحتان 300جم • جبن شيدر';
+        if (c0) c0.textContent = 'ج.م';
+        if (b0) b0.textContent = 'أعد الطلب';
+        if (tg0) tg0.innerHTML = `<i class="fa-solid fa-arrow-rotate-right"></i> طلب متكرر`;
+
+        // Pizza
+        const t1 = reorderCards[1].querySelector('.rc-title');
+        const o1 = reorderCards[1].querySelector('.rc-options');
+        const c1 = reorderCards[1].querySelector('.rc-curr');
+        const b1 = reorderCards[1].querySelector('.rc-reorder-btn span');
+        const tg1 = reorderCards[1].querySelector('.rc-tag-reorder');
+        if (t1) t1.textContent = 'بيتزا مارجريتا نابوليتان';
+        if (o1) o1.textContent = 'حجم كبير (12 بوصة) • أطراف محشوة جبن';
+        if (c1) c1.textContent = 'ج.م';
+        if (b1) b1.textContent = 'أعد الطلب';
+        if (tg1) tg1.innerHTML = `<i class="fa-solid fa-arrow-rotate-right"></i> طلب متكرر`;
+
+        // Wings
+        const t2 = reorderCards[2].querySelector('.rc-title');
+        const o2 = reorderCards[2].querySelector('.rc-options');
+        const c2 = reorderCards[2].querySelector('.rc-curr');
+        const b2 = reorderCards[2].querySelector('.rc-reorder-btn span');
+        const tg2 = reorderCards[2].querySelector('.rc-tag-reorder');
+        if (t2) t2.textContent = 'أجنحة دجاج مقرمشة بالعسل';
+        if (o2) o2.textContent = 'علبة 12 قطعة • صوص باربيكيو حلو';
+        if (c2) c2.textContent = 'ج.م';
+        if (b2) b2.textContent = 'أعد الطلب';
+        if (tg2) tg2.innerHTML = `<i class="fa-solid fa-arrow-rotate-right"></i> طلب متكرر`;
+      }
+
+      // 4. Categories Section Header
+      const catSecTitle = document.querySelector('.categories-section .section-headline h2');
+      const catSecSub = document.querySelector('.categories-section .section-headline p');
+      const seeAllBtn = document.getElementById('seeAllCategoriesBtn');
+      if (catSecTitle) catSecTitle.textContent = 'أقسام الطعام';
+      if (catSecSub) catSecSub.textContent = 'وصفات جورميه محضرة طازجة يومياً';
+      if (seeAllBtn) seeAllBtn.innerHTML = `عرض الكل (6) <i class="fa-solid fa-chevron-left"></i>`;
+
+      // 5. Category Scroller Cards
+      const catLabelsMap = {
+        'all': 'جميع الأطباق',
+        'pizza': 'بيتزا',
+        'burgers': 'برجر',
+        'chicken': 'دجاج وأجنحة',
+        'meals': 'وجبات وبطاطس',
+        'drinks': 'مشروبات منعشة',
+        'desserts': 'حلويات وكيك'
+      };
+      document.querySelectorAll('#categoryChips .category-modern-card').forEach(card => {
+        const cat = card.getAttribute('data-category');
+        const lbl = card.querySelector('.category-modern-label');
+        if (lbl && catLabelsMap[cat]) lbl.textContent = catLabelsMap[cat];
+      });
+
+      // 6. Filter Tag Pills
+      const filterPills = document.querySelectorAll('.filter-tag-pill');
+      const filterMap = [
+        'الكل',
+        'الأكثر شهرة',
+        'الأكثر مبيعاً',
+        'حار',
+        'نباتي',
+        'جديد ومميز'
+      ];
+      filterPills.forEach((p, idx) => {
+        if (filterMap[idx]) p.textContent = filterMap[idx];
+      });
+
+      // 7. Sort Select Dropdown
+      const sortSelect = document.getElementById('sortSelect');
+      if (sortSelect && sortSelect.options) {
+        if (sortSelect.options[0]) sortSelect.options[0].text = 'ترتيب: الموصى به';
+        if (sortSelect.options[1]) sortSelect.options[1].text = 'الأكثر طلباً';
+        if (sortSelect.options[2]) sortSelect.options[2].text = 'السعر: من الأقل للأعلى';
+        if (sortSelect.options[3]) sortSelect.options[3].text = 'السعر: من الأعلى للأقل';
+        if (sortSelect.options[4]) sortSelect.options[4].text = 'الأعلى تقييماً';
+      }
+
+      // 8. Gourmet Menu Headline
+      const menuTitle = document.querySelector('.featured-section .section-headline h2');
+      const menuSub = document.querySelector('.featured-section .section-headline p');
+      if (menuTitle) menuTitle.textContent = 'قائمة أطباق جورميه';
+      if (menuSub) menuSub.textContent = 'اضغط على أي وجبة لتخصيص الصوصات والإضافات والمكونات';
+
+      // 9. All Categories Modal
+      const modalTitle = document.getElementById('allCatModalTitle');
+      if (modalTitle) modalTitle.textContent = 'جميع أقسام الطعام';
+      const modalMap = {
+        'pizza': 'بيتزا إيطالية',
+        'burgers': 'برجر جورميه',
+        'chicken': 'دجاج وأجنحة',
+        'meals': 'وجبات وبطاطس',
+        'drinks': 'مشروبات منعشة',
+        'desserts': 'حلويات وكيك'
+      };
+      document.querySelectorAll('.cat-modal-item').forEach(item => {
+        const nameEl = item.querySelector('.cat-modal-name') || item.querySelector('strong');
+        const onclickAttr = item.getAttribute('onclick') || '';
+        const match = onclickAttr.match(/selectModalCategory\('([^']+)'\)/);
+        if (match && match[1] && modalMap[match[1]] && nameEl) {
+          nameEl.textContent = modalMap[match[1]];
+        }
+      });
+    }
+
+    /* ==========================================================================
+       Deals Carousel Controls (Flash Sale, Deal of Day, Special Offers)
+       ========================================================================== */
+    function initDealsCarousel() {
+      startCarouselTimer();
+
+      const wrapper = document.getElementById('dealsCarouselWrapper');
+      if (wrapper) {
+        wrapper.addEventListener('mouseenter', stopCarouselTimer);
+        wrapper.addEventListener('mouseleave', startCarouselTimer);
+        wrapper.addEventListener('touchstart', stopCarouselTimer, { passive: true });
+        wrapper.addEventListener('touchend', startCarouselTimer, { passive: true });
+      }
+    }
+
+    function startCarouselTimer() {
+      stopCarouselTimer();
+      carouselInterval = setInterval(() => {
+        nextDealSlide();
+      }, 4800);
+    }
+
+    function stopCarouselTimer() {
+      if (carouselInterval) clearInterval(carouselInterval);
+    }
+
+    function updateCarouselPosition() {
+      const track = document.getElementById('dealsCarouselTrack');
+      const isRtl = document.documentElement.dir === 'rtl';
+      if (track) {
+        track.style.transform = isRtl 
+          ? `translateX(${currentSlide * 100}%)` 
+          : `translateX(-${currentSlide * 100}%)`;
+      }
+      document.querySelectorAll('#carouselDots .carousel-dot-indicator').forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === currentSlide);
+      });
+    }
+
+    function nextDealSlide() {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      updateCarouselPosition();
+    }
+
+    function prevDealSlide() {
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+      updateCarouselPosition();
+    }
+
+    function goToDealSlide(idx) {
+      currentSlide = idx;
+      updateCarouselPosition();
+      startCarouselTimer();
+    }
+
+    /* ==========================================================================
+       Home Search, Filtering & Categories
+       ========================================================================== */
+    function toggleSortMenu() {
+      const sortSelect = document.getElementById('sortSelect');
+      if (sortSelect) {
+        sortSelect.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        sortSelect.focus();
+      }
+    }
+
+    function initHomeInteractions() {
+      // Category modern cards / chips
+      document.querySelectorAll('#categoryChips .category-modern-card, #categoryChips .category-chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+          document.querySelectorAll('#categoryChips .category-modern-card, #categoryChips .category-chip').forEach(c => c.classList.remove('active'));
+          chip.classList.add('active');
+          currentCategory = chip.getAttribute('data-category');
+          renderProductsGrid();
+        });
+      });
+
+      // Search input
+      const searchInput = document.getElementById('searchInput');
+      const clearBtn = document.getElementById('clearSearchBtn');
+      const dropdown = document.getElementById('searchDropdown');
+
+      function renderSearchDropdown(query) {
+        if (!dropdown) return;
+        if (!query || query.length < 1) {
+          dropdown.style.display = 'none';
+          return;
+        }
+        const isAr = AppState.getLanguage() === 'ar';
+        const results = AppState.searchProducts(query, 'all', 'all').slice(0, 8);
+        dropdown.style.display = 'block';
+        if (results.length === 0) {
+          dropdown.innerHTML = `<div class="sdrop-empty">${isAr ? 'لا توجد نتائج لـ "' + query + '"' : 'No results for "' + query + '"'}</div>`;
+          return;
+        }
+        dropdown.innerHTML =
+          `<div class="sdrop-count">${results.length}${results.length === 8 ? '+' : ''} ${isAr ? 'نتيجة' : 'results'}</div>` +
+          results.map(item => {
+            const name = isAr ? (item.nameAr || item.name) : item.name;
+            return `
+              <div class="sdrop-item" onclick="window.location.href='product-detail.html?id=${item.id}'">
+                <img class="sdrop-img" src="${item.image}" alt="${name}" />
+                <div class="sdrop-info">
+                  <div class="sdrop-name">${name}</div>
+                  <div class="sdrop-price">${AppState.formatEGP(item.basePrice)}</div>
+                </div>
+                <button class="sdrop-add-btn" onclick="event.stopPropagation(); quickAddToCartItem('${item.id}', this)">
+                  ${isAr ? '+ أضف' : '+ Add'}
+                </button>
+              </div>`;
+          }).join('');
+      }
+
+      if (searchInput) {
+        searchInput.addEventListener('input', () => {
+          const val = searchInput.value.trim();
+          if (clearBtn) clearBtn.style.display = searchInput.value.length > 0 ? 'flex' : 'none';
+          if (!val) {
+            document.querySelectorAll('.suggest-pill').forEach(p => p.classList.remove('active'));
+          }
+          renderSearchDropdown(val);
+          renderProductsGrid();
+        });
+        searchInput.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') {
+            dropdown.style.display = 'none';
+            searchInput.blur();
+          }
+          if (e.key === 'Escape') {
+            dropdown.style.display = 'none';
+            searchInput.value = '';
+            if (clearBtn) clearBtn.style.display = 'none';
+            renderProductsGrid();
+          }
+        });
+        searchInput.addEventListener('focus', () => {
+          if (searchInput.value.trim().length > 0) renderSearchDropdown(searchInput.value.trim());
+        });
+      }
+
+      // Close dropdown on outside click
+      document.addEventListener('click', (e) => {
+        if (dropdown && !dropdown.contains(e.target) && e.target !== searchInput) {
+          dropdown.style.display = 'none';
+        }
+      });
+
+      if (clearBtn) {
+        clearBtn.addEventListener('click', () => {
+          searchInput.value = '';
+          clearBtn.style.display = 'none';
+          if (dropdown) dropdown.style.display = 'none';
+          document.querySelectorAll('.suggest-pill').forEach(p => p.classList.remove('active'));
+          searchInput.focus();
+          renderProductsGrid();
+        });
+      }
+    }
+
+    function applySearchTag(target) {
+      const isAr = AppState.getLanguage() === 'ar';
+      let tag = '';
+      if (typeof target === 'string') {
+        tag = target;
+      } else if (target && target.getAttribute) {
+        tag = isAr 
+          ? (target.getAttribute('data-tag-ar') || target.textContent.trim()) 
+          : (target.getAttribute('data-tag-en') || target.textContent.trim());
+        document.querySelectorAll('.suggest-pill').forEach(p => p.classList.remove('active'));
+        target.classList.add('active');
+      }
+
+      const searchInput = document.getElementById('searchInput');
+      if (searchInput) {
+        searchInput.value = tag;
+        const clearBtn = document.getElementById('clearSearchBtn');
+        if (clearBtn) clearBtn.style.display = 'flex';
+        renderProductsGrid();
+        searchInput.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }
+
+    function setProductFilter(filter, btn) {
+      document.querySelectorAll('.filter-tag-pill').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentTagFilter = filter;
+      renderProductsGrid();
+    }
+
+    function applySorting(sortVal) {
+      currentSort = sortVal;
+      renderProductsGrid();
+    }
+
+    function renderProductsGrid() {
+      const container = document.getElementById('mainProductsGrid');
+      const emptyState = document.getElementById('emptyState');
+      const countBadge = document.getElementById('itemsCountBadge');
+      const searchInput = document.getElementById('searchInput');
+      const query = (searchInput ? searchInput.value : '').trim();
+
+      if (!container) return;
+
+      // Smart bilingual multi-attribute search via AppState
+      let items = AppState.searchProducts(query, currentCategory, currentTagFilter);
+
+      // Sorting
+      if (currentSort === 'price-asc') items.sort((a, b) => a.basePrice - b.basePrice);
+      else if (currentSort === 'price-desc') items.sort((a, b) => b.basePrice - a.basePrice);
+      else if (currentSort === 'rating') items.sort((a, b) => b.rating - a.rating);
+      else if (currentSort === 'popular') items.sort((a, b) => (b.isPopular ? 1 : 0) - (a.isPopular ? 1 : 0));
+
+      const isAr = AppState.getLanguage() === 'ar';
+      if (countBadge) countBadge.textContent = isAr ? `${items.length} صنف` : `${items.length} items`;
+
+      if (items.length === 0) {
+        container.innerHTML = '';
+        if (emptyState) {
+          emptyState.style.display = 'flex';
+          const emptyTitle = document.getElementById('emptyStateTitle');
+          const emptyDesc = document.getElementById('emptyStateDesc');
+          const emptyBtn = document.getElementById('emptyStateResetBtn');
+          if (emptyTitle) {
+            emptyTitle.textContent = query 
+              ? (isAr ? `لم نجد نتائج مطابقة لـ "${query}"` : `No dishes found for "${query}"`)
+              : (isAr ? 'لم نجد أطباقاً مطابقة في هذا القسم' : 'No dishes found in this category');
+          }
+          if (emptyDesc) {
+            emptyDesc.textContent = isAr 
+              ? 'جرب البحث بكلمات أخرى أو بمكون مختلف، أو أعد ضبط الفلاتر.'
+              : 'Try searching for a different dish, ingredient, or reset filters.';
+          }
+          if (emptyBtn) {
+            emptyBtn.textContent = isAr ? 'إعادة ضبط البحث والفلاتر' : 'Reset All Filters';
+          }
+        }
+        return;
+      }
+
+      if (emptyState) emptyState.style.display = 'none';
+
+      const allergenNamesAr = {
+        'Dairy': 'ألبان',
+        'Gluten': 'جلوتين',
+        'Eggs': 'بيض',
+        'Nuts': 'مكسرات',
+        'Soy': 'صويا'
+      };
+
+      container.innerHTML = items.map(item => {
+        const isFav = AppState.isFavorite(item.id);
+        const allergensBadges = (item.allergens || []).map(a => `<span class="allergen-tag" title="${isAr ? 'يحتوي على ' + (allergenNamesAr[a] || a) : 'Contains ' + a}">${isAr ? (allergenNamesAr[a] || a) : a}</span>`).join('');
+        const itemName = isAr ? (item.nameAr || item.name) : item.name;
+        const itemDesc = isAr ? (item.descriptionAr || item.description) : item.description;
+        const prepTimeText = isAr ? item.prepTime.replace('min', 'دقيقة') : item.prepTime;
+        const bestSellerBadge = isAr ? `<i class="fa-solid fa-fire"></i> الأكثر مبيعاً` : `<i class="fa-solid fa-fire"></i> Best Seller`;
+        const newBadge = isAr ? `<i class="fa-solid fa-sparkles"></i> جديد` : `<i class="fa-solid fa-sparkles"></i> New`;
+
+        return `
+          <article class="product-card" data-product-id="${item.id}">
+            <div class="product-img-box" onclick="window.location.href='product-detail.html?id=${item.id}'" style="cursor:pointer;">
+              <img src="${item.image}" alt="${itemName}" loading="lazy" />
+              ${item.isBestSeller ? `<span class="product-tag best-seller">${bestSellerBadge}</span>` : (item.isNew ? `<span class="product-tag new-tag">${newBadge}</span>` : '')}
+              <button class="fav-btn ${isFav ? 'favorited' : ''}" aria-label="Favorite" onclick="event.stopPropagation(); AppState.toggleFavorite('${item.id}')">
+                <i class="${isFav ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
+              </button>
+            </div>
+
+            <div class="product-info">
+              <div class="product-meta">
+                <span class="rating">
+                  <i class="fa-solid fa-star"></i> ${item.rating}
+                  <span class="reviews-count">(${item.reviews})</span>
+                </span>
+                <span class="time-cal">
+                  <i class="fa-regular fa-clock"></i> ${prepTimeText}
+                </span>
+              </div>
+
+              <h3 class="product-title" onclick="window.location.href='product-detail.html?id=${item.id}'" style="cursor:pointer;">
+                ${itemName}
+              </h3>
+              <p class="product-desc">${itemDesc}</p>
+
+              ${allergensBadges ? `<div class="allergens-row"><small>${isAr ? 'المسببات:' : 'Allergens:'}</small> ${allergensBadges}</div>` : ''}
+
+              <div class="product-footer">
+                <div class="pricing">
+                  <span class="price">${AppState.formatEGP(item.basePrice)}</span>
+                  ${item.originalPrice ? `<span class="original-price">${AppState.formatEGP(item.originalPrice)}</span>` : ''}
+                </div>
+
+                <div class="product-action-buttons">
+                  <a href="product-detail.html?id=${item.id}" class="customize-link-btn" title="${isAr ? 'تخصيص المكونات والإضافات' : 'Customize ingredients & options'}">
+                    <i class="fa-solid fa-sliders"></i>
+                  </a>
+                  <button class="add-to-cart-btn" onclick="quickAddToCartItem('${item.id}', this)" aria-label="Quick Add to cart">
+                    <i class="fa-solid fa-plus"></i> ${isAr ? 'إضافة' : 'Add'}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function quickAddToCartItem(id, btn) {
+      const item = AppState.catalog[id];
+      if (!item) return;
+
+      const isAr = AppState.getLanguage() === 'ar';
+      AppState.addToCart({
+        id: item.id,
+        name: item.name,
+        nameAr: item.nameAr,
+        image: item.image,
+        unitPrice: item.basePrice,
+        selectedOptions: {},
+        quantity: 1
+      });
+
+      if (btn) {
+        const orig = btn.innerHTML;
+        btn.classList.add('added');
+        btn.innerHTML = `<i class="fa-solid fa-check"></i> ${isAr ? 'تمت الإضافة' : 'Added'}`;
+        setTimeout(() => {
+          btn.classList.remove('added');
+          btn.innerHTML = orig;
+        }, 1100);
+      }
+    }
+
+    function quickReorderDirect(id) {
+      quickAddToCartItem(id, null);
+      AppState.openCartDrawer();
+    }
+
+    function resetAllFilters() {
+      currentCategory = 'all';
+      currentTagFilter = 'all';
+      currentSort = 'recommended';
+      const searchInput = document.getElementById('searchInput');
+      if (searchInput) searchInput.value = '';
+      const clearBtn = document.getElementById('clearSearchBtn');
+      if (clearBtn) clearBtn.style.display = 'none';
+      document.querySelectorAll('.suggest-pill').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('#categoryChips .category-modern-card, #categoryChips .category-chip').forEach(c => c.classList.remove('active'));
+      document.querySelector('#categoryChips .category-modern-card[data-category="all"], #categoryChips .category-chip[data-category="all"]')?.classList.add('active');
+      document.querySelectorAll('.filter-tag-pill').forEach(b => b.classList.remove('active'));
+      document.querySelector('.filter-tag-pill')?.classList.add('active');
+      const sortSelect = document.getElementById('sortSelect');
+      if (sortSelect) sortSelect.value = 'recommended';
+      renderProductsGrid();
+    }
+
+    function openAllCategoriesModal() {
+      document.getElementById('allCategoriesModal')?.classList.add('open');
+    }
+
+    function closeAllCategoriesModal() {
+      document.getElementById('allCategoriesModal')?.classList.remove('open');
+    }
+
+    function selectModalCategory(cat) {
+      closeAllCategoriesModal();
+      document.querySelectorAll('#categoryChips .category-modern-card, #categoryChips .category-chip').forEach(c => {
+        c.classList.toggle('active', c.getAttribute('data-category') === cat);
+      });
+      currentCategory = cat;
+      renderProductsGrid();
+    }
+
+    function initHomeOrderWidgets() {
+      try {
+        const past = AppState.getPastOrders();
+        const pastCountEl = document.getElementById('homePastOrdersCount');
+        if (pastCountEl) {
+          pastCountEl.textContent = (past && past.length) ? past.length : '0';
+        }
+
+        const active = AppState.getActiveOrder();
+        const tracker = document.getElementById('homeActiveOrderTracker');
+        if (!tracker) return;
+
+        if (active && active.statusStep < 5) {
+          tracker.style.display = 'block';
+          const orderIdEl = document.getElementById('homeTrackerOrderId');
+          const etaEl = document.getElementById('homeTrackerEta');
+          const titleEl = document.getElementById('homeTrackerTitle');
+          const descEl = document.getElementById('homeTrackerDesc');
+
+          if (orderIdEl) orderIdEl.textContent = active.id;
+          if (etaEl) etaEl.innerHTML = `<i class="fa-regular fa-clock"></i> ~14 mins`;
+          if (titleEl && active.items && active.items.length) {
+            titleEl.textContent = active.items[0].name + (active.items.length > 1 ? ` + ${active.items.length - 1} item` : '');
+          }
+          if (descEl) {
+            descEl.textContent = `${active.courier?.name || 'Courier'} is en route to Smouha`;
+          }
+        } else if (past && past.length) {
+          tracker.style.display = 'block';
+          const latest = past[0];
+          const chipEl = tracker.querySelector('.hot-status-chip');
+          if (chipEl) {
+            chipEl.innerHTML = `<i class="fa-solid fa-check"></i> Delivered`;
+            chipEl.style.color = '#34d399';
+          }
+          const iconCircle = tracker.querySelector('.hot-icon-circle');
+          if (iconCircle) {
+            iconCircle.innerHTML = `<i class="fa-solid fa-bag-shopping"></i>`;
+            iconCircle.style.color = '#34d399';
+            iconCircle.style.background = 'rgba(16, 185, 129, 0.15)';
+            iconCircle.style.borderColor = 'rgba(16, 185, 129, 0.35)';
+          }
+          const orderIdEl = document.getElementById('homeTrackerOrderId');
+          const etaEl = document.getElementById('homeTrackerEta');
+          const titleEl = document.getElementById('homeTrackerTitle');
+          const descEl = document.getElementById('homeTrackerDesc');
+
+          if (orderIdEl) orderIdEl.textContent = latest.id;
+          if (etaEl) etaEl.textContent = latest.date ? latest.date.split(',')[0] : 'Delivered';
+          if (titleEl && latest.items && latest.items.length) {
+            titleEl.textContent = 'Recent Order: ' + latest.items[0].name;
+          }
+          if (descEl) {
+            descEl.textContent = `Total: ${latest.total} EGP • Tap to view full receipt`;
+          }
+        } else {
+          tracker.style.display = 'none';
+        }
+      } catch (err) {
+        console.warn('initHomeOrderWidgets error', err);
+      }
+    }
+  </script>
+
+</body>
+</html>

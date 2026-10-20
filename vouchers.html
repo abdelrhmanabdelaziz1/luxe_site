@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vouchers & Promo Codes Hub - BiteHub (EGP)</title>
+
+  <!-- Favicon & App Icons -->
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+  <link rel="alternate icon" type="image/png" href="images/favicon.png" />
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+
+  <!-- Modern Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="luxe.css" />
+
+  <!-- FontAwesome Icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  />
+</head>
+
+<body>
+
+  <main class="app profile-app">
+
+    <!-- Subpage Top Bar -->
+    <header class="subpage-top-bar">
+      <a href="profile.html" class="subpage-back-btn" aria-label="Back to Account Hub">
+        <i class="fa-solid fa-arrow-left"></i>
+      </a>
+      <div class="subpage-title-box">
+        <h1 id="vouchersPageTitle">Vouchers & Promo Codes</h1>
+        <p id="vouchersPageSubtitle">Save on your delicious orders</p>
+      </div>
+      <button class="icon-circle-btn open-cart-btn" onclick="AppState.openCartDrawer()" aria-label="Shopping Cart">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span class="cart-badge" id="cartBadgeCount" style="display:none;">0</span>
+      </button>
+    </header>
+
+    <div class="subpage-container">
+
+      <!-- 1. ACTIVE COUPON SPOTLIGHT BANNER -->
+      <div id="activeCouponSpotlight">
+        <!-- Rendered dynamically by JS -->
+      </div>
+
+      <!-- 2. Manual Promo Code Input & Add Custom Coupon -->
+      <section class="subpage-card" style="padding: 16px; margin-bottom: 16px;">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+          <span style="font-size: 11px; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px;">
+            <i class="fa-solid fa-tag" style="color:var(--primary); margin-right:4px;"></i> Have a promo code?
+          </span>
+          <button type="button" class="btn-primary" onclick="openAddCouponModal()" style="padding: 4px 10px; font-size: 11px; border-radius: 8px; border:none; cursor:pointer; display:inline-flex; align-items:center; gap:5px;">
+            <i class="fa-solid fa-plus"></i> Add Coupon
+          </button>
+        </div>
+
+        <div class="voucher-manual-input" style="margin-bottom: 8px;">
+          <input type="text" id="voucherCodeInput" placeholder="Enter code (e.g. WELCOME50, SAVE100...)" style="text-transform: uppercase;" />
+          <button type="button" onclick="applyEnteredVoucher()"><i class="fa-solid fa-bolt"></i> Apply & Activate</button>
+        </div>
+
+        <!-- Quick Suggestions Pill Row -->
+        <div style="display: flex; gap: 6px; overflow-x: auto; padding-top: 4px;" class="hide-scrollbar">
+          <span style="font-size: 10px; color: var(--text-secondary); align-self: center; white-space: nowrap;">Try:</span>
+          <button type="button" onclick="quickApplyCode('WELCOME50')" style="background: var(--surface-alt); border: 1px solid var(--border); border-radius: 6px; padding: 3px 8px; font-size: 10px; font-weight: 700; cursor: pointer; white-space: nowrap;">WELCOME50 (50 EGP)</button>
+          <button type="button" onclick="quickApplyCode('FEAST50')" style="background: var(--surface-alt); border: 1px solid var(--border); border-radius: 6px; padding: 3px 8px; font-size: 10px; font-weight: 700; cursor: pointer; white-space: nowrap;">FEAST50 (50% OFF)</button>
+          <button type="button" onclick="quickApplyCode('FREEDEL')" style="background: var(--surface-alt); border: 1px solid var(--border); border-radius: 6px; padding: 3px 8px; font-size: 10px; font-weight: 700; cursor: pointer; white-space: nowrap;">FREEDEL (Free Delivery)</button>
+          <button type="button" onclick="quickApplyCode('BURGER25')" style="background: var(--surface-alt); border: 1px solid var(--border); border-radius: 6px; padding: 3px 8px; font-size: 10px; font-weight: 700; cursor: pointer; white-space: nowrap;">BURGER25 (25 EGP)</button>
+        </div>
+      </section>
+
+      <!-- 3. Flash Deals Link Banner -->
+      <div class="luxe-combo-promo" style="background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%); border: 1.5px solid #fdba74; border-radius: 16px; padding: 12px 16px; margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div style="width: 36px; height: 36px; border-radius: 10px; background: #ea580c; color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 16px;">
+            <i class="fa-solid fa-fire-flame-curved"></i>
+          </div>
+          <div>
+            <strong style="font-size: 13px; color: #9a3412; display: block;">Auto-Discounted Combos</strong>
+            <span style="font-size: 11px; color: #c2410c;">Up to 49% OFF on our Deals page!</span>
+          </div>
+        </div>
+        <a href="deals.html" class="btn-primary" style="padding: 6px 12px; font-size: 11px; text-decoration: none; border-radius: 8px;">
+          View Deals
+        </a>
+      </div>
+
+      <!-- 4. Status Tabs (Available, Used, Expired) -->
+      <div class="voucher-status-tabs" style="margin-bottom: 16px;">
+        <button class="v-tab active" id="tabAvailable" onclick="setVoucherFilter('available', this)">
+          Available (<span id="countAvailable">0</span>)
+        </button>
+        <button class="v-tab" id="tabUsed" onclick="setVoucherFilter('used', this)">
+          Used (<span id="countUsed">0</span>)
+        </button>
+        <button class="v-tab" id="tabExpired" onclick="setVoucherFilter('expired', this)">
+          Expired (<span id="countExpired">0</span>)
+        </button>
+      </div>
+
+      <!-- 5. Vouchers Cards List -->
+      <div class="vouchers-list" id="vouchersPageContainer">
+        <!-- Rendered by JS -->
+      </div>
+
+      <!-- 6. How Active Coupons Work Step-by-Step Guide -->
+      <section class="subpage-card" style="margin-top: 24px;">
+        <div class="subpage-card-title">
+          <span><i class="fa-solid fa-circle-question" style="color: var(--primary); margin-right: 6px;"></i> How Active Coupons Work</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px; padding: 4px 0;">
+          <div style="display: flex; gap: 12px; align-items: flex-start;">
+            <div style="width: 26px; height: 26px; border-radius: 50%; background: rgba(16, 185, 129, 0.15); color: #059669; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; flex-shrink: 0;">1</div>
+            <div>
+              <strong style="font-size: 12px; display: block;">Activate or Add a Coupon</strong>
+              <p style="font-size: 11px; color: var(--text-secondary); margin: 2px 0 0;">Tap "Activate" on any coupon above or add a new code. It instantly marks the coupon as active on your cart.</p>
+            </div>
+          </div>
+          <div style="display: flex; gap: 12px; align-items: flex-start;">
+            <div style="width: 26px; height: 26px; border-radius: 50%; background: rgba(16, 185, 129, 0.15); color: #059669; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; flex-shrink: 0;">2</div>
+            <div>
+              <strong style="font-size: 12px; display: block;">Add Meals to Your Cart</strong>
+              <p style="font-size: 11px; color: var(--text-secondary); margin: 2px 0 0;">Choose burgers, stone-oven pizzas, or combo boxes that meet the minimum order amount.</p>
+            </div>
+          </div>
+          <div style="display: flex; gap: 12px; align-items: flex-start;">
+            <div style="width: 26px; height: 26px; border-radius: 50%; background: rgba(16, 185, 129, 0.15); color: #059669; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; flex-shrink: 0;">3</div>
+            <div>
+              <strong style="font-size: 12px; display: block;">Automatic Instant Discount</strong>
+              <p style="font-size: 11px; color: var(--text-secondary); margin: 2px 0 0;">Your active coupon discount is deducted automatically on your cart drawer and checkout review screen.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Bottom Navigation Bar (Home | Orders | Deals | Profile) -->
+    <nav class="bottom-nav">
+      <a href="index.html" class="nav-item">
+        <i class="fa-solid fa-house"></i>
+        <span>Home</span>
+      </a>
+
+      <a href="orders.html" class="nav-item">
+        <div class="nav-icon-container">
+          <i class="fa-solid fa-receipt"></i>
+          <span class="nav-badge">1</span>
+        </div>
+        <span>Orders</span>
+      </a>
+
+      <a href="deals.html" class="nav-item">
+        <div class="nav-icon-container">
+          <i class="fa-solid fa-tag"></i>
+        </div>
+        <span>Deals</span>
+      </a>
+
+      <a href="profile.html" class="nav-item active">
+        <i class="fa-solid fa-user"></i>
+        <span>Profile</span>
+      </a>
+    </nav>
+
+  </main>
+
+  <!-- ADD NEW COUPON MODAL DIALOG -->
+  <div class="add-coupon-modal-backdrop" id="addCouponModal" style="display: none;" onclick="handleModalBackdropClick(event)">
+    <div class="add-coupon-modal-card" onclick="event.stopPropagation()">
+      <div class="add-coupon-modal-header">
+        <h3><i class="fa-solid fa-ticket-simple" style="color:var(--primary);"></i> Add New Coupon</h3>
+        <button type="button" class="close-modal-x-btn" onclick="closeAddCouponModal()" aria-label="Close dialog">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form class="add-coupon-form" onsubmit="handleCreateCoupon(event)">
+        <div class="form-group">
+          <label>Coupon Code *</label>
+          <input type="text" id="modalCouponCode" placeholder="e.g. VIP50, SUMMER25, SPECIAL" required style="text-transform: uppercase;" />
+        </div>
+
+        <div class="form-group">
+          <label>Coupon Title</label>
+          <input type="text" id="modalCouponTitle" placeholder="e.g. 50 EGP Special VIP Discount" />
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label>Discount Type</label>
+            <select id="modalCouponType" onchange="handleDiscountTypeChange()">
+              <option value="amount">Fixed Amount (EGP)</option>
+              <option value="percent">Percentage (%)</option>
+              <option value="freeDelivery">Free Delivery</option>
+            </select>
+          </div>
+          <div class="form-group" id="modalValGroup">
+            <label id="modalValLabel">Value (EGP)</label>
+            <input type="number" id="modalCouponVal" min="1" max="1000" value="50" required />
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label>Min. Order (EGP)</label>
+            <input type="number" id="modalCouponMinOrder" min="0" value="150" />
+          </div>
+          <div class="form-group">
+            <label>Expiry Date</label>
+            <input type="text" id="modalCouponExpiry" value="31 Dec 2026" />
+          </div>
+        </div>
+
+        <label class="checkbox-highlight-box">
+          <input type="checkbox" id="modalCouponAutoActivate" checked />
+          <span>Make this coupon ACTIVE immediately on my cart</span>
+        </label>
+
+        <button type="submit" class="modal-submit-btn">
+          <i class="fa-solid fa-bolt"></i> Add & Make Active
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Central App-State Logic -->
+  <script src="app-state.js"></script>
+
+  <script>
+    let activeFilter = 'available';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderVouchersPage();
+      AppState.updateCartBadges();
+
+      // Listen for voucher updates across app
+      window.addEventListener('gb_voucher_changed', () => {
+        renderVouchersPage();
+      });
+      window.addEventListener('gb_vouchers_updated', () => {
+        renderVouchersPage();
+      });
+    });
+
+    function setVoucherFilter(tab, btn) {
+      document.querySelectorAll('.v-tab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeFilter = tab;
+      renderVouchersPage();
+    }
+
+    function renderActiveBanner() {
+      const bannerContainer = document.getElementById('activeCouponSpotlight');
+      if (!bannerContainer) return;
+
+      const activeVoucher = AppState.getAppliedVoucher();
+      const subtotal = AppState.getCartSubtotal();
+      const isAr = AppState.getLanguage() === 'ar';
+
+      if (!activeVoucher) {
+        bannerContainer.innerHTML = `
+          <div class="no-active-voucher-banner">
+            <i class="fa-solid fa-ticket"></i>
+            <div>
+              <strong style="font-size: 13px; color: var(--text); display: block;">${isAr ? 'لا يوجد كوبون نشط حالياً' : 'No coupon currently active'}</strong>
+              <span style="font-size: 11px;">${isAr ? 'اضغط "تفعيل" على أي كوبون بالأسفل لتطبيقه على سلتك!' : 'Tap "Activate" on any coupon below to apply it to your cart!'}</span>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      let discountText = '';
+      if (activeVoucher.amount) discountText = `${AppState.formatEGP(activeVoucher.amount)} OFF`;
+      else if (activeVoucher.percent) discountText = `${activeVoucher.percent}% OFF`;
+      else if (activeVoucher.freeDelivery) discountText = isAr ? 'توصيل مجاني' : 'Free Delivery';
+
+      const discountInfo = AppState.getAppliedVoucherDiscount(subtotal);
+
+      bannerContainer.innerHTML = `
+        <div class="active-voucher-hero-banner">
+          <div class="avh-header">
+            <div class="avh-status-pulse">
+              <span class="pulsing-emerald-dot"></span>
+              <span class="avh-badge">${isAr ? 'كوبون نشط في سلتك' : 'CURRENTLY ACTIVE ON CART'}</span>
+            </div>
+            <button type="button" class="avh-deactivate-btn" onclick="deactivateActiveVoucher()" title="${isAr ? 'إلغاء التفعيل' : 'Deactivate coupon'}">
+              <i class="fa-solid fa-xmark"></i> ${isAr ? 'إلغاء التفعيل' : 'Deactivate'}
+            </button>
+          </div>
+
+          <div class="avh-code-row">
+            <span class="avh-code-tag">${activeVoucher.code}</span>
+            <span class="avh-discount-text">${discountText}</span>
+          </div>
+
+          <p class="avh-meta">
+            ${isAr ? (activeVoucher.titleAr || activeVoucher.title) : activeVoucher.title} • 
+            ${isAr ? 'الحد الأدنى للطلب:' : 'Min. Order:'} ${AppState.formatEGP(activeVoucher.minOrder)} • 
+            ${isAr ? 'صالح حتى:' : 'Valid until:'} ${activeVoucher.expiry}
+          </p>
+
+          <div class="avh-actions-row">
+            <div class="avh-status-desc">
+              ${discountInfo.isQualified ? `
+                <i class="fa-solid fa-circle-check" style="color: #10b981;"></i>
+                <span>${isAr ? `الخصم مطبق في السلة! وفرت ${AppState.formatEGP(discountInfo.amount)}` : `Qualified! Saving ${AppState.formatEGP(discountInfo.amount)} on your cart.`}</span>
+              ` : `
+                <i class="fa-solid fa-circle-info" style="color: #d97706;"></i>
+                <span>${isAr ? `أضف ${AppState.formatEGP(discountInfo.diff)} للسلة للحصول على الخصم` : `Active! Add ${AppState.formatEGP(discountInfo.diff)} more to apply discount.`}</span>
+              `}
+            </div>
+
+            <button type="button" class="avh-cart-btn" onclick="AppState.openCartDrawer()">
+              <i class="fa-solid fa-bag-shopping"></i> ${isAr ? 'عرض بالسلة' : 'View in Cart'}
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderVouchersPage() {
+      renderActiveBanner();
+
+      const list = AppState.getVouchers();
+      const container = document.getElementById('vouchersPageContainer');
+      if (!container) return;
+
+      const isAr = AppState.getLanguage() === 'ar';
+
+      // Update counters
+      const availCount = list.filter(v => v.status === 'available').length;
+      const usedCount = list.filter(v => v.status === 'used').length;
+      const expCount = list.filter(v => v.status === 'expired').length;
+
+      document.getElementById('countAvailable').textContent = availCount;
+      document.getElementById('countUsed').textContent = usedCount;
+      document.getElementById('countExpired').textContent = expCount;
+
+      const filtered = list.filter(v => v.status === activeFilter);
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div style="text-align: center; padding: 40px 20px; background: var(--surface); border-radius: 18px; border: 1px solid var(--border);">
+            <i class="fa-solid fa-ticket-simple" style="font-size: 36px; color: var(--border); margin-bottom: 12px; display: block;"></i>
+            <h4 style="margin: 0 0 4px; font-size: 14px;">${isAr ? `لا توجد كوبونات ${activeFilter}` : `No ${activeFilter} vouchers`}</h4>
+            <p style="font-size: 12px; color: var(--text-secondary); margin: 0 0 16px;">${isAr ? 'اضغط إضافة كوبون لإضافة كود جديد وتفعيله فوراً.' : 'Click Add Coupon to create any promo code and activate it instantly.'}</p>
+            <button type="button" class="btn-primary" onclick="openAddCouponModal()" style="font-size: 12px; padding: 8px 16px; border-radius: 10px; border:none; cursor:pointer;">
+              <i class="fa-solid fa-plus"></i> ${isAr ? 'إضافة كوبون جديد' : 'Add New Coupon'}
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map(v => {
+        let discountLabel = '';
+        if (v.amount) discountLabel = `${AppState.formatEGP(v.amount)} OFF`;
+        else if (v.percent) discountLabel = `${v.percent}% OFF`;
+        else if (v.freeDelivery) discountLabel = isAr ? 'توصيل مجاني' : 'Free Delivery';
+
+        const isActive = AppState.isVoucherActive(v.code);
+        const cardClass = `voucher-card ${v.status} ${isActive ? 'active-coupon' : ''}`;
+
+        return `
+          <div class="${cardClass}" id="voucherCard-${v.code}">
+            <div class="v-left">
+              ${isActive ? `
+                <div class="active-on-cart-badge">
+                  <span class="pulsing-emerald-dot" style="width:6px;height:6px;"></span>
+                  <span>${isAr ? 'نشط في السلة' : 'ACTIVE ON CART'}</span>
+                </div>
+              ` : ''}
+              <span class="v-discount-badge">${discountLabel}</span>
+              <h4 style="font-size: 13px; font-weight: 700; margin: 4px 0 2px;">${isAr ? (v.titleAr || v.title) : v.title}</h4>
+              <p style="font-size: 11px; color: var(--text-secondary); margin: 0;">
+                ${isAr ? 'الحد الأدنى:' : 'Min. order:'} ${AppState.formatEGP(v.minOrder)} • ${isAr ? 'صالح حتى:' : 'Valid until:'} ${v.expiry}
+              </p>
+            </div>
+            <div class="v-right">
+              <span class="v-code-tag">${v.code}</span>
+              ${v.status === 'available'
+                ? (isActive
+                    ? `<button type="button" class="v-apply-btn active-state" onclick="deactivateActiveVoucher()" title="${isAr ? 'اضغط للإلغاء' : 'Tap to remove'}">
+                        <i class="fa-solid fa-circle-check"></i> ${isAr ? 'نشط (اضغط للإلغاء)' : 'Active (Tap to remove)'}
+                       </button>`
+                    : `<button type="button" class="v-apply-btn" onclick="activateVoucher('${v.code}')">
+                        <i class="fa-solid fa-bolt"></i> ${isAr ? 'تفعيل الكوبون' : 'Activate'}
+                       </button>`
+                  )
+                : `<span class="v-status-badge">${v.status.toUpperCase()}</span>`
+              }
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function activateVoucher(code) {
+      AppState.applyVoucher(code);
+      renderVouchersPage();
+    }
+
+    function deactivateActiveVoucher() {
+      AppState.removeVoucher();
+      renderVouchersPage();
+    }
+
+    function applyEnteredVoucher() {
+      const input = document.getElementById('voucherCodeInput');
+      const code = input.value.trim();
+      if (!code) {
+        showToast('Please type a promo code first.');
+        return;
+      }
+
+      AppState.applyVoucher(code);
+      input.value = '';
+      activeFilter = 'available';
+      document.querySelectorAll('.v-tab').forEach(b => b.classList.toggle('active', b.id === 'tabAvailable'));
+      renderVouchersPage();
+    }
+
+    function quickApplyCode(code) {
+      AppState.applyVoucher(code);
+      activeFilter = 'available';
+      document.querySelectorAll('.v-tab').forEach(b => b.classList.toggle('active', b.id === 'tabAvailable'));
+      renderVouchersPage();
+    }
+
+    // --- ADD COUPON MODAL LOGIC ---
+    function openAddCouponModal() {
+      const modal = document.getElementById('addCouponModal');
+      if (modal) {
+        modal.style.display = 'flex';
+        document.getElementById('modalCouponCode').value = '';
+        document.getElementById('modalCouponTitle').value = '';
+        document.getElementById('modalCouponVal').value = '50';
+        document.getElementById('modalCouponMinOrder').value = '150';
+        handleDiscountTypeChange();
+      }
+    }
+
+    function closeAddCouponModal() {
+      const modal = document.getElementById('addCouponModal');
+      if (modal) modal.style.display = 'none';
+    }
+
+    function handleModalBackdropClick(e) {
+      if (e.target.id === 'addCouponModal') {
+        closeAddCouponModal();
+      }
+    }
+
+    function handleDiscountTypeChange() {
+      const type = document.getElementById('modalCouponType').value;
+      const group = document.getElementById('modalValGroup');
+      const label = document.getElementById('modalValLabel');
+      const valInput = document.getElementById('modalCouponVal');
+
+      if (type === 'freeDelivery') {
+        group.style.display = 'none';
+        valInput.removeAttribute('required');
+      } else {
+        group.style.display = 'block';
+        valInput.setAttribute('required', 'true');
+        if (type === 'percent') {
+          label.textContent = 'Discount Percentage (%)';
+          valInput.placeholder = 'e.g. 20';
+          valInput.max = '90';
+          valInput.value = '25';
+        } else {
+          label.textContent = 'Value (EGP)';
+          valInput.placeholder = 'e.g. 50';
+          valInput.max = '1000';
+          valInput.value = '50';
+        }
+      }
+    }
+
+    function handleCreateCoupon(e) {
+      e.preventDefault();
+      const code = document.getElementById('modalCouponCode').value.trim().toUpperCase();
+      if (!code) {
+        showToast('Please specify a coupon code.');
+        return;
+      }
+
+      const type = document.getElementById('modalCouponType').value;
+      const title = document.getElementById('modalCouponTitle').value.trim();
+      const val = parseInt(document.getElementById('modalCouponVal').value || '50', 10);
+      const minOrder = parseInt(document.getElementById('modalCouponMinOrder').value || '150', 10);
+      const expiry = document.getElementById('modalCouponExpiry').value.trim() || '31 Dec 2026';
+      const autoActivate = document.getElementById('modalCouponAutoActivate').checked;
+
+      const voucherData = {
+        code: code,
+        title: title || `${code} Special Voucher`,
+        titleAr: title || `كوبون ${code} الخاص`,
+        type: type,
+        amount: type === 'amount' ? val : 0,
+        percent: type === 'percent' ? val : 0,
+        freeDelivery: type === 'freeDelivery',
+        minOrder: minOrder,
+        expiry: expiry
+      };
+
+      const added = AppState.addVoucher(voucherData, autoActivate);
+      closeAddCouponModal();
+
+      // Switch to Available tab to show the new coupon
+      activeFilter = 'available';
+      document.querySelectorAll('.v-tab').forEach(b => b.classList.toggle('active', b.id === 'tabAvailable'));
+      renderVouchersPage();
+
+      if (autoActivate) {
+        showToast(`Coupon ${code} added and is now ACTIVE! Applied to your cart.`);
+      } else {
+        showToast(`Coupon ${code} added to your available vouchers.`);
+      }
+
+      // Scroll to newly created voucher card
+      setTimeout(() => {
+        const el = document.getElementById(`voucherCard-${code}`);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 150);
+    }
+  </script>
+
+</body>
+</html>

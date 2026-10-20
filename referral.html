@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Refer a Friend & Earn 50 EGP - BiteHub</title>
+
+  <!-- Favicon & App Icons -->
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+  <link rel="alternate icon" type="image/png" href="images/favicon.png" />
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+
+  <!-- Modern Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="luxe.css" />
+
+  <!-- FontAwesome Icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  />
+</head>
+
+<body>
+
+  <main class="app profile-app">
+
+    <!-- Subpage Top Bar -->
+    <header class="subpage-top-bar">
+      <a href="profile.html" class="subpage-back-btn" aria-label="Back to Account Hub">
+        <i class="fa-solid fa-arrow-left"></i>
+      </a>
+      <div class="subpage-title-box">
+        <h1>Refer a Friend</h1>
+        <p>Give 50 EGP, Get 50 EGP</p>
+      </div>
+      <button class="icon-circle-btn open-cart-btn" aria-label="Shopping Cart">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span class="cart-badge" style="display:none;">0</span>
+      </button>
+    </header>
+
+    <div class="subpage-container">
+
+      <!-- 1. Hero Referral Card -->
+      <section class="referral-hero-card">
+        <div class="referral-hero-icon">
+          <i class="fa-solid fa-gift"></i>
+        </div>
+        <h2>Invite & Earn 50 EGP!</h2>
+        <p>
+          Share the love of gourmet burgers & stone-oven pizzas! Your friends get 50 EGP off their first feast, and you get 50 EGP added to your vouchers.
+        </p>
+      </section>
+
+      <!-- 2. Code Box with 1-Tap Copy & Share -->
+      <section class="subpage-card">
+        <span style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--text-secondary); display: block; margin-bottom: 8px;">
+          Your Personal Invite Code
+        </span>
+
+        <div style="background: var(--surface-alt); border: 2px dashed var(--primary); border-radius: 14px; padding: 14px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+          <div>
+            <strong id="referralCodeText" style="font-size: 22px; font-family: 'Outfit', sans-serif; letter-spacing: 2px; color: var(--primary);">AHMED50</strong>
+            <span style="display: block; font-size: 10px; color: var(--text-secondary);">Valid for all new customers</span>
+          </div>
+          <button class="copy-code-btn" onclick="copyRefCode()" style="padding: 10px 16px; border-radius: 10px; font-size: 12px; font-weight: 700;">
+            <i class="fa-regular fa-copy"></i> Copy
+          </button>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+          <button class="btn-primary" onclick="shareRefViaNative()" style="padding: 12px; font-size: 12px; display: flex; align-items: center; justify-content: center; gap: 6px;">
+            <i class="fa-solid fa-share-nodes"></i> Share Link
+          </button>
+          <a href="https://api.whatsapp.com/send?text=Hey!%20Use%20my%20code%20AHMED50%20to%20get%2050%20EGP%20off%20your%20first%20delicious%20order%20at%20Gourmet%20Bites!" target="_blank" class="btn-secondary" style="padding: 12px; font-size: 12px; display: flex; align-items: center; justify-content: center; gap: 6px; background: #25d366; color: #ffffff; text-decoration: none; border-radius: 12px; font-weight: 700;">
+            <i class="fa-brands fa-whatsapp"></i> WhatsApp
+          </a>
+        </div>
+      </section>
+
+      <!-- 3. Performance Metrics Counters -->
+      <section class="subpage-card">
+        <div class="subpage-card-title">
+          <span><i class="fa-solid fa-chart-line" style="color: #0284c7; margin-right: 6px;"></i> Your Referral Impact</span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; text-align: center;">
+          <div style="background: var(--surface-alt); padding: 12px 6px; border-radius: 12px; border: 1px solid var(--border);">
+            <strong style="font-size: 20px; font-family: 'Outfit', sans-serif; color: var(--primary); display: block;">3</strong>
+            <span style="font-size: 10px; color: var(--text-secondary); font-weight: 600;">Friends Joined</span>
+          </div>
+
+          <div style="background: var(--surface-alt); padding: 12px 6px; border-radius: 12px; border: 1px solid var(--border);">
+            <strong style="font-size: 20px; font-family: 'Outfit', sans-serif; color: #16a34a; display: block;">150</strong>
+            <span style="font-size: 10px; color: var(--text-secondary); font-weight: 600;">EGP Earned</span>
+          </div>
+
+          <div style="background: var(--surface-alt); padding: 12px 6px; border-radius: 12px; border: 1px solid var(--border);">
+            <strong style="font-size: 20px; font-family: 'Outfit', sans-serif; color: #f59e0b; display: block;">1</strong>
+            <span style="font-size: 10px; color: var(--text-secondary); font-weight: 600;">Pending Order</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. 3-Step Journey -->
+      <section class="subpage-card">
+        <div class="subpage-card-title">
+          <span><i class="fa-solid fa-route" style="color: #9333ea; margin-right: 6px;"></i> How It Works</span>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div style="display: flex; gap: 14px; align-items: flex-start;">
+            <div style="width: 28px; height: 28px; border-radius: 50%; background: #ffedd5; color: var(--primary); font-weight: 800; font-size: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+              <strong style="font-size: 13px; display: block;">Send your code</strong>
+              <p style="font-size: 11px; color: var(--text-secondary); margin: 2px 0 0;">Share AHMED50 via WhatsApp, SMS, or social media.</p>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 14px; align-items: flex-start;">
+            <div style="width: 28px; height: 28px; border-radius: 50%; background: #e0f2fe; color: #0284c7; font-weight: 800; font-size: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+              <strong style="font-size: 13px; display: block;">Friend places their first order</strong>
+              <p style="font-size: 11px; color: var(--text-secondary); margin: 2px 0 0;">They save 50 EGP on their first order of 150+ EGP.</p>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 14px; align-items: flex-start;">
+            <div style="width: 28px; height: 28px; border-radius: 50%; background: #dcfce7; color: #16a34a; font-weight: 800; font-size: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div>
+              <strong style="font-size: 13px; display: block;">You get 50 EGP voucher!</strong>
+              <p style="font-size: 11px; color: var(--text-secondary); margin: 2px 0 0;">As soon as their order delivers, 50 EGP appears in your vouchers.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. Friends Referred List -->
+      <section class="subpage-card">
+        <div class="subpage-card-title">
+          <span><i class="fa-solid fa-user-group" style="color: #0d9488; margin-right: 6px;"></i> Friends Invited</span>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px; background: var(--surface-alt); border-radius: 10px; font-size: 12px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <div style="width: 32px; height: 32px; border-radius: 50%; background: #dcfce7; color: #16a34a; display: flex; align-items: center; justify-content: center; font-weight: 800;">SK</div>
+              <div>
+                <strong>Sara Khalil</strong>
+                <span style="font-size: 10px; color: var(--text-secondary); display: block;">Joined 2 days ago</span>
+              </div>
+            </div>
+            <span style="font-weight: 800; color: #16a34a; font-size: 11px;">+50 EGP Earned</span>
+          </div>
+
+          <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px; background: var(--surface-alt); border-radius: 10px; font-size: 12px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <div style="width: 32px; height: 32px; border-radius: 50%; background: #dcfce7; color: #16a34a; display: flex; align-items: center; justify-content: center; font-weight: 800;">OF</div>
+              <div>
+                <strong>Omar Farouk</strong>
+                <span style="font-size: 10px; color: var(--text-secondary); display: block;">Joined 1 week ago</span>
+              </div>
+            </div>
+            <span style="font-weight: 800; color: #16a34a; font-size: 11px;">+50 EGP Earned</span>
+          </div>
+
+          <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px; background: var(--surface-alt); border-radius: 10px; font-size: 12px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <div style="width: 32px; height: 32px; border-radius: 50%; background: #fef3c7; color: #d97706; display: flex; align-items: center; justify-content: center; font-weight: 800;">NE</div>
+              <div>
+                <strong>Nour El-Din</strong>
+                <span style="font-size: 10px; color: var(--text-secondary); display: block;">Joined yesterday</span>
+              </div>
+            </div>
+            <span style="font-weight: 800; color: #d97706; font-size: 11px;">Pending Order</span>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Bottom Navigation Bar (Home | Orders | Deals | Profile) -->
+    <nav class="bottom-nav">
+      <a href="index.html" class="nav-item">
+        <i class="fa-solid fa-house"></i>
+        <span>Home</span>
+      </a>
+
+      <a href="orders.html" class="nav-item">
+        <div class="nav-icon-container">
+          <i class="fa-solid fa-receipt"></i>
+          <span class="nav-badge">1</span>
+        </div>
+        <span>Orders</span>
+      </a>
+
+      <a href="deals.html" class="nav-item">
+        <div class="nav-icon-container">
+          <i class="fa-solid fa-tag"></i>
+        </div>
+        <span>Deals</span>
+      </a>
+
+      <a href="profile.html" class="nav-item active">
+        <i class="fa-solid fa-user"></i>
+        <span>Profile</span>
+      </a>
+    </nav>
+
+  </main>
+
+  <!-- Central App-State Logic -->
+  <script src="app-state.js"></script>
+
+  <script>
+    function copyRefCode() {
+      const code = document.getElementById('referralCodeText').textContent;
+      navigator.clipboard?.writeText(code).then(() => {
+        showToast(`Referral code ${code} copied! Share it now.`);
+      }).catch(() => {
+        showToast(`Referral code: ${code}`);
+      });
+    }
+
+    function shareRefViaNative() {
+      const code = document.getElementById('referralCodeText').textContent;
+      if (navigator.share) {
+        navigator.share({
+          title: 'Join BiteHub',
+          text: `Use my invite code ${code} for 50 EGP off your first order!`,
+          url: window.location.origin
+        });
+      } else {
+        copyRefCode();
+      }
+    }
+  </script>
+
+</body>
+</html>
