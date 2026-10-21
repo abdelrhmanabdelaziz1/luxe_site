@@ -143,9 +143,317 @@ a { color: inherit; }
 .filter-tag-pill.active,.deal-pill.active,.category-chip.active { background: #30332e; border-color: #30332e; color: #fdfbf4; box-shadow: none; }
 .filter-tag-pill:hover,.deal-pill:hover,.category-chip:hover { border-color: #978366; color: #6b573b; box-shadow: none; transform: none; }
 .sort-selector-wrapper select { background: #fffdf8; border: 1px solid #e2dcd0; border-radius: 5px; color: #666257; }
-.category-modern-card { background: #fffefb; border: 1px solid #e6e0d4; box-shadow: none; border-radius: 8px; }
-.category-modern-card.active { border-color: #927d5d; background: #f5f0e6; box-shadow: none; }
-.category-modern-label { color: #36392f; font-weight: 600; }
+/* ==========================================================================
+   Culinary Categories — Gourmet Photography Circles (Maison Gastronomy)
+   ========================================================================== */
+.categories-modern-scroller {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  padding: 8px 4px 18px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.categories-modern-scroller::-webkit-scrollbar {
+  display: none;
+}
+
+/* Category Card Button Wrapper */
+.category-modern-card {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 7px !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1) !important;
+  outline: none;
+  width: 68px !important;
+  min-height: auto !important;
+  text-align: center;
+  position: relative;
+  padding: 2px 2px 4px !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* The Circular Photo Frame — Bezel Ring */
+.category-icon-squircle {
+  width: 64px !important;
+  height: 64px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 2.5px !important;
+  background: #fffefb !important;
+  border: 1.5px solid #ded6c8 !important;
+  box-shadow: 0 4px 12px rgba(36, 35, 26, 0.05) !important;
+  transition: all 0.28s cubic-bezier(0.25, 1, 0.5, 1) !important;
+  position: relative;
+  overflow: hidden !important;
+}
+
+.category-circle-img {
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+  display: block !important;
+  transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), filter 0.3s ease !important;
+  filter: saturate(0.95) contrast(1.02) !important;
+}
+
+/* Hover: subtle lift, gold bezel glow, & gentle image zoom */
+.category-modern-card:hover {
+  transform: translateY(-3px) !important;
+}
+
+.category-modern-card:hover .category-icon-squircle {
+  border-color: #bfa77e !important;
+  box-shadow: 0 8px 20px rgba(145, 117, 69, 0.16) !important;
+}
+
+.category-modern-card:hover .category-circle-img {
+  transform: scale(1.08) !important;
+}
+
+/* Active State — Bezel Ring in Antique Brass with Charcoal Ink Ring Halo */
+.category-modern-card.active {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  transform: translateY(-2px) !important;
+}
+
+.category-modern-card.active .category-icon-squircle {
+  border-color: #927545 !important;
+  background: #30332e !important;
+  box-shadow: 0 0 0 2px #30332e, 0 8px 24px rgba(48, 51, 46, 0.28) !important;
+}
+
+.category-modern-card.active .category-circle-img {
+  transform: scale(1.04) !important;
+  filter: saturate(1.08) contrast(1.05) !important;
+}
+
+/* Category Label — Classic Editorial Typography */
+.category-modern-label {
+  font-family: var(--font-body);
+  font-size: 11.5px !important;
+  font-weight: 600 !important;
+  color: #5d5b4e !important;
+  letter-spacing: -0.01em !important;
+  text-transform: none !important;
+  white-space: nowrap !important;
+  transition: color 0.2s ease, font-weight 0.2s ease !important;
+  margin-top: 1px !important;
+}
+
+.category-modern-card:hover .category-modern-label {
+  color: #272822 !important;
+}
+
+.category-modern-card.active .category-modern-label {
+  color: #272822 !important;
+  font-weight: 700 !important;
+}
+
+/* Active Indicator Pip below label */
+.category-modern-card.active::after {
+  content: '';
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #927545;
+  margin-top: -2px;
+}
+
+/* ==========================================================================
+   All Categories Modal — Gourmet Photography Circles
+   ========================================================================== */
+.all-categories-modal {
+  background: rgba(30, 32, 28, 0.45) !important;
+  backdrop-filter: blur(6px) !important;
+  -webkit-backdrop-filter: blur(6px) !important;
+}
+
+.all-cat-card {
+  background: #faf8f3 !important;
+  border: 1px solid #ded8cd !important;
+  border-radius: 12px !important;
+  box-shadow: 0 16px 40px rgba(36, 35, 26, 0.14) !important;
+  padding: 22px 20px 24px !important;
+}
+
+.all-cat-header {
+  border-bottom: 1px solid #eae4d8 !important;
+  padding-bottom: 14px !important;
+  margin-bottom: 16px !important;
+}
+
+.all-cat-header h3 {
+  font-family: var(--font-display) !important;
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  color: #272822 !important;
+}
+
+.all-cat-header button {
+  background: #f2ede4 !important;
+  border: 1px solid #e2dad0 !important;
+  border-radius: 6px !important;
+  width: 32px !important;
+  height: 32px !important;
+  color: #55534b !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.all-cat-header button:hover {
+  background: #30332e !important;
+  border-color: #30332e !important;
+  color: #fffdf7 !important;
+}
+
+.all-cat-all-btn {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  width: 100% !important;
+  padding: 9px 14px !important;
+  margin-bottom: 14px !important;
+  background: #fffefb !important;
+  border: 1px solid #ded8cd !important;
+  border-radius: 10px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #36372f !important;
+  cursor: pointer !important;
+  transition: all 0.22s cubic-bezier(0.25, 1, 0.5, 1) !important;
+  box-shadow: 0 2px 8px rgba(36, 35, 26, 0.03) !important;
+}
+
+.all-cat-all-btn .cat-modal-thumb-box {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid #ded6c8;
+  padding: 1.5px;
+  background: #fff;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.all-cat-all-btn .cat-modal-thumb-box img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+.all-cat-all-btn:hover {
+  border-color: #bfa77e !important;
+  background: #faf6ee !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 18px rgba(70, 55, 30, 0.08) !important;
+}
+
+.all-cat-all-btn.active {
+  background: #30332e !important;
+  border-color: #30332e !important;
+  color: #fffdf7 !important;
+}
+
+.all-cat-all-btn.active .cat-modal-thumb-box {
+  border-color: #927545;
+}
+
+.all-cat-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 12px !important;
+}
+
+.cat-modal-item {
+  background: #fffefb !important;
+  border: 1px solid #ded8cd !important;
+  border-radius: 10px !important;
+  padding: 14px 6px 12px !important;
+  text-align: center !important;
+  cursor: pointer !important;
+  transition: all 0.22s cubic-bezier(0.25, 1, 0.5, 1) !important;
+  box-shadow: 0 2px 8px rgba(36, 35, 26, 0.03) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.cat-modal-thumb-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1.5px solid #ded6c8;
+  padding: 2px;
+  background: #fff;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.cat-modal-thumb-box img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.25s ease;
+}
+
+.cat-modal-item strong {
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  color: #36372f !important;
+  line-height: 1.25 !important;
+}
+
+.cat-modal-item:hover {
+  background: #faf6ee !important;
+  border-color: #bfa77e !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 20px rgba(70, 55, 30, 0.09) !important;
+}
+
+.cat-modal-item:hover .cat-modal-thumb-box {
+  border-color: #bfa77e;
+  transform: scale(1.05);
+}
+
+.cat-modal-item.active {
+  background: #30332e !important;
+  border-color: #30332e !important;
+  box-shadow: 0 8px 22px rgba(48, 51, 46, 0.25) !important;
+}
+
+.cat-modal-item.active .cat-modal-thumb-box {
+  border-color: #927545;
+}
+
+.cat-modal-item.active strong {
+  color: #fffdf7 !important;
+  font-weight: 700 !important;
+}
+
 
 /* Product discovery: images dominate, details are quietly composed */
 .products-grid { gap: 15px; }

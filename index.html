@@ -16,7 +16,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="luxe.css" />
+  <link rel="stylesheet" href="luxe.css?v=5" />
 
   <!-- FontAwesome Icons -->
   <link
@@ -428,31 +428,45 @@
       </div>
       <div class="categories-modern-scroller" id="categoryChips">
         <button class="category-modern-card active" data-category="all" aria-label="All Categories">
-          <div class="category-icon-squircle all"><i class="fa-solid fa-border-all"></i></div>
+          <div class="category-icon-squircle all">
+            <img src="images/deal_combo.jpg" alt="All Menu" class="category-circle-img" />
+          </div>
           <span class="category-modern-label">All</span>
         </button>
         <button class="category-modern-card" data-category="burgers" aria-label="Burgers">
-          <div class="category-icon-squircle burgers"><i class="fa-solid fa-burger"></i></div>
+          <div class="category-icon-squircle burgers">
+            <img src="images/burger.jpg" alt="Burgers" class="category-circle-img" />
+          </div>
           <span class="category-modern-label">Burgers</span>
         </button>
         <button class="category-modern-card" data-category="pizza" aria-label="Pizza">
-          <div class="category-icon-squircle pizza"><i class="fa-solid fa-pizza-slice"></i></div>
+          <div class="category-icon-squircle pizza">
+            <img src="images/pizza.jpg" alt="Pizza" class="category-circle-img" />
+          </div>
           <span class="category-modern-label">Pizza</span>
         </button>
         <button class="category-modern-card" data-category="chicken" aria-label="Chicken">
-          <div class="category-icon-squircle chicken"><i class="fa-solid fa-drumstick-bite"></i></div>
+          <div class="category-icon-squircle chicken">
+            <img src="images/chicken_tenders.jpg" alt="Crispy" class="category-circle-img" />
+          </div>
           <span class="category-modern-label">Crispy</span>
         </button>
         <button class="category-modern-card" data-category="meals" aria-label="Meals">
-          <div class="category-icon-squircle meals"><i class="fa-solid fa-bowl-rice"></i></div>
+          <div class="category-icon-squircle meals">
+            <img src="images/salad.jpg" alt="Meals" class="category-circle-img" />
+          </div>
           <span class="category-modern-label">Meals</span>
         </button>
         <button class="category-modern-card" data-category="drinks" aria-label="Drinks">
-          <div class="category-icon-squircle drinks"><i class="fa-solid fa-wine-glass"></i></div>
+          <div class="category-icon-squircle drinks">
+            <img src="images/drinks.jpg" alt="Drinks" class="category-circle-img" />
+          </div>
           <span class="category-modern-label">Drinks</span>
         </button>
         <button class="category-modern-card" data-category="desserts" aria-label="Desserts">
-          <div class="category-icon-squircle desserts"><i class="fa-solid fa-cake-candles"></i></div>
+          <div class="category-icon-squircle desserts">
+            <img src="images/dessert.jpg" alt="Desserts" class="category-circle-img" />
+          </div>
           <span class="category-modern-label">Desserts</span>
         </button>
       </div>
@@ -510,13 +524,35 @@
           <h3 id="allCatModalTitle">All Food Categories</h3>
           <button onclick="closeAllCategoriesModal()"><i class="fa-solid fa-xmark"></i></button>
         </div>
+        <button class="all-cat-all-btn" id="allCatFullMenuBtn" data-category="all" onclick="selectModalCategory('all')">
+          <div class="cat-modal-thumb-box"><img src="images/deal_combo.jpg" alt="All Menu" /></div>
+          <span class="cat-modal-name">View Complete Menu (All Dishes)</span>
+        </button>
         <div class="all-cat-grid">
-          <div class="cat-modal-item" onclick="selectModalCategory('pizza')"><span><i class="fa-solid fa-pizza-slice"></i></span><strong class="cat-modal-name">Pizza</strong></div>
-          <div class="cat-modal-item" onclick="selectModalCategory('burgers')"><span><i class="fa-solid fa-burger"></i></span><strong class="cat-modal-name">Burgers</strong></div>
-          <div class="cat-modal-item" onclick="selectModalCategory('chicken')"><span><i class="fa-solid fa-drumstick-bite"></i></span><strong class="cat-modal-name">Chicken & Wings</strong></div>
-          <div class="cat-modal-item" onclick="selectModalCategory('meals')"><span><i class="fa-solid fa-bowl-rice"></i></span><strong class="cat-modal-name">Bowls & Meals</strong></div>
-          <div class="cat-modal-item" onclick="selectModalCategory('drinks')"><span><i class="fa-solid fa-wine-glass"></i></span><strong class="cat-modal-name">Artisan Drinks</strong></div>
-          <div class="cat-modal-item" onclick="selectModalCategory('desserts')"><span><i class="fa-solid fa-cake-candles"></i></span><strong class="cat-modal-name">Desserts</strong></div>
+          <div class="cat-modal-item" data-category="burgers" onclick="selectModalCategory('burgers')">
+            <div class="cat-modal-thumb-box"><img src="images/burger.jpg" alt="Burgers" /></div>
+            <strong class="cat-modal-name">Burgers</strong>
+          </div>
+          <div class="cat-modal-item" data-category="pizza" onclick="selectModalCategory('pizza')">
+            <div class="cat-modal-thumb-box"><img src="images/pizza.jpg" alt="Pizza" /></div>
+            <strong class="cat-modal-name">Pizza</strong>
+          </div>
+          <div class="cat-modal-item" data-category="chicken" onclick="selectModalCategory('chicken')">
+            <div class="cat-modal-thumb-box"><img src="images/chicken_tenders.jpg" alt="Chicken & Wings" /></div>
+            <strong class="cat-modal-name">Chicken & Wings</strong>
+          </div>
+          <div class="cat-modal-item" data-category="meals" onclick="selectModalCategory('meals')">
+            <div class="cat-modal-thumb-box"><img src="images/salad.jpg" alt="Bowls & Meals" /></div>
+            <strong class="cat-modal-name">Bowls & Meals</strong>
+          </div>
+          <div class="cat-modal-item" data-category="drinks" onclick="selectModalCategory('drinks')">
+            <div class="cat-modal-thumb-box"><img src="images/drinks.jpg" alt="Artisan Drinks" /></div>
+            <strong class="cat-modal-name">Artisan Drinks</strong>
+          </div>
+          <div class="cat-modal-item" data-category="desserts" onclick="selectModalCategory('desserts')">
+            <div class="cat-modal-thumb-box"><img src="images/dessert.jpg" alt="Desserts" /></div>
+            <strong class="cat-modal-name">Desserts</strong>
+          </div>
         </div>
       </div>
     </div>
@@ -741,6 +777,7 @@
       const modalTitle = document.getElementById('allCatModalTitle');
       if (modalTitle) modalTitle.textContent = 'جميع أقسام الطعام';
       const modalMap = {
+        'all': 'جميع الأطباق',
         'pizza': 'بيتزا إيطالية',
         'burgers': 'برجر جورميه',
         'chicken': 'دجاج وأجنحة',
@@ -1115,6 +1152,13 @@
     }
 
     function openAllCategoriesModal() {
+      const allBtn = document.getElementById('allCatFullMenuBtn');
+      if (allBtn) {
+        allBtn.classList.toggle('active', currentCategory === 'all');
+      }
+      document.querySelectorAll('.cat-modal-item').forEach(item => {
+        item.classList.toggle('active', item.getAttribute('data-category') === currentCategory);
+      });
       document.getElementById('allCategoriesModal')?.classList.add('open');
     }
 
