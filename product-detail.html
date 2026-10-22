@@ -48,8 +48,8 @@
     <!-- Product Hero Image & Quick Info -->
     <section class="detail-hero">
       <div class="detail-img-container">
-        <img id="productImage" src="images/burger.jpg" alt="Dish visual" />
-        <span class="detail-badge" id="productBadge"><i class="fa-solid fa-fire"></i> Best Seller</span>
+        <img id="productImage" src="images/croissant_butter.jpg" alt="Café item visual" />
+        <span class="detail-badge" id="productBadge"><i class="fa-solid fa-crown"></i> Chef's Selection</span>
         <button class="hero-fav-btn" id="heroFavBtn" aria-label="Save to favorites">
           <i class="fa-regular fa-heart"></i>
         </button>
@@ -57,7 +57,7 @@
 
       <div class="detail-intro">
         <div class="intro-headline">
-          <h2 id="productTitle">Deluxe Double Smash Burger</h2>
+          <h2 id="productTitle">Artisanal French Butter Croissant</h2>
           <div class="price-display">
             <span class="current-price" id="displayUnitPrice">195 EGP</span>
             <span class="original-price-strike" id="displayOriginalPrice">240 EGP</span>
@@ -223,8 +223,8 @@
 
     document.addEventListener('DOMContentLoaded', () => {
       const urlParams = new URLSearchParams(window.location.search);
-      const pid = urlParams.get('id') || urlParams.get('deal') || 'burger-deluxe';
-      currentItem = AppState.catalog[pid] || AppState.catalog['burger-deluxe'];
+      const pid = urlParams.get('id') || urlParams.get('deal') || 'croissant-butter';
+      currentItem = AppState.catalog[pid] || AppState.catalog['croissant-butter'];
 
       // Track recently viewed
       AppState.trackRecentlyViewed(currentItem.id);

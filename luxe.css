@@ -148,9 +148,9 @@ a { color: inherit; }
    ========================================================================== */
 .categories-modern-scroller {
   display: flex;
-  gap: 15px;
+  gap: 16px;
   overflow-x: auto;
-  padding: 8px 4px 18px;
+  padding: 10px 4px 20px;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
 }
@@ -163,16 +163,16 @@ a { color: inherit; }
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
-  gap: 7px !important;
+  gap: 8px !important;
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
   border-radius: 0 !important;
   cursor: pointer;
   flex-shrink: 0;
-  transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1) !important;
+  transition: transform 0.28s cubic-bezier(0.25, 1, 0.5, 1) !important;
   outline: none;
-  width: 68px !important;
+  width: 72px !important;
   min-height: auto !important;
   text-align: center;
   position: relative;
@@ -182,16 +182,16 @@ a { color: inherit; }
 
 /* The Circular Photo Frame — Bezel Ring */
 .category-icon-squircle {
-  width: 64px !important;
-  height: 64px !important;
+  width: 68px !important;
+  height: 68px !important;
   border-radius: 50% !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   padding: 2.5px !important;
   background: #fffefb !important;
-  border: 1.5px solid #ded6c8 !important;
-  box-shadow: 0 4px 12px rgba(36, 35, 26, 0.05) !important;
+  border: 1.5px solid #ded5c5 !important;
+  box-shadow: 0 4px 14px rgba(36, 32, 22, 0.07) !important;
   transition: all 0.28s cubic-bezier(0.25, 1, 0.5, 1) !important;
   position: relative;
   overflow: hidden !important;
@@ -204,21 +204,21 @@ a { color: inherit; }
   object-fit: cover !important;
   display: block !important;
   transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), filter 0.3s ease !important;
-  filter: saturate(0.95) contrast(1.02) !important;
+  filter: saturate(1.02) contrast(1.03) !important;
 }
 
 /* Hover: subtle lift, gold bezel glow, & gentle image zoom */
 .category-modern-card:hover {
-  transform: translateY(-3px) !important;
+  transform: translateY(-4px) !important;
 }
 
 .category-modern-card:hover .category-icon-squircle {
-  border-color: #bfa77e !important;
-  box-shadow: 0 8px 20px rgba(145, 117, 69, 0.16) !important;
+  border-color: #c4aa7d !important;
+  box-shadow: 0 10px 22px rgba(180, 145, 85, 0.22) !important;
 }
 
 .category-modern-card:hover .category-circle-img {
-  transform: scale(1.08) !important;
+  transform: scale(1.09) !important;
 }
 
 /* Active State — Bezel Ring in Antique Brass with Charcoal Ink Ring Halo */
@@ -230,14 +230,14 @@ a { color: inherit; }
 }
 
 .category-modern-card.active .category-icon-squircle {
-  border-color: #927545 !important;
+  border-color: #9c7f4e !important;
   background: #30332e !important;
-  box-shadow: 0 0 0 2px #30332e, 0 8px 24px rgba(48, 51, 46, 0.28) !important;
+  box-shadow: 0 0 0 2.5px #30332e, 0 10px 26px rgba(48, 51, 46, 0.32) !important;
 }
 
 .category-modern-card.active .category-circle-img {
-  transform: scale(1.04) !important;
-  filter: saturate(1.08) contrast(1.05) !important;
+  transform: scale(1.05) !important;
+  filter: saturate(1.12) contrast(1.06) !important;
 }
 
 /* Category Label — Classic Editorial Typography */
@@ -245,7 +245,7 @@ a { color: inherit; }
   font-family: var(--font-body);
   font-size: 11.5px !important;
   font-weight: 600 !important;
-  color: #5d5b4e !important;
+  color: #58564a !important;
   letter-spacing: -0.01em !important;
   text-transform: none !important;
   white-space: nowrap !important;
@@ -265,11 +265,11 @@ a { color: inherit; }
 /* Active Indicator Pip below label */
 .category-modern-card.active::after {
   content: '';
-  width: 4px;
-  height: 4px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
-  background: #927545;
-  margin-top: -2px;
+  background: #9c7f4e;
+  margin-top: -1px;
 }
 
 /* ==========================================================================

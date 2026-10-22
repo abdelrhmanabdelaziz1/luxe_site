@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Exclusive Deals & Feast Combos - BiteHub (EGP)</title>
+  <title>Artisanal Coffee & Croissant Pairings - BiteHub Maison (EGP)</title>
 
   <!-- Favicon & App Icons -->
   <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
@@ -28,13 +28,13 @@
 <body>
 
   <main class="app deals-app">
-    <div class="luxe-wordmark" aria-label="BiteHub Maison edition"><strong>BITE<span>HUB</span><span class="wordmark-stem"></span></strong><small>THE ART OF<br>GOOD FOOD</small></div>
+    <div class="luxe-wordmark" aria-label="BiteHub Maison edition"><strong>BITE<span>HUB</span><span class="wordmark-stem"></span></strong><small>MAISON DU CAFÉ<br>& CROISSANT</small></div>
 
     <!-- Top Header -->
     <header class="home-header">
       <div class="user-greeting-box">
-        <h1 class="dynamic-deals-title">Hot Deals & Feasts</h1>
-        <p class="greeting-subtitle">Discounts up to 49% OFF • Customizable</p>
+        <h1 class="dynamic-deals-title">Maison Duets & Flights</h1>
+        <p class="greeting-subtitle">Artisanal Pairings up to 32% OFF • Baked Fresh Daily</p>
       </div>
 
       <div class="header-actions">
@@ -53,31 +53,30 @@
     <!-- Hero Value Banner -->
     <section class="deals-hero-banner">
       <div class="hero-badge-tag">
-        <i class="fa-solid fa-fire"></i> EXCLUSIVE SAVINGS
+        <i class="fa-solid fa-crown"></i> MAISON SIGNATURE PAIRINGS
       </div>
-      <h2>Feast Combos & Limited Drops</h2>
-      <p>Save up to 49% with our family feast boxes and pizza combos. Fully configure your pizzas, burger cheese, and wings sauce!</p>
+      <h2>Artisanal Duets & Tasting Flights</h2>
+      <p>Save up to 32% with our curated coffee and croissant pairings. Freshly baked AOP butter croissants served alongside single-origin specialty espresso.</p>
     </section>
 
     <!-- Deal Category Filters -->
     <section class="deal-category-filters">
-      <button class="deal-pill active" onclick="filterDealsTab('all', this)">All Deals</button>
-      <button class="deal-pill" onclick="filterDealsTab('day', this)">Deal of the Day</button>
-      <button class="deal-pill" onclick="filterDealsTab('flash', this)">Flash Sales</button>
-      <button class="deal-pill" onclick="filterDealsTab('family', this)">Family Feasts</button>
-      <button class="deal-pill" onclick="filterDealsTab('pizza', this)">Pizza Deals</button>
+      <button class="deal-pill active" onclick="filterDealsTab('all', this)">All Pairings</button>
+      <button class="deal-pill" onclick="filterDealsTab('morning', this)">Morning Duets</button>
+      <button class="deal-pill" onclick="filterDealsTab('tasting', this)">Tasting Flights</button>
+      <button class="deal-pill" onclick="filterDealsTab('brunch', this)">Brunch Combos</button>
     </section>
 
     <!-- Deals Listing Grid -->
     <section class="deals-list-section" id="dealsCardsContainer">
 
-      <!-- Deal 1: Deal of the Day (49% OFF) -->
-      <article class="deal-card featured-day-card" data-category="day family">
+      <!-- Deal 1: The Parisian Morning Duet (32% OFF) -->
+      <article class="deal-card featured-day-card" data-category="morning">
         <div class="deal-card-media">
-          <img src="images/deal_combo.jpg" alt="Mega Family Feast Platter" />
+          <img src="images/banner_morning_duo.jpg" alt="The Parisian Morning Duet" />
           <div class="deal-card-tags">
             <span class="discount-pill-glow">
-              <i class="fa-solid fa-bolt"></i> 49% OFF
+              <i class="fa-solid fa-crown"></i> 32% OFF
             </span>
             <span class="timer-pill">
               <i class="fa-regular fa-clock"></i> <span class="deal-of-day-timer">23h : 59m : 59s</span>
@@ -87,30 +86,29 @@
 
         <div class="deal-card-body">
           <div class="deal-type-indicator">
-            <i class="fa-solid fa-crown"></i> DEAL OF THE DAY • 24 HOURS ONLY
+            <i class="fa-solid fa-crown"></i> SIGNATURE DUET • BAKED FRESH DAILY
           </div>
 
-          <h3 class="deal-title">Mega Family Feast Platter</h3>
+          <h3 class="deal-title">The Parisian Morning Duet</h3>
           <p class="deal-description">
-            1 Large Pizza of Choice + 2 Angus Smash Burgers + 8 Crispy Wings + Seasoned Curly Fries + 4 Dips + 1.5L Drink. Unbeatable combo savings!
+            1 Freshly Baked AOP Butter Croissant + 1 Specialty Flat White or Cappuccino + Artisan Beurre Bordier & Wild Strawberry Preserves.
           </p>
 
           <div class="deal-included-tags">
-            <span>1x 12" Large Pizza</span>
-            <span>2x Smash Burgers</span>
-            <span>8x Crispy Wings</span>
-            <span>Fries & 4 Dips</span>
-            <span>1.5L Soda</span>
+            <span>AOP Butter Croissant</span>
+            <span>Velvet Flat White</span>
+            <span>Beurre Bordier</span>
+            <span>Wild Strawberry Jam</span>
           </div>
 
           <div class="deal-card-footer">
             <div class="deal-pricing-block">
-              <div class="discounted-deal-price">420 EGP</div>
-              <div class="original-deal-price">825 EGP</div>
-              <span class="savings-badge">Save 405 EGP</span>
+              <div class="discounted-deal-price">195 EGP</div>
+              <div class="original-deal-price">285 EGP</div>
+              <span class="savings-badge">Save 90 EGP</span>
             </div>
 
-            <a href="product-detail.html?deal=deal-day-combo" class="customize-deal-btn">
+            <a href="product-detail.html?deal=deal-morning-duo" class="customize-deal-btn">
               <span>Customize & Order</span>
               <i class="fa-solid fa-arrow-right"></i>
             </a>
@@ -118,44 +116,44 @@
         </div>
       </article>
 
-      <!-- Deal 2: Duo Pizza & Pasta Night (46% OFF) -->
-      <article class="deal-card" data-category="pizza">
+      <!-- Deal 2: Specialty Roastery Tasting Flight (32% OFF) -->
+      <article class="deal-card" data-category="tasting">
         <div class="deal-card-media">
-          <img src="images/banner2.jpg" alt="Duo Pizza & Pasta Italian Night" />
+          <img src="images/banner_tasting_flight.jpg" alt="Specialty Roastery Tasting Flight" />
           <div class="deal-card-tags">
             <span class="discount-pill">
-              <i class="fa-solid fa-tag"></i> 46% OFF
+              <i class="fa-solid fa-mug-hot"></i> 32% OFF
             </span>
             <span class="timer-pill">
-              <i class="fa-regular fa-clock"></i> Ends in 6h
+              <i class="fa-regular fa-clock"></i> Roastery Special
             </span>
           </div>
         </div>
 
         <div class="deal-card-body">
           <div class="deal-type-indicator">
-            <i class="fa-solid fa-utensils"></i> PIZZA & PASTA COMBO
+            <i class="fa-solid fa-mug-hot"></i> SPECIALTY ROASTERY FLIGHT
           </div>
 
-          <h3 class="deal-title">Duo Pizza & Pasta Italian Night</h3>
+          <h3 class="deal-title">Specialty Roastery Tasting Flight</h3>
           <p class="deal-description">
-            Any 2 Large Stone Wood-Fired Pizzas + Cheesy Herb Garlic Bread + Chilled 1L Beverage. Freshly baked to authentic perfection.
+            Signature Iced Spanish Latte with cold foam + Fresh Valrhona Pain au Chocolat + Single-Origin Espresso Tasting.
           </p>
 
           <div class="deal-included-tags">
-            <span>2x 12" Pizzas</span>
-            <span>Cheesy Garlic Bread</span>
-            <span>1L Drink</span>
+            <span>Iced Spanish Latte</span>
+            <span>Pain au Chocolat</span>
+            <span>Single-Origin Tasting</span>
           </div>
 
           <div class="deal-card-footer">
             <div class="deal-pricing-block">
-              <div class="discounted-deal-price">320 EGP</div>
-              <div class="original-deal-price">590 EGP</div>
-              <span class="savings-badge">Save 270 EGP</span>
+              <div class="discounted-deal-price">245 EGP</div>
+              <div class="original-deal-price">360 EGP</div>
+              <span class="savings-badge">Save 115 EGP</span>
             </div>
 
-            <a href="product-detail.html?deal=deal-pizza-night" class="customize-deal-btn">
+            <a href="product-detail.html?deal=deal-tasting-flight" class="customize-deal-btn">
               <span>Customize & Order</span>
               <i class="fa-solid fa-arrow-right"></i>
             </a>
@@ -163,45 +161,45 @@
         </div>
       </article>
 
-      <!-- Deal 3: Flash Sale Burger & Wings Duo (45% OFF) -->
-      <article class="deal-card" data-category="flash">
+      <!-- Deal 3: Savory Croissant & Flat White Brunch (30% OFF) -->
+      <article class="deal-card" data-category="brunch">
         <div class="deal-card-media">
-          <img src="images/banner1.jpg" alt="Flash Sale Double Burger & Wings Duo" />
+          <img src="images/croissant_savory.jpg" alt="Savory Croissant & Flat White Brunch" />
           <div class="deal-card-tags">
             <span class="discount-pill-hot">
-              <i class="fa-solid fa-fire"></i> 45% OFF FLASH
+              <i class="fa-solid fa-fire"></i> 30% OFF BRUNCH
             </span>
             <span class="timer-pill">
-              <i class="fa-regular fa-clock"></i> <span class="flash-sale-timer">01:42:35</span>
+              <i class="fa-regular fa-clock"></i> Daily 8am - 2pm
             </span>
           </div>
         </div>
 
         <div class="deal-card-body">
           <div class="deal-type-indicator flash-indicator">
-            <i class="fa-solid fa-bolt"></i> LIMITED FLASH DROP
+            <i class="fa-solid fa-utensils"></i> MAISON GOURMET BRUNCH
           </div>
 
-          <h3 class="deal-title">Flash Sale: Double Burger & Wings Duo</h3>
+          <h3 class="deal-title">Savory Croissant & Flat White Brunch</h3>
           <p class="deal-description">
-            Double Angus Smash Burger with melted aged cheddar + 6 Crispy Honey BBQ Glazed Wings + Golden Curly Fries + Cold Soft Drink.
+            Smoked Turkey & Truffle Gruyère Croissant + Mini Herb Truffle Fries + Specialty Flat White or Pour-Over Coffee.
           </p>
 
           <div class="deal-included-tags">
-            <span>Double Smash Burger</span>
-            <span>6x Wings</span>
-            <span>Curly Fries</span>
-            <span>Drink</span>
+            <span>Smoked Turkey Croissant</span>
+            <span>Melted Gruyère</span>
+            <span>Herb Truffle Fries</span>
+            <span>Specialty Coffee</span>
           </div>
 
           <div class="deal-card-footer">
             <div class="deal-pricing-block">
-              <div class="discounted-deal-price">245 EGP</div>
-              <div class="original-deal-price">450 EGP</div>
-              <span class="savings-badge">Save 205 EGP</span>
+              <div class="discounted-deal-price">265 EGP</div>
+              <div class="original-deal-price">380 EGP</div>
+              <span class="savings-badge">Save 115 EGP</span>
             </div>
 
-            <a href="product-detail.html?deal=deal-flash-smash" class="customize-deal-btn">
+            <a href="product-detail.html?deal=deal-brunch-combo" class="customize-deal-btn">
               <span>Customize & Order</span>
               <i class="fa-solid fa-arrow-right"></i>
             </a>
@@ -268,22 +266,22 @@
       const isAr = AppState.getLanguage() === 'ar';
       if (!isAr) return;
 
-      document.title = 'عروض حصرية ووجبات كومبو - بايت هَب (ج.م)';
+      document.title = 'ثنائيات وعروض القهوة والكرواسون - بايت هَب ميزون (ج.م)';
 
       const title = document.querySelector('.dynamic-deals-title');
       const sub = document.querySelector('.home-header .greeting-subtitle');
-      if (title) title.textContent = 'أقوى العروض والكومبو';
-      if (sub) sub.textContent = 'خصومات حصرية تصل إلى 49% • قابلة للتخصيص بالكامل';
+      if (title) title.textContent = 'ثنائيات وباقات الميزون';
+      if (sub) sub.textContent = 'تشكيلات باريسية حصرية بخصومات تصل إلى 32% • طازجة يومياً';
 
       const bannerH2 = document.querySelector('.deals-hero-banner h2');
       const bannerP = document.querySelector('.deals-hero-banner p');
       const heroBadge = document.querySelector('.hero-badge-tag');
-      if (heroBadge) heroBadge.innerHTML = `<i class="fa-solid fa-fire"></i> توفير استثنائي`;
-      if (bannerH2) bannerH2.textContent = 'صواني الكومبو والوجبات العائلية';
-      if (bannerP) bannerP.textContent = 'وفّر حتى 49% مع صواني المشاركة وصناديق البرجر والبيتزا. خصص إضافاتك ونكهات الصوص بكل سهولة!';
+      if (heroBadge) heroBadge.innerHTML = `<i class="fa-solid fa-crown"></i> ثنائيات الميزون الفاخرة`;
+      if (bannerH2) bannerH2.textContent = 'ثنائيات الصباح وباقات تذوق المحمصة';
+      if (bannerP) bannerP.textContent = 'وفّر حتى 32% مع باقات القهوة المختصة والكرواسون المورق بزبدة إيزيني الفاخرة.';
 
       // Deal category pills
-      const pillTextsAr = ['جميع العروض', 'عرض اليوم', 'فلاش سيل', 'وجبات عائلية', 'عروض البيتزا'];
+      const pillTextsAr = ['جميع الثنائيات', 'ثنائيات الصباح', 'باقات التذوق', 'برانش الميزون'];
       document.querySelectorAll('.deal-category-filters .deal-pill').forEach((pill, idx) => {
         if (pillTextsAr[idx]) pill.textContent = pillTextsAr[idx];
       });
@@ -296,49 +294,21 @@
         const ind1 = d1.querySelector('.deal-type-indicator');
         const dt1 = d1.querySelector('.deal-title');
         const dd1 = d1.querySelector('.deal-description');
-        const pr1 = d1.querySelector('.discounted-deal-price');
-        const op1 = d1.querySelector('.original-deal-price');
-        const sv1 = d1.querySelector('.savings-badge');
-        if (p1) p1.innerHTML = `<i class="fa-solid fa-bolt"></i> خصم 49%`;
-        if (ind1) ind1.innerHTML = `<i class="fa-solid fa-crown"></i> عرض اليوم • متاح لمدة 24 ساعة فقط`;
-        if (dt1) dt1.textContent = 'وليمة العائلة الكبرى (ميجا كومبو)';
-        if (dd1) dd1.textContent = '1 بيتزا كبيرة من اختيارك + 2 برجر أنجوس دبل سماش + 8 أجنحة دجاج مقرمشة + بطاطس كيرلي متبلة + 4 صوصات مميزة + مشروب 1.5 لتر. توفير عائلي لا يُقاوم!';
-        if (pr1) pr1.textContent = AppState.formatEGP(420);
-        if (op1) op1.textContent = AppState.formatEGP(825);
-        if (sv1) sv1.textContent = 'وفّر 405 ج.م';
-        const tags1 = d1.querySelectorAll('.deal-included-tags span');
-        if (tags1.length >= 5) {
-          tags1[0].textContent = '1x بيتزا كبيرة (12 بوصة)';
-          tags1[1].textContent = '2x دبل سماش برجر أنجوس';
-          tags1[2].textContent = '8x أجنحة دجاج مقرمشة';
-          tags1[3].textContent = 'بطاطس كيرلي و4 صوصات';
-          tags1[4].textContent = 'مشروب غازي 1.5 لتر';
-        }
+        if (p1) p1.innerHTML = `<i class="fa-solid fa-crown"></i> خصم 32%`;
+        if (ind1) ind1.innerHTML = `<i class="fa-solid fa-crown"></i> ثنائية مميزة • تخبز طازجة يومياً`;
+        if (dt1) dt1.textContent = 'ثنائية الصباح الباريسية (قهوة وكرواسون)';
+        if (dd1) dd1.textContent = 'كرواسون زبدة فرنسي فاخر طازج + فلات وايت بحليب مخملي + زبدة بورديه ومربى الفراولة البرية.';
 
         // Deal 2
         const d2 = cards[1];
         const p2 = d2.querySelector('.discount-pill');
-        const t2 = d2.querySelector('.timer-pill');
         const ind2 = d2.querySelector('.deal-type-indicator');
         const dt2 = d2.querySelector('.deal-title');
         const dd2 = d2.querySelector('.deal-description');
-        const pr2 = d2.querySelector('.discounted-deal-price');
-        const op2 = d2.querySelector('.original-deal-price');
-        const sv2 = d2.querySelector('.savings-badge');
-        if (p2) p2.innerHTML = `<i class="fa-solid fa-tag"></i> خصم 46%`;
-        if (t2) t2.innerHTML = `<i class="fa-regular fa-clock"></i> ينتهي خلال 6 ساعات`;
-        if (ind2) ind2.innerHTML = `<i class="fa-solid fa-utensils"></i> كومبو البيتزا والباستا الإيطالية`;
-        if (dt2) dt2.textContent = 'ليلة البيتزا والباستا الإيطالية';
-        if (dd2) dd2.textContent = 'اختيارك من أي 2 بيتزا كبيرة مخبوزة على الحجر والخشب + خبز ثوم وأعشاب بالجبنة الذائبة + مشروب 1 لتر مثلج.';
-        if (pr2) pr2.textContent = AppState.formatEGP(320);
-        if (op2) op2.textContent = AppState.formatEGP(590);
-        if (sv2) sv2.textContent = 'وفّر 270 ج.م';
-        const tags2 = d2.querySelectorAll('.deal-included-tags span');
-        if (tags2.length >= 3) {
-          tags2[0].textContent = '2x بيتزا كبيرة (12 بوصة)';
-          tags2[1].textContent = 'خبز ثوم بالجبنة';
-          tags2[2].textContent = 'مشروب منعش 1 لتر';
-        }
+        if (p2) p2.innerHTML = `<i class="fa-solid fa-mug-hot"></i> خصم 32%`;
+        if (ind2) ind2.innerHTML = `<i class="fa-solid fa-mug-hot"></i> باقة تذوق المحمصة المختصة`;
+        if (dt2) dt2.textContent = 'باقة تذوق محامص الميزون';
+        if (dd2) dd2.textContent = 'سبانش لاتيه مثلج مميز مع رغوة حليب باردة + بان أو شوكولا فالرونا ساخن + تذوق اسبريسو سنجل أوريجن.';
 
         // Deal 3
         const d3 = cards[2];
@@ -346,43 +316,20 @@
         const ind3 = d3.querySelector('.deal-type-indicator');
         const dt3 = d3.querySelector('.deal-title');
         const dd3 = d3.querySelector('.deal-description');
-        const pr3 = d3.querySelector('.discounted-deal-price');
-        const op3 = d3.querySelector('.original-deal-price');
-        const sv3 = d3.querySelector('.savings-badge');
-        if (p3) p3.innerHTML = `<i class="fa-solid fa-fire"></i> خصم 45% فلاش`;
-        if (ind3) ind3.innerHTML = `<i class="fa-solid fa-bolt"></i> فلاش سيل لفترة محدودة جداً`;
-        if (dt3) dt3.textContent = 'فلاش سيل: دبل برجر وأجنحة دجاج';
-        if (dd3) dd3.textContent = 'برجر أنجوس دبل سماش بالجبن الشيدر المعتق + 6 أجنحة دجاج مقرمشة بصوص العسل والباربيكيو + بطاطس كيرلي ذهبية + مشروب غازي مثلج.';
-        if (pr3) pr3.textContent = AppState.formatEGP(245);
-        if (op3) op3.textContent = AppState.formatEGP(450);
-        if (sv3) sv3.textContent = 'وفّر 205 ج.م';
-        const tags3 = d3.querySelectorAll('.deal-included-tags span');
-        if (tags3.length >= 4) {
-          tags3[0].textContent = 'دبل سماش برجر أنجوس';
-          tags3[1].textContent = '6x أجنحة دجاج مقرمشة';
-          tags3[2].textContent = 'بطاطس كيرلي ذهبية';
-          tags3[3].textContent = 'مشروب غازي بارد';
-        }
+        if (p3) p3.innerHTML = `<i class="fa-solid fa-fire"></i> خصم 30% برانش`;
+        if (ind3) ind3.innerHTML = `<i class="fa-solid fa-utensils"></i> برانش الميزون الفاخر`;
+        if (dt3) dt3.textContent = 'برانش الكرواسون المالح والفلات وايت';
+        if (dd3) dd3.textContent = 'كرواسون الديك الرومي المدخن وجبن الغرويير مع بطاطس الكمأة المقرمشة + كوب فلات وايت أو قهوة مقطرة.';
       }
 
-      // Customize buttons
       document.querySelectorAll('.customize-deal-btn span').forEach(sp => {
-        sp.textContent = 'تخصيص وطلب العرض';
+        sp.textContent = 'تخصيص وطلب الباقة';
       });
 
-      // Bottom Navigation labels
       const navLabels = ['الرئيسية', 'الطلبات', 'العروض', 'حسابي'];
       document.querySelectorAll('.bottom-nav .nav-item span:not(.nav-badge)').forEach((sp, idx) => {
         if (navLabels[idx]) sp.textContent = navLabels[idx];
       });
-
-      // Aria labels
-      const notifBtn = document.querySelector('.open-notif-btn');
-      if (notifBtn) notifBtn.setAttribute('aria-label', 'الإشعارات');
-      const cartBtn = document.querySelector('.open-cart-btn');
-      if (cartBtn) cartBtn.setAttribute('aria-label', 'سلة المشتريات');
     }
-  </script>
 
-</body>
-</html>
+

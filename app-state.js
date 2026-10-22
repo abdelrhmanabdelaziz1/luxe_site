@@ -57,901 +57,479 @@ const AppState = {
 
   // 2. Comprehensive Catalog (7 Categories)
   catalog: {
-    // --- BURGERS ---
-    'burger-deluxe': {
-      id: 'burger-deluxe',
-      type: 'burger',
-      name: 'Deluxe Double Smash Burger',
-      nameAr: 'ديلوكس دبل سماش برجر',
-      category: 'burgers',
-      image: 'images/burger.jpg',
-      basePrice: 195,
-      originalPrice: 240,
-      discountPercent: 19,
+    // --- ARTISAN CROISSANTS ---
+    'croissant-butter': {
+      id: 'croissant-butter',
+      type: 'croissant',
+      name: 'Artisanal French Butter Croissant',
+      nameAr: 'كرواسون الزبدة الفرنسية الفاخر',
+      category: 'croissants',
+      image: 'images/croissant_butter.jpg',
+      basePrice: 110,
+      originalPrice: 135,
+      discountPercent: 18,
       rating: 4.9,
-      reviews: 184,
-      prepTime: '15-20 min',
-      calories: '620 kcal',
-      isPopular: true,
-      isBestSeller: true,
-      isSpicy: false,
-      isVeg: false,
-      isNew: false,
-      description: 'Two seared angus smash patties, melted aged cheddar, crispy smoked beef bacon, caramelized onions, and house secret sauce on a toasted brioche bun.',
-      descriptionAr: 'قطعتان من لحم الأنجوس المشوي، جبن شيدر معتق، لحم بقري مقدد مقرمش، بصل مكرمل وصوص سري خاص في خبز بريوش محمص.',
-      ingredients: ['100% Angus Beef', 'Aged Cheddar Cheese', 'Smoked Beef Bacon', 'Caramelized Onions', 'Brioche Bun', 'House Special Sauce'],
-      allergens: ['Dairy', 'Gluten', 'Eggs'],
-      frequentlyBoughtWith: ['drinks-passion', 'wings-crispy'],
-      specs: {
-        size: {
-          title: 'Patty Selection',
-          titleAr: 'اختيار شريحة اللحم',
-          required: true,
-          type: 'radio',
-          options: [
-            { id: 'b-single', name: 'Single Patty (150g)', nameAr: 'شريحة واحدة (150جم)', delta: -45 },
-            { id: 'b-double', name: 'Double Patty (300g)', nameAr: 'شريحتان (300جم)', delta: 0, default: true },
-            { id: 'b-triple', name: 'Triple Monster (450g)', nameAr: 'ثلاث شرائح وحشية (450جم)', delta: 55 }
-          ]
-        },
-        cheese: {
-          title: 'Cheese Selection',
-          titleAr: 'نوع الجبن',
-          required: true,
-          type: 'radio',
-          options: [
-            { id: 'ch-cheddar', name: 'Aged Cheddar', nameAr: 'شيدر معتق', delta: 0, default: true },
-            { id: 'ch-swiss', name: 'Swiss Cheese', nameAr: 'جبن سويسري', delta: 15 },
-            { id: 'ch-pepperjack', name: 'Spicy Pepper Jack', nameAr: 'بيبر جاك حار', delta: 15 }
-          ]
-        },
-        sauce: {
-          title: 'Signature Sauce',
-          titleAr: 'الصوص المميز',
-          required: true,
-          type: 'radio',
-          options: [
-            { id: 'sc-secret', name: 'House Secret Sauce', nameAr: 'صوص البيت السري', delta: 0, default: true },
-            { id: 'sc-bbq', name: 'Smoky BBQ Sauce', nameAr: 'باربيكيو مدخن', delta: 0 },
-            { id: 'sc-truffle', name: 'Truffle Mayo', nameAr: 'مايونيز الكمأة', delta: 20 },
-            { id: 'sc-sriracha', name: 'Spicy Sriracha', nameAr: 'سيراتشا حارة', delta: 10 }
-          ]
-        },
-        extras: {
-          title: 'Add Delicious Extras',
-          titleAr: 'إضافات شهية',
-          required: false,
-          type: 'checkbox',
-          maxSelect: 3,
-          options: [
-            { id: 'ex-bacon', name: 'Extra Smoked Bacon', nameAr: 'بيكون مقدد إضافي', delta: 35 },
-            { id: 'ex-onion', name: 'Crispy Onion Rings', nameAr: 'حلقات بصل مقرمشة', delta: 25 },
-            { id: 'ex-jalapeno', name: 'Pickled Jalapeños', nameAr: 'هالبينو مخلل', delta: 15 },
-            { id: 'ex-egg', name: 'Fried Farm Egg', nameAr: 'بيض مقلي طازج', delta: 20 }
-          ]
-        }
-      }
-    },
-
-    'burger-truffle': {
-      id: 'burger-truffle',
-      type: 'burger',
-      name: 'Truffle Mushroom Swiss Burger',
-      nameAr: 'برجر المشروم السويسري بصلصة الكمأة',
-      category: 'burgers',
-      image: 'images/burger_truffle.jpg',
-      basePrice: 215,
-      originalPrice: 260,
-      discountPercent: 17,
-      rating: 4.9,
-      reviews: 146,
-      prepTime: '15-20 min',
-      calories: '680 kcal',
-      isPopular: true,
-      isBestSeller: true,
-      isSpicy: false,
-      isVeg: false,
-      isNew: true,
-      description: 'Charbroiled Angus beef patty crowned with melted imported Swiss cheese, butter-sautéed portobello mushrooms, crispy smoked bacon, and house black truffle aioli on a toasted brioche bun.',
-      descriptionAr: 'قطعة أنجوس مشوية على اللهب تعلوها جبنة سويسرية ذائبة، فطر بورتوبيلو سوتيه بالزبدة، بيكون مقدد ومايونيز الكمأة السوداء الفاخر في خبز بريوش طازج.',
-      ingredients: ['100% Angus Beef', 'Swiss Cheese', 'Portobello Mushrooms', 'Truffle Aioli', 'Smoked Beef Bacon', 'Toasted Brioche Bun'],
-      allergens: ['Dairy', 'Gluten', 'Eggs'],
-      frequentlyBoughtWith: ['fries-loaded', 'drinks-berry'],
-      specs: {
-        size: {
-          title: 'Patty Selection',
-          titleAr: 'اختيار شريحة اللحم',
-          required: true,
-          type: 'radio',
-          options: [
-            { id: 'bt-single', name: 'Single Patty (180g)', nameAr: 'شريحة واحدة (180جم)', delta: 0, default: true },
-            { id: 'bt-double', name: 'Double Patty (360g)', nameAr: 'شريحتان (360جم)', delta: 55 }
-          ]
-        },
-        truffleExtra: {
-          title: 'Truffle Sauce Level',
-          titleAr: 'كمية صلصة الكمأة',
-          required: true,
-          type: 'radio',
-          options: [
-            { id: 'tr-standard', name: 'Standard Truffle Aioli', nameAr: 'كمية قياسية متوازنة', delta: 0, default: true },
-            { id: 'tr-extra', name: 'Extra Truffle Heaven', nameAr: 'كمأة إضافية مضاعفة', delta: 25 }
-          ]
-        },
-        extras: {
-          title: 'Add Extras',
-          titleAr: 'إضافات لذيذة',
-          required: false,
-          type: 'checkbox',
-          maxSelect: 3,
-          options: [
-            { id: 'ex-truffle-fries', name: 'Add Truffle Curly Fries', nameAr: 'إضافة بطاطس بالكمأة', delta: 45 },
-            { id: 'ex-caramelized', name: 'Extra Caramelized Onions', nameAr: 'بصل مكرمل إضافي', delta: 20 },
-            { id: 'ex-bacon-strip', name: 'Double Bacon Strips', nameAr: 'بيكون مقدد مضاعف', delta: 35 }
-          ]
-        }
-      }
-    },
-
-    // --- PIZZA ---
-    'pizza-margherita': {
-      id: 'pizza-margherita',
-      type: 'pizza',
-      name: 'Artisanal Margherita Pizza',
-      nameAr: 'بيتزا مارجريتا إيطالية أصلية',
-      category: 'pizza',
-      image: 'images/pizza.jpg',
-      basePrice: 220,
-      originalPrice: 275,
-      discountPercent: 20,
-      rating: 4.8,
-      reviews: 142,
-      prepTime: '20-25 min',
-      calories: '740 kcal',
+      reviews: 246,
+      prepTime: '5-8 min',
+      calories: '290 kcal',
       isPopular: true,
       isBestSeller: true,
       isSpicy: false,
       isVeg: true,
       isNew: false,
-      description: 'Authentic stone wood-fired pizza with San Marzano tomato sauce, fresh buffalo mozzarella, sweet basil, and extra virgin olive oil.',
-      descriptionAr: 'بيتزا إيطالية مخبوزة على الحجر مع صوص طماطم سان مارزانو، موزاريلا بافلو طازجة، ريحان عطري وزيت زيتون بكر.',
-      ingredients: ['Italian Flour 00', 'San Marzano Tomatoes', 'Fresh Buffalo Mozzarella', 'Sweet Basil Leaves', 'Cold Pressed Olive Oil'],
+      description: 'Hand-laminated with Isigny Sainte-Mère AOP French butter, 72-hour slow cold fermentation creating a golden crispy honeycomb crust and airy, velvety interior.',
+      descriptionAr: 'كرواسون مورق يدوياً بزبدة إيزيني الفرنسية المعتقة، تخمير بارد لمدة 72 ساعة يعطي قرمشة ذهبية هشة وقلباً هوائياً غنياً بنكهة الزبدة الفاخرة.',
+      ingredients: ['Isigny Sainte-Mère AOP Butter', 'French T55 Flour', 'Whole Milk', 'Sea Salt Flakes', 'Pure Cane Sugar'],
       allergens: ['Dairy', 'Gluten'],
-      frequentlyBoughtWith: ['drinks-passion', 'dessert-lava'],
+      frequentlyBoughtWith: ['coffee-flat-white', 'croissant-pistachio'],
       specs: {
-        size: {
-          title: 'Pizza Size',
-          titleAr: 'حجم البيتزا',
+        warming: {
+          title: 'Serving Temperature',
+          titleAr: 'درجة حرارة التقديم',
           required: true,
           type: 'radio',
           options: [
-            { id: 'pz-med', name: 'Medium (10" - 6 slices)', nameAr: 'وسط (10 بوصة - 6 قطع)', delta: -40 },
-            { id: 'pz-lrg', name: 'Large (12" - 8 slices)', nameAr: 'كبير (12 بوصة - 8 قطع)', delta: 0, default: true },
-            { id: 'pz-fam', name: 'Family Feast (14" - 10 slices)', nameAr: 'عائلي (14 بوصة - 10 قطع)', delta: 65 }
+            { id: 'w-warm', name: 'Warm & Crispy (Recommended)', nameAr: 'ساخن ومقرمش (موصى به)', delta: 0, default: true },
+            { id: 'w-room', name: 'Fresh Room Temperature', nameAr: 'طازج بحرارة الغرفة', delta: 0 }
           ]
         },
-        crust: {
-          title: 'Crust Type',
-          titleAr: 'نوع العجينة والأطراف',
-          required: true,
-          type: 'radio',
-          options: [
-            { id: 'cr-thin', name: 'Classic Neapolitan Thin', nameAr: 'عجينة رقيقة كلاسيكية', delta: 0, default: true },
-            { id: 'cr-stuffed', name: 'Cheesy Stuffed Crust', nameAr: 'أطراف محشوة بالجبن الغني', delta: 45 },
-            { id: 'cr-pan', name: 'Golden Pan Thick Crust', nameAr: 'عجينة بان سميكة مقرمشة', delta: 30 }
-          ]
-        },
-        sauce: {
-          title: 'Sauce Base',
-          titleAr: 'قاعدة الصوص',
-          required: true,
-          type: 'radio',
-          options: [
-            { id: 'sc-red', name: 'San Marzano Red Sauce', nameAr: 'صلصة طماطم سان مارزانو', delta: 0, default: true },
-            { id: 'sc-white', name: 'Creamy Garlic Alfredo', nameAr: 'صلصة ألفريدو كريمية بالثوم', delta: 20 }
-          ]
-        },
-        cheeseLevel: {
-          title: 'Cheese Level',
-          titleAr: 'مستوى الجبن',
-          required: true,
-          type: 'radio',
-          options: [
-            { id: 'ch-norm', name: 'Standard Mozzarella', nameAr: 'موزاريلا قياسية', delta: 0, default: true },
-            { id: 'ch-extra', name: 'Extra Double Mozzarella', nameAr: 'دبل موزاريلا إضافية', delta: 35 }
-          ]
-        },
-        toppings: {
-          title: 'Extra Toppings (Up to 3)',
-          titleAr: 'إضافات حشوة (حتى 3)',
-          required: false,
-          type: 'checkbox',
-          maxSelect: 3,
-          options: [
-            { id: 'tp-pep', name: 'Pepperoni Slices', nameAr: 'شرائح بيبيروني بقري', delta: 40 },
-            { id: 'tp-mush', name: 'Wild Sautéed Mushrooms', nameAr: 'مشروم طازج سوتيه', delta: 25 },
-            { id: 'tp-olive', name: 'Black & Green Olives', nameAr: 'زيتون أسود وأخضر', delta: 15 },
-            { id: 'tp-jalapeno', name: 'Fire Jalapeño Peppers', nameAr: 'فلفل هالبينو حار', delta: 20 }
-          ]
-        }
-      }
-    },
-
-    'pizza-pepperoni': {
-      id: 'pizza-pepperoni',
-      type: 'pizza',
-      name: 'Spicy Pepperoni & Hot Honey Pizza',
-      nameAr: 'بيتزا بيبيروني حارة بالعسل الحار',
-      category: 'pizza',
-      image: 'images/pizza_pepperoni.jpg',
-      basePrice: 245,
-      originalPrice: 290,
-      discountPercent: 15,
-      rating: 4.9,
-      reviews: 188,
-      prepTime: '20-25 min',
-      calories: '810 kcal',
-      isPopular: true,
-      isBestSeller: true,
-      isSpicy: true,
-      isVeg: false,
-      isNew: true,
-      description: 'Artisanal Neapolitan crust loaded with crispy-cup beef pepperoni, rich whole-milk mozzarella, fresh basil, and finished with a hot chili-infused honey drizzle.',
-      descriptionAr: 'عجينة نابوليتان الحجرية الفاخرة محشوة ببيبيروني بقري مقرمش، جبنة موزاريلا غنية، ريحان طازج ولمسة من العسل الحار الخاص.',
-      ingredients: ['Italian Flour 00', 'San Marzano Tomato Sauce', 'Whole Milk Mozzarella', 'Crisp Beef Pepperoni', 'Hot Chili Honey Drizzle', 'Fresh Basil'],
-      allergens: ['Dairy', 'Gluten'],
-      frequentlyBoughtWith: ['chicken-tenders', 'drinks-berry'],
-      specs: {
-        size: {
-          title: 'Pizza Size',
-          titleAr: 'حجم البيتزا',
-          required: true,
-          type: 'radio',
-          options: [
-            { id: 'pp-med', name: 'Medium (10" - 6 slices)', nameAr: 'وسط (10 بوصة - 6 قطع)', delta: -45 },
-            { id: 'pp-lrg', name: 'Large (12" - 8 slices)', nameAr: 'كبير (12 بوصة - 8 قطع)', delta: 0, default: true },
-            { id: 'pp-fam', name: 'Family (14" - 10 slices)', nameAr: 'عائلي (14 بوصة - 10 قطع)', delta: 65 }
-          ]
-        },
-        crust: {
-          title: 'Crust Style',
-          titleAr: 'نوع العجينة',
-          required: true,
-          type: 'radio',
-          options: [
-            { id: 'pp-cr-thin', name: 'Neapolitan Thin Crust', nameAr: 'عجينة رقيقة كلاسيكية', delta: 0, default: true },
-            { id: 'pp-cr-cheese', name: 'Mozzarella Stuffed Crust', nameAr: 'أطراف محشوة موزاريلا', delta: 45 }
-          ]
-        },
-        spiceLevel: {
-          title: 'Hot Honey Heat',
-          titleAr: 'درجة حرارة العسل الحار',
-          required: true,
-          type: 'radio',
-          options: [
-            { id: 'pp-sp-mild', name: 'Mild Zing (Balanced)', nameAr: 'معتدل وحلو', delta: 0, default: true },
-            { id: 'pp-sp-fire', name: 'Extra Spicy Fire', nameAr: 'حار جداً نار', delta: 10 }
-          ]
-        }
-      }
-    },
-
-    // --- CHICKEN & WINGS ---
-    'wings-crispy': {
-      id: 'wings-crispy',
-      type: 'chicken',
-      name: 'Crispy Honey Glazed Wings',
-      nameAr: 'أجنحة دجاج مقرمشة بصوص العسل',
-      category: 'chicken',
-      image: 'images/wings.jpg',
-      basePrice: 165,
-      originalPrice: 210,
-      discountPercent: 21,
-      rating: 4.9,
-      reviews: 215,
-      prepTime: '15-18 min',
-      calories: '540 kcal',
-      isPopular: true,
-      isBestSeller: true,
-      isSpicy: true,
-      isVeg: false,
-      isNew: false,
-      description: 'Golden fried crispy jumbo wings tossed in signature honey BBQ glaze and toasted sesame seeds, served with herb buttermilk ranch.',
-      descriptionAr: 'أجنحة دجاج مقرمشة ذهبية بصوص الباربيكيو والعسل مع سمسم محمص وصوص رانش طازج.',
-      ingredients: ['Fresh Chicken Wings', 'Honey BBQ Glaze', 'Sesame Seeds', 'Herbed Ranch Sauce'],
-      allergens: ['Dairy'],
-      frequentlyBoughtWith: ['burger-deluxe', 'drinks-passion'],
-      specs: {
-        size: {
-          title: 'Portion Pieces',
-          titleAr: 'عدد القطع',
-          required: true,
-          type: 'radio',
-          options: [
-            { id: 'wg-8', name: '8 Pieces', nameAr: '8 قطع', delta: 0, default: true },
-            { id: 'wg-12', name: '12 Pieces Box', nameAr: '12 قطعة', delta: 75 },
-            { id: 'wg-18', name: '18 Pieces Feast', nameAr: '18 قطعة عائلية', delta: 150 }
-          ]
-        },
-        spiciness: {
-          title: 'Heat Level',
-          titleAr: 'درجة الحرارة',
-          required: true,
-          type: 'radio',
-          options: [
-            { id: 'sp-mild', name: 'Mild & Sweet', nameAr: 'معتدل وحلو', delta: 0, default: true },
-            { id: 'sp-med', name: 'Medium Zing', nameAr: 'متوسط الحرارة', delta: 0 },
-            { id: 'sp-hot', name: 'Extra Fiery Hot', nameAr: 'حار جداً نار', delta: 10 }
-          ]
-        },
-        glaze: {
-          title: 'Glaze Flavor',
-          titleAr: 'نكهة الصوص',
-          required: true,
-          type: 'radio',
-          options: [
-            { id: 'gz-honey', name: 'Honey BBQ Sweet Glaze', nameAr: 'عسل وباربيكيو مميز', delta: 0, default: true },
-            { id: 'gz-buff', name: 'Classic Buffalo Tangy', nameAr: 'بافلو كلاسيكي لاذع', delta: 0 },
-            { id: 'gz-parm', name: 'Garlic Parmesan Butter', nameAr: 'زبدة الثوم والبارميزان', delta: 20 }
-          ]
-        },
-        side: {
-          title: 'Side Choice',
-          titleAr: 'طبق جانبي اختياري',
+        spreads: {
+          title: 'Artisan Butter & Preserves',
+          titleAr: 'الزبدة والمربى الفاخرة',
           required: false,
           type: 'checkbox',
           maxSelect: 2,
           options: [
-            { id: 'sd-fries', name: 'Seasoned Curly Fries', nameAr: 'بطاطس كيرلي متبلة', delta: 45 },
-            { id: 'sd-ranch', name: 'Extra Buttermilk Ranch Dip', nameAr: 'صوص رانش إضافي', delta: 20 }
+            { id: 'sp-bordier', name: 'Normandy Beurre Bordier & Raw Honey', nameAr: 'زبدة بورديه وعسل النحل البري', delta: 25 },
+            { id: 'sp-maman', name: 'Bonne Maman Wild Strawberry Jam', nameAr: 'مربى الفراولة البرية بون ميمان', delta: 20 }
           ]
         }
       }
     },
 
-    'chicken-tenders': {
-      id: 'chicken-tenders',
-      type: 'chicken',
-      name: 'Nashville Hot Crispy Chicken Tenders',
-      nameAr: 'أصابع دجاج ناشفيل المقرمشة الحارة',
-      category: 'chicken',
-      image: 'images/chicken_tenders.jpg',
+    'croissant-pistachio': {
+      id: 'croissant-pistachio',
+      type: 'croissant',
+      name: 'Royal Bronte Pistachio Croissant',
+      nameAr: 'كرواسون البستاشيو والشوكولاتة البيضاء',
+      category: 'croissants',
+      image: 'images/croissant_pistachio.jpg',
       basePrice: 175,
-      originalPrice: 220,
-      discountPercent: 20,
-      rating: 4.8,
-      reviews: 165,
-      prepTime: '12-16 min',
-      calories: '590 kcal',
+      originalPrice: 210,
+      discountPercent: 16,
+      rating: 5.0,
+      reviews: 312,
+      prepTime: '5-10 min',
+      calories: '420 kcal',
       isPopular: true,
-      isBestSeller: false,
-      isSpicy: true,
-      isVeg: false,
-      isNew: true,
-      description: 'Hand-breaded jumbo fresh chicken breast tenders fried to ultra-crispy golden perfection, basted with spiced cayenne hot butter, served with crinkle dill pickles and garlic ranch.',
-      descriptionAr: 'أصابع دجاج طازجة متبلة ومقلية لقرمشة ذهبية لا تُقاوم، مغطاة بزبدة شطة ناشفيل الحارة، مع مخلل الخيار وصوص الثوم والرانش.',
-      ingredients: ['Fresh Chicken Breast Strips', 'Nashville Cayenne Seasoning', 'Buttermilk Marinade', 'Garlic Ranch Dip', 'Dill Pickles'],
-      allergens: ['Dairy', 'Gluten', 'Eggs'],
-      frequentlyBoughtWith: ['fries-loaded', 'drinks-passion'],
-      specs: {
-        portion: {
-          title: 'Tenders Quantity',
-          titleAr: 'عدد الأصابع',
-          required: true,
-          type: 'radio',
-          options: [
-            { id: 'ct-5', name: '5 Jumbo Tenders', nameAr: '5 أصابع جامبو', delta: 0, default: true },
-            { id: 'ct-8', name: '8 Jumbo Tenders (Feast)', nameAr: '8 أصابع جامبو (وليمة)', delta: 60 }
-          ]
-        },
-        heat: {
-          title: 'Nashville Heat Level',
-          titleAr: 'درجة الحرارة والشطة',
-          required: true,
-          type: 'radio',
-          options: [
-            { id: 'ct-h-mild', name: 'Southern Mild (No Heat)', nameAr: 'مقرمش بدون شطة (عادي)', delta: 0 },
-            { id: 'ct-h-med', name: 'Medium Nashville Zing', nameAr: 'ناشفيل متوسط', delta: 0, default: true },
-            { id: 'ct-h-inferno', name: 'Inferno Fire', nameAr: 'نار جهنم إنفيرنو', delta: 15 }
-          ]
-        },
-        dips: {
-          title: 'Choose Dipping Sauce',
-          titleAr: 'اختر صوص التغميس',
-          required: true,
-          type: 'radio',
-          options: [
-            { id: 'ct-dp-ranch', name: 'Herb Buttermilk Ranch', nameAr: 'صوص رانش بالأعشاب', delta: 0, default: true },
-            { id: 'ct-dp-honey', name: 'Honey Mustard Dip', nameAr: 'عسل ومستردة', delta: 0 },
-            { id: 'ct-dp-garlic', name: 'Creamy Garlic Mayo', nameAr: 'ثومية كريمية فاخرة', delta: 0 }
-          ]
-        }
-      }
-    },
-
-    // --- MEALS & BOWLS ---
-    'salad-caesar': {
-      id: 'salad-caesar',
-      type: 'meals',
-      name: 'Grilled Chicken Caesar Bowl',
-      nameAr: 'طبق سلطة سيزر بالدجاج المشوي',
-      category: 'meals',
-      image: 'images/salad.jpg',
-      basePrice: 145,
-      originalPrice: 175,
-      discountPercent: 17,
-      rating: 4.7,
-      reviews: 98,
-      prepTime: '12-15 min',
-      calories: '390 kcal',
-      isPopular: false,
-      isBestSeller: false,
+      isBestSeller: true,
       isSpicy: false,
-      isVeg: false,
+      isVeg: true,
       isNew: true,
-      description: 'Marinated tender grilled chicken breast, fresh hass avocado slices, organic crisp romaine lettuce, shaved aged parmesan, and herb garlic croutons.',
-      descriptionAr: 'صدور دجاج مشوية متبلة، شرائح أفوكادو طازجة، خس روماني مقرمش، جبن بارميزان معتق وقطع خبز محمصة بالثوم.',
-      ingredients: ['Grilled Chicken Breast', 'Hass Avocado', 'Romaine Lettuce', 'Parmesan Cheese', 'Caesar Dressing', 'Garlic Croutons'],
-      allergens: ['Dairy', 'Gluten', 'Eggs'],
-      frequentlyBoughtWith: ['drinks-passion'],
+      description: 'Golden flaky croissant filled with rich Sicilian Bronte pistachio praline cream, finished with roasted emerald pistachios and a delicate white chocolate drizzle.',
+      descriptionAr: 'كرواسون فرنسي ذهبي محشو بكريمة برالين فستق برونتي الصقلي الفاخر، مزين بالفستق المحمص ورذاذ الشوكولاتة البيضاء البلجيكية.',
+      ingredients: ['Sicilian Pistachio Praline', 'Belgian White Chocolate', 'AOP Butter Dough', 'Roasted Pistachios'],
+      allergens: ['Dairy', 'Gluten', 'Nuts'],
+      frequentlyBoughtWith: ['coffee-latte-spanish', 'croissant-butter'],
       specs: {
-        size: {
-          title: 'Bowl Size',
-          titleAr: 'حجم الطبق',
+        filling: {
+          title: 'Praline Filling',
+          titleAr: 'حشوة البرالين',
           required: true,
           type: 'radio',
           options: [
-            { id: 'sl-reg', name: 'Regular Fresh Bowl', nameAr: 'طبق عادي مشبع', delta: 0, default: true },
-            { id: 'sl-super', name: 'Super Protein Large (+30g Protein)', nameAr: 'طبق كبير مضاعف البروتين', delta: 45 }
+            { id: 'p-standard', name: 'Classic Pistachio Filling', nameAr: 'حشوة البستاشيو الكلاسيكية', delta: 0, default: true },
+            { id: 'p-extra', name: 'Extra Double Pistachio Cream', nameAr: 'حشوة مضاعفة بكريمة البستاشيو', delta: 35 }
           ]
         },
-        dressing: {
-          title: 'Dressing',
-          titleAr: 'نوع الصوص',
-          required: true,
-          type: 'radio',
-          options: [
-            { id: 'dr-caesar', name: 'Classic Creamy Caesar', nameAr: 'سيزر كريمي كلاسيكي', delta: 0, default: true },
-            { id: 'dr-lemon', name: 'Olive Oil & Lemon Vinaigrette', nameAr: 'زيت زيتون وليمون لايت', delta: 0 }
-          ]
-        },
-        extras: {
-          title: 'Add Protein & Crunch',
-          titleAr: 'إضافات بروتين وقرمشة',
+        topping: {
+          title: 'Topping Finish',
+          titleAr: 'اللمسة النهائية',
           required: false,
           type: 'checkbox',
-          maxSelect: 3,
+          maxSelect: 2,
           options: [
-            { id: 'sl-ex-chk', name: 'Double Grilled Chicken', nameAr: 'دجاج مشوي مضاعف', delta: 45 },
-            { id: 'sl-ex-avo', name: 'Extra Avocado Slices', nameAr: 'أفوكادو إضافي', delta: 30 },
-            { id: 'sl-ex-egg', name: 'Boiled Farm Egg', nameAr: 'بيضة مسلوقة', delta: 15 }
+            { id: 'top-nuts', name: 'Extra Roasted Pistachios', nameAr: 'فستق حلبي محمص إضافي', delta: 25 },
+            { id: 'top-white', name: 'Extra White Chocolate Drizzle', nameAr: 'رذاذ شوكولاتة بيضاء إضافي', delta: 20 }
           ]
         }
       }
     },
 
-    'fries-loaded': {
-      id: 'fries-loaded',
-      type: 'meals',
-      name: 'Loaded Truffle & Cheddar Curly Fries',
-      nameAr: 'طبق بطاطس كيرلي محملة بصلصة الكمأة والبيكون',
-      category: 'meals',
-      image: 'images/fries_loaded.jpg',
-      basePrice: 125,
-      originalPrice: 155,
-      discountPercent: 19,
+    'croissant-almond': {
+      id: 'croissant-almond',
+      type: 'croissant',
+      name: 'Parisian Almond Frangipane Croissant',
+      nameAr: 'كرواسون اللوز والفرانجيبان الباريسي',
+      category: 'croissants',
+      image: 'images/croissant_almond.jpg',
+      basePrice: 165,
+      originalPrice: 195,
+      discountPercent: 15,
       rating: 4.8,
-      reviews: 132,
-      prepTime: '10-12 min',
-      calories: '490 kcal',
-      isPopular: true,
-      isBestSeller: false,
-      isSpicy: false,
-      isVeg: false,
-      isNew: true,
-      description: 'Crispy seasoned spiral curly fries smothered in warm molten Wisconsin cheddar, crispy smoked bacon crumbles, freshly grated parmesan, chives, and truffle mayo swirl.',
-      descriptionAr: 'بطاطس كيرلي حلزونية مقرمشة مغطاة بجبن الشيدر الذائب الساخن، قطع بيكون مقدد، جبن بارميزان مبشور، بصل أخضر وصلصة مايونيز الكمأة.',
-      ingredients: ['Seasoned Curly Potatoes', 'Aged Cheddar Cheese Sauce', 'Smoked Beef Bacon Bits', 'Grated Parmesan', 'Truffle Mayo', 'Fresh Chives'],
-      allergens: ['Dairy', 'Gluten'],
-      frequentlyBoughtWith: ['burger-deluxe', 'drinks-passion'],
-      specs: {
-        size: {
-          title: 'Portion Size',
-          titleAr: 'حجم الطبق',
-          required: true,
-          type: 'radio',
-          options: [
-            { id: 'fr-reg', name: 'Regular Shareable Bowl', nameAr: 'طبق عادي للمشاركة', delta: 0, default: true },
-            { id: 'fr-giant', name: 'Giant Loaded Platter', nameAr: 'طبق عملاق عائلي', delta: 45 }
-          ]
-        },
-        spice: {
-          title: 'Jalapeño Kick',
-          titleAr: 'إضافة هالبينو',
-          required: false,
-          type: 'checkbox',
-          options: [
-            { id: 'fr-jal', name: 'Add Pickled Jalapeños', nameAr: 'إضافة شرائح هالبينو حارة', delta: 15 }
-          ]
-        }
-      }
-    },
-
-    // --- DRINKS ---
-    'drinks-passion': {
-      id: 'drinks-passion',
-      type: 'drinks',
-      name: 'Sparkling Passion Fruit Mojito',
-      nameAr: 'موهيتو باشن فروت فوار',
-      category: 'drinks',
-      image: 'images/drinks.jpg',
-      basePrice: 75,
-      originalPrice: 95,
-      discountPercent: 21,
-      rating: 4.9,
-      reviews: 160,
+      reviews: 188,
       prepTime: '5-8 min',
-      calories: '180 kcal',
+      calories: '440 kcal',
+      isPopular: true,
+      isBestSeller: false,
+      isSpicy: false,
+      isVeg: true,
+      isNew: false,
+      description: 'Twice-baked butter croissant generously filled with rich almond frangipane cream, blanketed with toasted sliced almonds and powdered sugar.',
+      descriptionAr: 'كرواسون مخبوز مرتين ومحشو بكريمة الفرانجيبان الغنية باللوز الحلو، مغطى بشرائح اللوز المحمصة ورشة سكر بودرة باريسي.',
+      ingredients: ['California Almond Frangipane', 'Toasted Sliced Almonds', 'Madagascar Vanilla', 'Powdered Sugar'],
+      allergens: ['Dairy', 'Gluten', 'Nuts', 'Eggs'],
+      frequentlyBoughtWith: ['coffee-flat-white', 'viennoiserie-pain-chocolat'],
+      specs: {
+        serving: {
+          title: 'Preparation',
+          titleAr: 'طريقة التقديم',
+          required: true,
+          type: 'radio',
+          options: [
+            { id: 'alm-warm', name: 'Toasted Warm & Crisp', nameAr: 'محمص دافئ ومقرمش', delta: 0, default: true },
+            { id: 'alm-room', name: 'Room Temperature', nameAr: 'حرارة الغرفة', delta: 0 }
+          ]
+        }
+      }
+    },
+
+    // --- SPECIALTY COFFEE ---
+    'coffee-flat-white': {
+      id: 'coffee-flat-white',
+      type: 'coffee',
+      name: 'Velvet Flat White (Specialty Roast)',
+      nameAr: 'فلات وايت بحليب مخملي وقهوة مختصة',
+      category: 'coffee',
+      image: 'images/coffee_latte.jpg',
+      basePrice: 125,
+      originalPrice: 150,
+      discountPercent: 16,
+      rating: 4.9,
+      reviews: 295,
+      prepTime: '3-5 min',
+      calories: '140 kcal',
       isPopular: true,
       isBestSeller: true,
       isSpicy: false,
       isVeg: true,
       isNew: false,
-      description: 'Handcrafted artisan sparkling beverage with natural passion fruit nectar, fresh crushed garden mint leaves, lime slices, and sparkling soda.',
-      descriptionAr: 'مشروب فوار منعش بعصير الباشن فروت الطبيعي، أوراق النعناع الطازجة، شرائح الليمون والصودا الفوارة.',
-      ingredients: ['Passion Fruit Puree', 'Fresh Garden Mint', 'Lime Slices', 'Sparkling Soda Water', 'Pure Cane Sugar'],
-      allergens: [],
-      frequentlyBoughtWith: ['burger-deluxe', 'pizza-margherita'],
+      description: 'Double ristretto shot of single-origin Ethiopian Yirgacheffe espresso married with micro-textured velvety steamed milk and intricate swan latte art.',
+      descriptionAr: 'جرعة دبل ريستريتو من بن إثيوبي يرغاتشيف مختص مع حليب مبخر بقوام حريري مخملي ورسمة البجعة الأنيقة.',
+      ingredients: ['Single-Origin Arabica Espresso', 'Steamed Microfoam Milk'],
+      allergens: ['Dairy'],
+      frequentlyBoughtWith: ['croissant-butter', 'viennoiserie-pain-chocolat'],
       specs: {
-        size: {
-          title: 'Drink Size',
-          titleAr: 'حجم المشروب',
+        milk: {
+          title: 'Milk Choice',
+          titleAr: 'نوع الحليب',
           required: true,
           type: 'radio',
           options: [
-            { id: 'dk-reg', name: 'Regular Glass (400ml)', nameAr: 'كوب وسط (400 مل)', delta: 0, default: true },
-            { id: 'dk-lrg', name: 'Large Jar (650ml)', nameAr: 'برطمان كبير (650 مل)', delta: 25 }
+            { id: 'm-whole', name: 'Farm Fresh Whole Milk', nameAr: 'حليب مزارع طازج كامل الدسم', delta: 0, default: true },
+            { id: 'm-oat', name: 'Barista Oat Milk', nameAr: 'حليب الشوفان النباتي', delta: 25 },
+            { id: 'm-almond', name: 'Organic Almond Milk', nameAr: 'حليب اللوز العضوي', delta: 25 }
           ]
         },
-        ice: {
-          title: 'Ice Level',
-          titleAr: 'مستوى الثلج',
+        roast: {
+          title: 'Bean Selection',
+          titleAr: 'سلالة البن',
           required: true,
           type: 'radio',
           options: [
-            { id: 'ice-reg', name: 'Regular Ice', nameAr: 'ثلج معتدل', delta: 0, default: true },
-            { id: 'ice-less', name: 'Less Ice', nameAr: 'ثلج قليل', delta: 0 },
-            { id: 'ice-none', name: 'No Ice', nameAr: 'بدون ثلج', delta: 0 }
+            { id: 'r-ethiopian', name: 'Ethiopia Yirgacheffe (Floral & Citrus)', nameAr: 'إثيوبيا يرغاتشيف (حمضيات وزهور)', delta: 0, default: true },
+            { id: 'r-colombia', name: 'Colombia Huila (Rich Caramel & Nut)', nameAr: 'كولومبيا هويلا (كراميل ومكسرات)', delta: 0 }
           ]
         },
-        sweetness: {
-          title: 'Sweetness',
-          titleAr: 'درجة الحلاوة',
-          required: true,
-          type: 'radio',
+        extraShot: {
+          title: 'Espresso Boost',
+          titleAr: 'جرعة اسبريسو إضافية',
+          required: false,
+          type: 'checkbox',
           options: [
-            { id: 'sw-norm', name: 'Standard Sweetness', nameAr: 'حلاوة عادية', delta: 0, default: true },
-            { id: 'sw-less', name: 'Low Sugar', nameAr: 'سكر قليل', delta: 0 },
-            { id: 'sw-zero', name: 'Zero Sugar (Stevia)', nameAr: 'بدون سكر (ستيفيا)', delta: 5 }
+            { id: 'sh-extra', name: 'Extra Double Shot Espresso', nameAr: 'جرعة اسبريسو دبل إضافية', delta: 30 }
           ]
         }
       }
     },
 
-    'drinks-berry': {
-      id: 'drinks-berry',
-      type: 'drinks',
-      name: 'Wild Berry Hibiscus Iced Cooler',
-      nameAr: 'مشروب الكركديه والتوت البري المثلج',
-      category: 'drinks',
-      image: 'images/drinks_berry.jpg',
-      basePrice: 70,
-      originalPrice: 90,
-      discountPercent: 22,
+    // --- ICED BREWS ---
+    'coffee-latte-spanish': {
+      id: 'coffee-latte-spanish',
+      type: 'coffee',
+      name: 'Signature Iced Spanish Latte',
+      nameAr: 'سبانش لاتيه مثلج مميز',
+      category: 'iced',
+      image: 'images/iced_spanish_latte.jpg',
+      basePrice: 145,
+      originalPrice: 175,
+      discountPercent: 17,
       rating: 4.9,
-      reviews: 118,
-      prepTime: '4-6 min',
-      calories: '140 kcal',
+      reviews: 340,
+      prepTime: '3-5 min',
+      calories: '210 kcal',
       isPopular: true,
-      isBestSeller: false,
+      isBestSeller: true,
       isSpicy: false,
       isVeg: true,
-      isNew: true,
-      description: 'Cold-steeped Egyptian hibiscus blossoms fused with freshly muddled wild blackberries, raspberries, fresh mint sprig, and lemon over cracked crystal ice.',
-      descriptionAr: 'كركديه مصري منقوع على البارد مع توت أسود وتوت بري مهروس طازج، نعناع طازج وشريحة ليمون مع ثلج كريستالي منعش.',
-      ingredients: ['Egyptian Hibiscus Flowers', 'Wild Blackberries & Raspberries', 'Fresh Mint', 'Lemon Wheel', 'Filtered Ice Spring Water'],
-      allergens: [],
-      frequentlyBoughtWith: ['pizza-pepperoni', 'burger-truffle'],
+      isNew: false,
+      description: 'Layered iced masterpiece featuring sweetened condensed milk, chilled barista milk, rich specialty espresso pour, and dense silky cold foam with cocoa dusting.',
+      descriptionAr: 'طبقات متناغمة من الحليب المكثف المحلى، الحليب البارد، اسبريسو القهوة المختصة، ورغوة الحليب الباردة المخملية مع رشة كاكاو.',
+      ingredients: ['Sweetened Condensed Milk', 'Specialty Espresso', 'Chilled Milk', 'Cold Foam'],
+      allergens: ['Dairy'],
+      frequentlyBoughtWith: ['croissant-pistachio', 'croissant-savory-turkey'],
       specs: {
-        size: {
-          title: 'Cup Size',
-          titleAr: 'حجم الكوب',
-          required: true,
-          type: 'radio',
-          options: [
-            { id: 'db-reg', name: 'Regular 450ml Cup', nameAr: 'كوب وسط 450 مل', delta: 0, default: true },
-            { id: 'db-lrg', name: 'Large 700ml Jar', nameAr: 'برطمان كبير 700 مل', delta: 25 }
-          ]
-        },
         sweetness: {
-          title: 'Sweetness',
+          title: 'Sweetness Level',
           titleAr: 'درجة الحلاوة',
           required: true,
           type: 'radio',
           options: [
-            { id: 'db-sw-norm', name: 'Balanced Sweetness', nameAr: 'حلاوة معتدلة', delta: 0, default: true },
-            { id: 'db-sw-less', name: 'Low Sugar', nameAr: 'سكر قليل', delta: 0 },
-            { id: 'db-sw-stevia', name: 'Stevia / Zero Sugar', nameAr: 'ستيفيا بدون سكر', delta: 5 }
+            { id: 'sw-reg', name: 'Maison Classic (Balanced)', nameAr: 'كلاسيك ميزون (متوازن)', delta: 0, default: true },
+            { id: 'sw-light', name: 'Light Sweetness (-50%)', nameAr: 'حلاوة خفيفة (-50%)', delta: 0 },
+            { id: 'sw-stevia', name: 'Zero Sugar Stevia', nameAr: 'ستيفيا خالي من السكر', delta: 0 }
+          ]
+        },
+        milk: {
+          title: 'Milk Base',
+          titleAr: 'نوع الحليب',
+          required: true,
+          type: 'radio',
+          options: [
+            { id: 'm-whole', name: 'Full Cream Milk', nameAr: 'حليب كامل الدسم', delta: 0, default: true },
+            { id: 'm-oat', name: 'Oat Milk (+25 EGP)', nameAr: 'حليب شوفان (+25 ج.م)', delta: 25 }
           ]
         }
       }
     },
 
-    // --- DESSERTS ---
-    'dessert-lava': {
-      id: 'dessert-lava',
-      type: 'desserts',
-      name: 'Molten Chocolate Lava Cake',
-      nameAr: 'كيك الشوكولاتة الذائبة (مولتن لافا)',
-      category: 'desserts',
-      image: 'images/dessert.jpg',
-      basePrice: 95,
-      originalPrice: 130,
-      discountPercent: 27,
-      rating: 5.0,
-      reviews: 175,
+    // --- VIENNOISERIE ---
+    'viennoiserie-pain-chocolat': {
+      id: 'viennoiserie-pain-chocolat',
+      type: 'viennoiserie',
+      name: 'Valrhona Pain au Chocolat',
+      nameAr: 'بان أو شوكولا بقطع شوكولاتة فالرونا',
+      category: 'viennoiserie',
+      image: 'images/pain_au_chocolat.jpg',
+      basePrice: 135,
+      originalPrice: 160,
+      discountPercent: 15,
+      rating: 4.9,
+      reviews: 215,
+      prepTime: '5-8 min',
+      calories: '360 kcal',
+      isPopular: true,
+      isBestSeller: true,
+      isSpicy: false,
+      isVeg: true,
+      isNew: false,
+      description: 'Crisp golden laminated French pastry enveloping two batons of intense 66% Valrhona French dark chocolate that melt gently upon serving.',
+      descriptionAr: 'مخبوزات فينوازري ذهبية مقرمشة تحتضن قطعتين من شوكولاتة فالرونا الداكنة 66% الذائبة بلطف عند التقديم.',
+      ingredients: ['Valrhona 66% Dark Chocolate', 'Isigny Butter Dough', 'Cacao Dusting'],
+      allergens: ['Dairy', 'Gluten', 'Soy'],
+      frequentlyBoughtWith: ['coffee-flat-white', 'patisserie-millefeuille'],
+      specs: {
+        serving: {
+          title: 'Warmth',
+          titleAr: 'درجة التسخين',
+          required: true,
+          type: 'radio',
+          options: [
+            { id: 'v-warm', name: 'Warm & Melting Chocolate', nameAr: 'دافئ وشوكولاتة ذائبة', delta: 0, default: true },
+            { id: 'v-room', name: 'Crisp Room Temperature', nameAr: 'مقرمش بحرارة الغرفة', delta: 0 }
+          ]
+        },
+        dip: {
+          title: 'Gourmet Dip',
+          titleAr: 'صوص التغميس الفاخر',
+          required: false,
+          type: 'checkbox',
+          options: [
+            { id: 'dip-choc', name: 'Warm Dark Valrhona Dip Cup', nameAr: 'كوب شوكولاتة فالرونا ساخنة', delta: 35 }
+          ]
+        }
+      }
+    },
+
+    // --- SAVORY & BRUNCH ---
+    'croissant-savory-turkey': {
+      id: 'croissant-savory-turkey',
+      type: 'croissant',
+      name: 'Smoked Turkey & Truffle Gruyère Croissant',
+      nameAr: 'كرواسون الديك الرومي المدخن وجبن غرويير',
+      category: 'savory',
+      image: 'images/croissant_savory.jpg',
+      basePrice: 195,
+      originalPrice: 235,
+      discountPercent: 17,
+      rating: 4.9,
+      reviews: 176,
       prepTime: '10-12 min',
       calories: '480 kcal',
       isPopular: true,
       isBestSeller: true,
       isSpicy: false,
-      isVeg: true,
-      isNew: true,
-      description: 'Warm rich Belgian chocolate cake with a molten chocolate center that flows when cut, served with a scoop of real vanilla gelato and berries.',
-      descriptionAr: 'كيك شوكولاتة بلجيكية دافئة وغنية بقلب شوكولاتة سائلة، تقدم مع بولة آيس كريم فانيليا إيطالية وتوت طازج.',
-      ingredients: ['Belgian Dark Chocolate', 'Farm Butter', 'Flour', 'Eggs', 'Vanilla Bean Gelato', 'Fresh Raspberries'],
-      allergens: ['Dairy', 'Gluten', 'Eggs'],
-      frequentlyBoughtWith: ['pizza-margherita', 'drinks-passion'],
+      isVeg: false,
+      isNew: false,
+      description: 'Artisanal butter croissant toasted with premium smoked turkey breast, bubbling melted Swiss Gruyère cheese, baby spinach, and black truffle grain mustard.',
+      descriptionAr: 'كرواسون فرنسي محمص بشرائح صدور الديك الرومي المدخن الفاخر، جبن غرويير سويسري ذائب، أوراق السبانخ الصغيرة وخردل حبوب الكمأة السوداء.',
+      ingredients: ['Smoked Turkey Breast', 'Swiss Gruyère Cheese', 'Black Truffle Dijon', 'Baby Spinach', 'Butter Croissant'],
+      allergens: ['Dairy', 'Gluten'],
+      frequentlyBoughtWith: ['coffee-flat-white', 'coffee-latte-spanish'],
       specs: {
-        iceCream: {
-          title: 'Gelato Flavor',
-          titleAr: 'نكهة الآيس كريم',
+        side: {
+          title: 'Brunch Accompaniment',
+          titleAr: 'طبق جانبي',
           required: true,
           type: 'radio',
           options: [
-            { id: 'gl-vanilla', name: 'Madagascar Vanilla Bean', nameAr: 'فانيليا مدغشقر الأصلية', delta: 0, default: true },
-            { id: 'gl-choc', name: 'Dark Chocolate Gelato', nameAr: 'شوكولاتة داكنة', delta: 15 },
-            { id: 'gl-pistachio', name: 'Roasted Pistachio', nameAr: 'فستق محمص فاخر', delta: 25 }
+            { id: 'sd-salad', name: 'Organic Baby Greens & Vinaigrette', nameAr: 'سلطة خضراء عضوية بصوص الخل الفرنسي', delta: 0, default: true },
+            { id: 'sd-fries', name: 'Herb Seasoned Crispy Fries', nameAr: 'بطاطس مقرمشة بالأعشاب والملح البحري', delta: 25 }
           ]
         },
-        toppings: {
-          title: 'Extra Drizzles & Crunch',
-          titleAr: 'إضافات وتزيين اختياري',
+        cheese: {
+          title: 'Cheese Extra',
+          titleAr: 'إضافة الجبن',
           required: false,
           type: 'checkbox',
-          maxSelect: 2,
           options: [
-            { id: 'ds-fudge', name: 'Extra Warm Caramel Drizzle', nameAr: 'كراميل دافئ إضافي', delta: 15 },
-            { id: 'ds-nuts', name: 'Crushed Candied Hazelnuts', nameAr: 'بندق مكرمل مقرمش', delta: 20 },
-            { id: 'ds-berries', name: 'Extra Wild Berries', nameAr: 'توت بري طازج', delta: 20 }
+            { id: 'ch-extra', name: 'Extra Melted Gruyère Crust', nameAr: 'طبقة إضافية من جبن الغرويير الذائب', delta: 30 }
           ]
         }
       }
     },
 
-    'dessert-cheesecake': {
-      id: 'dessert-cheesecake',
-      type: 'desserts',
-      name: 'Lotus Biscoff Crunch Cheesecake',
-      nameAr: 'تشيز كيك لوتس بسكوف المقرمش',
-      category: 'desserts',
-      image: 'images/dessert_cheesecake.jpg',
-      basePrice: 110,
-      originalPrice: 140,
-      discountPercent: 21,
-      rating: 5.0,
-      reviews: 210,
-      prepTime: '5-8 min',
-      calories: '520 kcal',
-      isPopular: true,
-      isBestSeller: true,
+    // --- PATISSERIE & SWEETS ---
+    'patisserie-millefeuille': {
+      id: 'patisserie-millefeuille',
+      type: 'patisserie',
+      name: 'Raspberry Madagascar Mille-Feuille',
+      nameAr: 'ميل فوي الفانيليا مع توت العليق الطازج',
+      category: 'patisserie',
+      image: 'images/patisserie_millefeuille.jpg',
+      basePrice: 185,
+      originalPrice: 220,
+      discountPercent: 16,
+      rating: 4.8,
+      reviews: 142,
+      prepTime: 'Fresh',
+      calories: '380 kcal',
+      isPopular: false,
+      isBestSeller: false,
       isSpicy: false,
       isVeg: true,
       isNew: true,
-      description: 'Velvety New York style cheesecake built on a buttery caramelized Lotus biscuit crust, drizzled with warm melted Biscoff spread and topped with crushed biscuits.',
-      descriptionAr: 'تشيز كيك نيويورك مخملية غنية على قاعدة من بسكويت لوتس المقرمش بالزبدة، مغطاة بطبقة دافئة من زبدة لوتس المذابة وقطع البسكويت.',
-      ingredients: ['Cream Cheese', 'Belgian Lotus Biscoff Spread', 'Caramelized Biscuit Base', 'Fresh Whipped Cream', 'Vanilla'],
+      description: 'Caramelized puff pastry layers filled with velvety Madagascar vanilla bean crème mousseline, crowned with fresh glazed raspberries and icing sugar.',
+      descriptionAr: 'طبقات البف باستري المكرملة الهشة والمحشوة بكريمة موسيلين فانيليا مدغشقر المخملية، متوجة بتوت العليق الأحمر الطازج وسكر بودرة.',
+      ingredients: ['Caramelized Puff Pastry', 'Madagascar Vanilla Crème', 'Fresh Raspberries'],
       allergens: ['Dairy', 'Gluten', 'Eggs'],
-      frequentlyBoughtWith: ['drinks-berry', 'burger-deluxe'],
+      frequentlyBoughtWith: ['coffee-flat-white', 'croissant-butter'],
       specs: {
-        crust: {
-          title: 'Crust Thickness',
-          titleAr: 'سُمك قاعدة البسكويت',
+        finish: {
+          title: 'Coulis Finish',
+          titleAr: 'لمسة الصوص',
           required: true,
           type: 'radio',
           options: [
-            { id: 'lc-norm', name: 'Standard Lotus Crust', nameAr: 'قاعدة لوتس كلاسيكية', delta: 0, default: true },
-            { id: 'lc-extra', name: 'Extra Thick Crunchy Crust', nameAr: 'قاعدة مقرمشة مضاعفة', delta: 20 }
-          ]
-        },
-        extraDrizzle: {
-          title: 'Extra Drizzles',
-          titleAr: 'صوص إضافي',
-          required: false,
-          type: 'checkbox',
-          options: [
-            { id: 'lc-drizzle', name: 'Extra Warm Biscoff Shot', nameAr: 'شوت زبدة لوتس دافئة إضافية', delta: 25 },
-            { id: 'lc-gelato', name: 'Add Vanilla Gelato Scoop', nameAr: 'إضافة بولة آيس كريم فانيليا', delta: 30 }
+            { id: 'c-rasp', name: 'Fresh Raspberry Coulis', nameAr: 'صوص توت العليق الطازج', delta: 0, default: true },
+            { id: 'c-caramel', name: 'Salted Butter Caramel Coulis', nameAr: 'صوص الكراميل بالزبدة المملحة', delta: 15 }
           ]
         }
       }
     },
 
-    // --- DEALS & EXCLUSIVE COMBOS ---
-    'deal-day-combo': {
-      id: 'deal-day-combo',
+    // --- MAISON DUETS & FEAST DEALS ---
+    'deal-morning-duo': {
+      id: 'deal-morning-duo',
       type: 'deal',
-      name: 'Mega Family Feast Platter',
-      nameAr: 'وليمة العائلة الكبرى (عرض اليوم)',
+      name: 'The Parisian Morning Duet',
+      nameAr: 'ثنائية الصباح الباريسية (قهوة وكرواسون)',
       category: 'deals',
-      image: 'images/deal_combo.jpg',
-      basePrice: 420,
-      originalPrice: 825,
-      discountPercent: 49,
-      duration: '24 Hours Only',
-      isDealOfDay: true,
+      image: 'images/banner_morning_duo.jpg',
+      basePrice: 195,
+      originalPrice: 285,
+      discountPercent: 32,
       rating: 5.0,
-      reviews: 340,
-      description: '1 Large Artisan Pizza + 2 Gourmet Smash Burgers + 8 Crispy Wings + Seasoned Curly Fries + 4 Signature Dips + 1.5L Beverage. Unbeatable 49% discount!',
-      descriptionAr: 'بيتزا كبيرة فاخرة + 2 برجر أنجوس سماش + 8 أجنحة دجاج مقرمشة + بطاطس كيرلي + 4 صوصات + زجاجة لتر ونصف. خصم استثنائي 49%!',
-      ingredients: ['Pizza of Choice', '2 Burgers of Choice', '8 Honey Wings', 'Curly Fries', '4 Dips', '1.5L Beverage'],
-      allergens: ['Dairy', 'Gluten', 'Eggs'],
-      frequentlyBoughtWith: ['dessert-lava', 'drinks-passion'],
+      reviews: 420,
+      description: '1 Freshly Baked AOP Butter Croissant + 1 Specialty Flat White or Cappuccino + Artisan Beurre Bordier & Berry Preserves.',
+      descriptionAr: 'كرواسون زبدة فرنسي طازج + كوب قهوة فلات وايت أو كابتشينو مختص + زبدة بورديه ومربى الفراولة البرية.',
       specs: {
-        pizzaChoice: {
-          title: 'Included Pizza (12" Large)',
-          titleAr: 'اختر البيتزا الكبيرة',
+        coffeeChoice: {
+          title: 'Specialty Coffee Selection',
+          titleAr: 'اختيار القهوة المختصة',
           required: true,
           type: 'radio',
           options: [
-            { id: 'dp-margherita', name: 'Artisanal Margherita Fresca', nameAr: 'مارجريتا إيطالية أصلية', delta: 0, default: true },
-            { id: 'dp-pepperoni', name: 'Smoky Pepperoni & Cheese', nameAr: 'بيبيروني وجبن مدخن', delta: 30 },
-            { id: 'dp-bbqchicken', name: 'BBQ Charred Chicken Pizza', nameAr: 'بيتزا دجاج بالباربيكيو', delta: 35 }
+            { id: 'dc-fw', name: 'Velvet Flat White', nameAr: 'فلات وايت مخملي', delta: 0, default: true },
+            { id: 'dc-cap', name: 'Specialty Cappuccino', nameAr: 'كابتشينو مختص', delta: 0 },
+            { id: 'dc-sp', name: 'Iced Spanish Latte', nameAr: 'سبانش لاتيه مثلج', delta: 20 }
           ]
         },
-        crustChoice: {
-          title: 'Pizza Crust Style',
-          titleAr: 'عجينة البيتزا',
+        croissantChoice: {
+          title: 'Croissant Selection',
+          titleAr: 'نوع الكرواسون',
           required: true,
           type: 'radio',
           options: [
-            { id: 'dc-thin', name: 'Classic Thin Crust', nameAr: 'عجينة رقيقة', delta: 0, default: true },
-            { id: 'dc-stuffed', name: 'Cheesy Stuffed Crust', nameAr: 'أطراف محشوة جبن', delta: 45 }
-          ]
-        },
-        burgerCheese: {
-          title: 'Burgers Cheese Style',
-          titleAr: 'نوع جبن البرجر',
-          required: true,
-          type: 'radio',
-          options: [
-            { id: 'db-cheddar', name: 'Double Aged Cheddar', nameAr: 'شيدر معتق دبل', delta: 0, default: true },
-            { id: 'db-swiss', name: 'Swiss Cheese & Mushrooms', nameAr: 'سويسري مع مشروم', delta: 25 }
-          ]
-        },
-        wingsGlaze: {
-          title: 'Wings Glaze Flavor',
-          titleAr: 'نكهة الأجنحة',
-          required: true,
-          type: 'radio',
-          options: [
-            { id: 'dw-honey', name: 'Honey BBQ Sweet Glaze', nameAr: 'عسل وباربيكيو حلو', delta: 0, default: true },
-            { id: 'dw-buffalo', name: 'Fiery Buffalo Hot', nameAr: 'بافلو حار ناري', delta: 0 }
-          ]
-        },
-        drinkChoice: {
-          title: 'Included 1.5L Beverage',
-          titleAr: 'المشروب العائلي',
-          required: true,
-          type: 'radio',
-          options: [
-            { id: 'dd-cola', name: '1.5L Coca-Cola Bottle', nameAr: 'كوكاكولا 1.5 لتر', delta: 0, default: true },
-            { id: 'dd-sprite', name: '1.5L Sprite Bottle', nameAr: 'سبرايت 1.5 لتر', delta: 0 },
-            { id: 'dd-mojitos', name: '2x Passion Fruit Mojitos (Upgrade)', nameAr: '2 كوب موهيتو باشن فروت طازج', delta: 45 }
+            { id: 'dcr-butter', name: 'Classic French Butter Croissant', nameAr: 'كرواسون الزبدة الكلاسيكي', delta: 0, default: true },
+            { id: 'dcr-choc', name: 'Valrhona Pain au Chocolat', nameAr: 'بان أو شوكولا فالرونا', delta: 25 },
+            { id: 'dcr-pist', name: 'Royal Pistachio Croissant', nameAr: 'كرواسون البستاشيو الملكي', delta: 55 }
           ]
         }
       }
     },
 
-    'deal-pizza-night': {
-      id: 'deal-pizza-night',
+    'deal-tasting-flight': {
+      id: 'deal-tasting-flight',
       type: 'deal',
-      name: 'Duo Pizza & Pasta Italian Night',
-      nameAr: 'ليلة البيتزا والباستا الإيطالية',
+      name: 'Specialty Roastery Tasting Flight',
+      nameAr: 'باقة الميزون المميزة (لاتيه وبان أو شوكولا)',
       category: 'deals',
-      image: 'images/banner2.jpg',
-      basePrice: 320,
-      originalPrice: 590,
-      discountPercent: 46,
-      duration: 'Ends in 6 Hours',
-      rating: 4.8,
-      reviews: 190,
-      description: 'Any 2 Large Stone-Oven Pizzas + Fresh Cheesy Garlic Bread + 1L Chilled Beverage.',
-      descriptionAr: 'اختيارك من أي 2 بيتزا كبيرة مخبوزة على الحجر + خبز ثوم بالجبن + لتر مشروب منعش.',
-      ingredients: ['2 Large Pizzas', 'Cheesy Garlic Bread', '1L Drink'],
-      allergens: ['Dairy', 'Gluten'],
-      frequentlyBoughtWith: ['wings-crispy', 'drinks-passion'],
-      specs: {
-        pizza1: {
-          title: 'Select Pizza #1',
-          titleAr: 'البيتزا الأولى',
-          required: true,
-          type: 'radio',
-          options: [
-            { id: 'd2-mrg', name: 'Margherita Fresca (12")', nameAr: 'مارجريتا فريسكا (12")', delta: 0, default: true },
-            { id: 'd2-pep', name: 'Smoky Pepperoni (12")', nameAr: 'بيبيروني مدخن (12")', delta: 25 }
-          ]
-        },
-        pizza2: {
-          title: 'Select Pizza #2',
-          titleAr: 'البيتزا الثانية',
-          required: true,
-          type: 'radio',
-          options: [
-            { id: 'd2-mush', name: 'Wild Truffle Mushroom (12")', nameAr: 'مشروم ترفل (12")', delta: 0, default: true },
-            { id: 'd2-4ch', name: 'Quattro Formaggi 4-Cheese (12")', nameAr: 'أربعة أجبان فاخرة (12")', delta: 30 }
-          ]
-        },
-        crust: {
-          title: 'Crust Style',
-          titleAr: 'نوع العجينة',
-          required: true,
-          type: 'radio',
-          options: [
-            { id: 'd2-thin', name: 'Traditional Hand-Tossed Thin', nameAr: 'عجينة رقيقة تقليدية', delta: 0, default: true },
-            { id: 'd2-stuffed', name: 'Stuffed Mozzarella Crust', nameAr: 'أطراف محشوة موزاريلا', delta: 45 }
-          ]
-        }
-      }
-    },
-
-    'deal-flash-smash': {
-      id: 'deal-flash-smash',
-      type: 'deal',
-      name: 'Flash Sale: Double Burger & Wings Duo',
-      nameAr: 'فلاش سيل: دبل برجر وأجنحة دجاج',
-      category: 'deals',
-      image: 'images/banner1.jpg',
+      image: 'images/banner_tasting_flight.jpg',
       basePrice: 245,
-      originalPrice: 450,
-      discountPercent: 45,
-      duration: 'Flash: 01:42:35 left',
+      originalPrice: 360,
+      discountPercent: 32,
       rating: 4.9,
-      reviews: 280,
-      description: 'Double Angus Smash Burger with melted cheddar + 6 Crispy Honey BBQ Wings + Seasoned Curly Fries + Soft Drink.',
-      descriptionAr: 'برجر أنجوس دبل سماش بالجبن الشيدر + 6 أجنحة دجاج مقرمشة + بطاطس كيرلي + مشروب غازي.',
-      ingredients: ['Double Angus Burger', '6 Wings', 'Curly Fries', 'Soft Drink'],
-      allergens: ['Dairy', 'Gluten'],
-      frequentlyBoughtWith: ['dessert-lava', 'pizza-margherita'],
+      reviews: 298,
+      description: 'Signature Iced Spanish Latte with cold foam + Fresh Valrhona Pain au Chocolat + Single-Origin Espresso Tasting.',
+      descriptionAr: 'سبانش لاتيه مثلج مع رغوة الحليب الباردة + بان أو شوكولا فالرونا ساخن + تذوق اسبريسو سنجل أوريجن.',
       specs: {
-        pattyStyle: {
-          title: 'Burger Patty',
-          titleAr: 'حجم البرجر',
+        milkChoice: {
+          title: 'Latte Milk Choice',
+          titleAr: 'نوع الحليب',
           required: true,
           type: 'radio',
           options: [
-            { id: 'fs-double', name: 'Double Angus Patty (300g)', nameAr: 'دبل لحم أنجوس (300جم)', delta: 0, default: true },
-            { id: 'fs-triple', name: 'Triple Patty (450g)', nameAr: 'ثلاثي أنجوس (450جم)', delta: 50 }
+            { id: 'tf-whole', name: 'Farm Whole Milk', nameAr: 'حليب كامل الدسم', delta: 0, default: true },
+            { id: 'tf-oat', name: 'Barista Oat Milk', nameAr: 'حليب شوفان باريستا', delta: 25 }
           ]
-        },
-        wingsSauce: {
-          title: 'Wings Sauce',
-          titleAr: 'صوص الأجنحة',
+        }
+      }
+    },
+
+    'deal-brunch-combo': {
+      id: 'deal-brunch-combo',
+      type: 'deal',
+      name: 'Savory Croissant & Flat White Brunch',
+      nameAr: 'برانش الكرواسون المالح والفلات وايت',
+      category: 'deals',
+      image: 'images/croissant_savory.jpg',
+      basePrice: 265,
+      originalPrice: 380,
+      discountPercent: 30,
+      rating: 4.9,
+      reviews: 260,
+      description: 'Smoked Turkey & Truffle Gruyère Croissant + Mini Herb Truffle Fries + Specialty Flat White or Pour-Over Coffee.',
+      descriptionAr: 'كرواسون الديك الرومي المدخن وجبن الغرويير مع بطاطس الكمأة المقرمشة + كوب فلات وايت أو قهوة مقطرة.',
+      specs: {
+        coffeeChoice: {
+          title: 'Brunch Coffee',
+          titleAr: 'مشروب القهوة',
           required: true,
           type: 'radio',
           options: [
-            { id: 'fs-honey', name: 'Sweet Honey BBQ', nameAr: 'عسل وباربيكيو حلو', delta: 0, default: true },
-            { id: 'fs-buff', name: 'Buffalo Tangy Hot', nameAr: 'بافلو حار', delta: 0 }
+            { id: 'bc-fw', name: 'Velvet Flat White', nameAr: 'فلات وايت مخملي', delta: 0, default: true },
+            { id: 'bc-v60', name: 'V60 Specialty Pour-Over', nameAr: 'قهوة V60 مقطرة', delta: 15 }
           ]
         }
       }
@@ -1015,12 +593,12 @@ const AppState = {
     let items = Object.values(this.catalog).filter(it => it.type !== 'deal');
 
     const categoryAliases = {
-      'burgers': ['burger', 'burgers', 'smash', 'patty', 'angus', 'cheddar', 'truffle', 'swiss', 'برجر', 'برغر', 'سماش', 'شيدر', 'سويسري', 'لحم'],
-      'pizza': ['pizza', 'pizzas', 'crust', 'mozzarella', 'pepperoni', 'margherita', 'بيتزا', 'موزاريلا', 'بيبيروني', 'مارجريتا'],
-      'chicken': ['chicken', 'wings', 'tenders', 'strips', 'crispy', 'honey', 'buffalo', 'nashville', 'دجاج', 'فراخ', 'اجنحه', 'أجنحة', 'اصابع', 'مقرمش', 'استربس', 'ناشفيل'],
-      'meals': ['meal', 'meals', 'bowl', 'salad', 'fries', 'caesar', 'curly', 'truffle', 'سلطه', 'سلطة', 'سيزر', 'بطاطس', 'كيرلي', 'وجبه', 'وجبات', 'افوكادو'],
-      'drinks': ['drink', 'drinks', 'beverage', 'mojito', 'cooler', 'soda', 'hibiscus', 'passion', 'مشروب', 'مشروبات', 'عصير', 'موهيتو', 'كركديه', 'باشن', 'صودا', 'بارد'],
-      'desserts': ['dessert', 'desserts', 'cake', 'cheesecake', 'lava', 'biscoff', 'lotus', 'sweet', 'حلويات', 'حلو', 'كيك', 'تشيز كيك', 'لافا', 'لوتس', 'شوكولاته']
+      'croissants': ['croissant', 'croissants', 'butter', 'flaky', 'laminated', 'almond', 'pistachio', 'كرواسون', 'كرواسان', 'زبدة', 'لوز', 'بستاشيو', 'مورق'],
+      'coffee': ['coffee', 'espresso', 'flat white', 'latte', 'cappuccino', 'cortado', 'v60', 'brew', 'قهوة', 'اسبريسو', 'لاتيه', 'فلات وايت', 'كابتشينو', 'مختصة', 'بن'],
+      'iced': ['iced', 'spanish latte', 'cold brew', 'iced latte', 'nitro', 'frappe', 'مشروبات باردة', 'سبانش لاتيه', 'ايس لاتيه', 'كولد برو', 'مثلج'],
+      'viennoiserie': ['pain', 'chocolat', 'pain au chocolat', 'danish', 'suisse', 'cruffin', 'brioche', 'فينوازري', 'بان او شوكولا', 'شوكولاتة', 'دانش', 'بريوش'],
+      'savory': ['savory', 'turkey', 'gruyere', 'cheese', 'brunch', 'egg', 'sandwich', 'مالح', 'ديك رومي', 'تركي', 'جبن', 'غرويير', 'برانش', 'ساندوتش'],
+      'patisserie': ['patisserie', 'tart', 'millefeuille', 'cheesecake', 'choux', 'vanilla', 'تارت', 'ميل فوي', 'حلويات', 'فانيليا', 'كيك', 'شيزكيك']
     };
 
     const hasQuery = query && query.trim().length > 0;
@@ -1075,7 +653,7 @@ const AppState = {
   i18n: {
     en: {
       appName: 'BiteHub',
-      tagline: 'Fast Food Hub & Feast Delivery',
+      tagline: 'Maison du Café & Croissant Artisanal',
       navHome: 'Home',
       navOrders: 'Orders',
       navDeals: 'Deals',
@@ -1084,7 +662,7 @@ const AppState = {
       greetingAfternoon: 'Good Afternoon',
       greetingEvening: 'Good Evening',
       deliverTo: 'Deliver to',
-      searchPlaceholder: 'Search burgers, pizzas, wings, deals...',
+      searchPlaceholder: 'Search croissants, flat white, pain au chocolat, lattes...',
       trending: 'Trending:',
       allCategories: 'All Categories',
       catAll: 'All',
@@ -1141,7 +719,7 @@ const AppState = {
       itemsCount: 'items',
       itemCount: 'item',
       cartEmptyTitle: 'Your cart is hungry!',
-      cartEmptyDesc: 'Add some delicious meals, deals, or pizzas to get started.',
+      cartEmptyDesc: 'Add fresh warm croissants, specialty coffee, or viennoiserie to get started.',
       exploreDealsBtn: 'Explore Hot Deals',
       promoCodePlaceholder: 'Enter promo code (e.g. WELCOME50)',
       applyBtn: 'Apply',
@@ -1303,7 +881,7 @@ const AppState = {
       itemsCount: 'أصناف',
       itemCount: 'صنف',
       cartEmptyTitle: 'سلتك جائعة!',
-      cartEmptyDesc: 'أضف بعض الوجبات الشهية أو عروض اليوم لتبدأ طلبك.',
+      cartEmptyDesc: 'أضف بعض الكرواسون الفرنسي الطازج أو القهوة المختصة لتبدأ طلبك.',
       exploreDealsBtn: 'تصفح أقوى العروض',
       promoCodePlaceholder: 'أدخل كود الخصم (مثال: WELCOME50)',
       applyBtn: 'تطبيق',
@@ -1778,9 +1356,9 @@ const AppState = {
   getFavorites() {
     try {
       const data = localStorage.getItem(this.STORAGE_KEYS.FAVORITES);
-      return data ? JSON.parse(data) : ['burger-deluxe', 'pizza-margherita'];
+      return data ? JSON.parse(data) : ['croissant-butter', 'coffee-flat-white'];
     } catch(e) {
-      return ['burger-deluxe', 'pizza-margherita'];
+      return ['croissant-butter', 'coffee-flat-white'];
     }
   },
 

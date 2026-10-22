@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BiteHub - Fast, Fresh Food Ordering & Deals (EGP)</title>
+  <title>BiteHub Maison - Artisanal Café & Viennoiserie (EGP)</title>
 
   <!-- Favicon & App Icons -->
   <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
@@ -16,7 +16,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="luxe.css?v=5" />
+  <link rel="stylesheet" href="luxe.css?v=6" />
 
   <!-- FontAwesome Icons -->
   <link
@@ -28,7 +28,7 @@
 <body>
 
   <main class="app home-app">
-    <div class="luxe-wordmark" aria-label="BiteHub Maison edition"><strong>BITE<span>HUB</span><span class="wordmark-stem"></span></strong><small>THE ART OF<br>GOOD FOOD</small></div>
+    <div class="luxe-wordmark" aria-label="BiteHub Maison edition"><strong>BITE<span>HUB</span><span class="wordmark-stem"></span></strong><small>MAISON DU CAFÉ<br>& CROISSANT</small></div>
 
     <!-- 1. LOCATION ON LEFT & ICONS ON RIGHT -->
     <header class="home-top-bar">
@@ -62,7 +62,7 @@
     <!-- 2. NAME & WELCOME -->
     <section class="home-welcome-box">
       <h1 class="dynamic-user-greeting">Good Morning, Ahmed</h1>
-      <p class="greeting-subtitle">What would you like to feast on today in Alexandria?</p>
+      <p class="greeting-subtitle">Artisanal Viennoiserie & Specialty Roasts Baked Fresh Daily</p>
     </section>
 
     <!-- 3. SEARCH -->
@@ -72,7 +72,7 @@
         <input
           type="text"
           id="searchInput"
-          placeholder="Search burgers, pizzas, wings, deals..."
+          placeholder="Search croissants, flat white, pain au chocolat, lattes..."
           autocomplete="off"
         />
         <button class="clear-search-btn" id="clearSearchBtn" aria-label="Clear search" style="display: none;">
@@ -89,12 +89,13 @@
       <!-- Quick Suggested Searches -->
       <div class="search-suggestions" id="searchSuggestions">
         <span class="suggest-label" id="suggestLabel"><i class="fa-solid fa-fire"></i> <span id="trendingLabelText">Trending:</span></span>
-        <button class="suggest-pill" data-tag-en="Smash Burger" data-tag-ar="سماش برجر" onclick="applySearchTag(this)">Smash Burger</button>
-        <button class="suggest-pill" data-tag-en="Pepperoni Pizza" data-tag-ar="بيتزا بيبيروني" onclick="applySearchTag(this)">Pepperoni Pizza</button>
-        <button class="suggest-pill" data-tag-en="Hot Wings" data-tag-ar="أجنحة دجاج" onclick="applySearchTag(this)">Hot Wings</button>
-        <button class="suggest-pill" data-tag-en="Truffle Fries" data-tag-ar="بطاطس بالكمأة" onclick="applySearchTag(this)">Truffle Fries</button>
-        <button class="suggest-pill" data-tag-en="Mojito" data-tag-ar="موهيتو" onclick="applySearchTag(this)">Mojito</button>
-        <button class="suggest-pill" data-tag-en="Lotus Cheesecake" data-tag-ar="تشيز كيك لوتس" onclick="applySearchTag(this)">Lotus Cheesecake</button>
+        <button class="suggest-pill" data-tag-en="Butter Croissant" data-tag-ar="كرواسون زبدة" onclick="applySearchTag(this)">Butter Croissant</button>
+        <button class="suggest-pill" data-tag-en="Velvet Flat White" data-tag-ar="فلات وايت" onclick="applySearchTag(this)">Velvet Flat White</button>
+        <button class="suggest-pill" data-tag-en="Royal Pistachio" data-tag-ar="كرواسون بستاشيو" onclick="applySearchTag(this)">Royal Pistachio</button>
+        <button class="suggest-pill" data-tag-en="Pain au Chocolat" data-tag-ar="بان أو شوكولا" onclick="applySearchTag(this)">Pain au Chocolat</button>
+        <button class="suggest-pill" data-tag-en="Spanish Latte" data-tag-ar="سبانش لاتيه" onclick="applySearchTag(this)">Spanish Latte</button>
+        <button class="suggest-pill" data-tag-en="Savory Croissant" data-tag-ar="كرواسون مالح" onclick="applySearchTag(this)">Savory Croissant</button>
+        <button class="suggest-pill" data-tag-en="Vanilla Mille-Feuille" data-tag-ar="ميل فوي" onclick="applySearchTag(this)">Vanilla Mille-Feuille</button>
       </div>
     </section>
 
@@ -175,100 +176,100 @@
       <div class="home-carousel-wrapper" id="dealsCarouselWrapper">
         <div class="home-carousel-track" id="dealsCarouselTrack">
 
-          <!-- Slide 1: Flash Sale (45% OFF) -->
-          <article class="carousel-slide-item" style="background-image: url('images/banner1.jpg');">
+          <!-- Slide 1: The Parisian Morning Duet (32% OFF) -->
+          <article class="carousel-slide-item" style="background-image: url('images/banner_morning_duo.jpg');">
             <div class="slide-header-badges">
               <span class="slide-main-badge flash">
-                <i class="fa-solid fa-bolt"></i> Flash Sale – 45% OFF
+                <i class="fa-solid fa-crown"></i> Signature Duet – 32% OFF
               </span>
               <span class="slide-timer-chip">
                 <i class="fa-regular fa-clock"></i> <strong class="flash-sale-timer">01:42:35</strong>
               </span>
             </div>
             <div class="slide-body-content">
-              <h3>Double Burger & Wings Duo</h3>
-              <p>Double Angus smash burger + 6 honey BBQ wings + seasoned curly fries + chilled drink.</p>
+              <h3>The Parisian Morning Duet</h3>
+              <p>Freshly baked AOP butter croissant + Velvet flat white or cappuccino + Beurre Bordier & strawberry preserves.</p>
               <div class="slide-footer-row">
                 <div class="slide-price-stack">
-                  <span class="current-val">245 EGP</span>
-                  <span class="original-val">450 EGP</span>
+                  <span class="current-val">195 EGP</span>
+                  <span class="original-val">285 EGP</span>
                 </div>
-                <a href="product-detail.html?deal=deal-flash-smash" class="slide-cta-btn">
-                  <span>Claim Flash Deal</span> <i class="fa-solid fa-arrow-right"></i>
+                <a href="product-detail.html?deal=deal-morning-duo" class="slide-cta-btn">
+                  <span>Claim Morning Duet</span> <i class="fa-solid fa-arrow-right"></i>
                 </a>
               </div>
             </div>
           </article>
 
-          <!-- Slide 2: Deal of the Day (49% OFF) -->
-          <article class="carousel-slide-item" style="background-image: url('images/deal_combo.jpg');">
+          <!-- Slide 2: Roastery Tasting Flight (32% OFF) -->
+          <article class="carousel-slide-item" style="background-image: url('images/banner_tasting_flight.jpg');">
             <div class="slide-header-badges">
               <span class="slide-main-badge day-deal">
-                <i class="fa-solid fa-crown"></i> Deal of the Day – 49% OFF
+                <i class="fa-solid fa-mug-hot"></i> Roastery Flight – 32% OFF
               </span>
               <span class="slide-timer-chip">
                 <i class="fa-solid fa-stopwatch"></i> <strong class="deal-of-day-timer">23h : 59m : 59s</strong>
               </span>
             </div>
             <div class="slide-body-content">
-              <h3>Mega Family Feast Platter</h3>
-              <p>Large Pizza + 2 Angus Burgers + 8 Crispy Wings + Seasoned Fries & 4 Secret Dips + 1.5L Drink.</p>
+              <h3>Specialty Roastery Tasting Flight</h3>
+              <p>Layered Iced Spanish Latte with cold foam + Warm Valrhona Pain au Chocolat + Single-origin espresso tasting.</p>
               <div class="slide-footer-row">
                 <div class="slide-price-stack">
-                  <span class="current-val">420 EGP</span>
-                  <span class="original-val">825 EGP</span>
+                  <span class="current-val">245 EGP</span>
+                  <span class="original-val">360 EGP</span>
                 </div>
-                <a href="product-detail.html?deal=deal-day-combo" class="slide-cta-btn">
-                  <span>Customize & Order</span> <i class="fa-solid fa-arrow-right"></i>
+                <a href="product-detail.html?deal=deal-tasting-flight" class="slide-cta-btn">
+                  <span>Order Flight</span> <i class="fa-solid fa-arrow-right"></i>
                 </a>
               </div>
             </div>
           </article>
 
-          <!-- Slide 3: Duo Italian Feast (46% OFF) -->
-          <article class="carousel-slide-item" style="background-image: url('images/banner2.jpg');">
+          <!-- Slide 3: Royal Pistachio Croissant -->
+          <article class="carousel-slide-item" style="background-image: url('images/croissant_pistachio.jpg');">
             <div class="slide-header-badges">
               <span class="slide-main-badge offer">
-                <i class="fa-solid fa-pizza-slice"></i> Italian Feast – 46% OFF
+                <i class="fa-solid fa-star"></i> Chef's Creation
               </span>
               <span class="slide-timer-chip" style="color: #93c5fd; border-color: rgba(147, 197, 253, 0.4);">
                 <i class="fa-solid fa-fire"></i> Best Seller
               </span>
             </div>
             <div class="slide-body-content">
-              <h3>Duo Pizza & Pasta Feast</h3>
-              <p>Any 2 Large Stone-Oven Pizzas + Fresh Cheesy Garlic Bread + 1L Chilled Beverage.</p>
+              <h3>Royal Bronte Pistachio Croissant</h3>
+              <p>Filled with silky Sicilian Bronte pistachio praline cream, topped with roasted emerald pistachios & white chocolate.</p>
               <div class="slide-footer-row">
                 <div class="slide-price-stack">
-                  <span class="current-val">320 EGP</span>
-                  <span class="original-val">590 EGP</span>
+                  <span class="current-val">175 EGP</span>
+                  <span class="original-val">210 EGP</span>
                 </div>
-                <a href="product-detail.html?deal=deal-pizza-night" class="slide-cta-btn">
-                  <span>Order Feast</span> <i class="fa-solid fa-arrow-right"></i>
+                <a href="product-detail.html?id=croissant-pistachio" class="slide-cta-btn">
+                  <span>Taste Luxury</span> <i class="fa-solid fa-arrow-right"></i>
                 </a>
               </div>
             </div>
           </article>
 
-          <!-- Slide 4: Welcome Promo (50 EGP OFF) -->
-          <article class="carousel-slide-item" style="background-image: url('images/burger.jpg');">
+          <!-- Slide 4: Maison Welcome Promo -->
+          <article class="carousel-slide-item" style="background-image: url('images/croissant_almond.jpg');">
             <div class="slide-header-badges">
               <span class="slide-main-badge offer" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
-                <i class="fa-solid fa-ticket"></i> Promo Voucher
+                <i class="fa-solid fa-ticket"></i> Welcome Voucher
               </span>
               <span class="slide-timer-chip" style="color: #6ee7b7; border-color: rgba(110, 231, 183, 0.4);">
-                Code: WELCOME50
+                Code: MAISON50
               </span>
             </div>
             <div class="slide-body-content">
               <h3>Save 50 EGP on First Order</h3>
-              <p>Apply code WELCOME50 at checkout for an instant 50 EGP discount on orders 250+ EGP!</p>
+              <p>Apply code MAISON50 at checkout for an instant 50 EGP discount on artisan coffee & croissants (min. 200 EGP)!</p>
               <div class="slide-footer-row">
                 <div class="slide-price-stack">
                   <span class="current-val" style="color: #34d399;">50 EGP OFF</span>
-                  <span class="original-val" style="text-decoration:none; opacity:0.9;">Min. 250 EGP</span>
+                  <span class="original-val" style="text-decoration:none; opacity:0.9;">Min. 200 EGP</span>
                 </div>
-                <button onclick="AppState.applyVoucher('WELCOME50')" class="slide-cta-btn" style="border:none; cursor:pointer;">
+                <button onclick="AppState.applyVoucher('MAISON50')" class="slide-cta-btn" style="border:none; cursor:pointer;">
                   <span>Apply Code</span> <i class="fa-solid fa-check"></i>
                 </button>
               </div>
@@ -296,7 +297,7 @@
             <h2>Order Again</h2>
             <span class="oah-fav-badge"><i class="fa-solid fa-heart"></i> Favorites</span>
           </div>
-          <p>1-tap fast reorder from your past feasts</p>
+          <p>1-tap fast reorder of your morning essentials</p>
         </div>
         <a href="orders.html" class="order-history-badge-btn" title="View Full Order History & Receipts">
           <div class="ohb-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
@@ -309,25 +310,25 @@
       <!-- Modern Visual Cards Scroller -->
       <div class="order-again-scroller-v2" id="orderAgainScroller">
         
-        <!-- Reorder Item 1: Burger -->
+        <!-- Reorder Item 1: Butter Croissant -->
         <article class="reorder-card-item">
           <div class="rc-media-box">
-            <img src="images/burger.jpg" alt="Deluxe Double Smash Burger" />
+            <img src="images/croissant_butter.jpg" alt="Artisanal French Butter Croissant" />
             <div class="rc-media-overlay">
               <span class="rc-tag-reorder"><i class="fa-solid fa-arrow-rotate-right"></i> Reorder</span>
               <span class="rc-tag-rating"><i class="fa-solid fa-star"></i> 4.9</span>
             </div>
           </div>
           <div class="rc-body">
-            <span class="rc-date">Ordered Mon • #EGY-7814</span>
-            <h4 class="rc-title" title="Double Smash Burger">Double Smash Burger</h4>
-            <p class="rc-options">Double 300g • Cheddar Cheese</p>
+            <span class="rc-date">Ordered Today • #MAISON-8142</span>
+            <h4 class="rc-title" title="Artisanal Butter Croissant">Artisanal Butter Croissant</h4>
+            <p class="rc-options">Warm & Crispy • Isigny AOP Butter</p>
             <div class="rc-footer">
               <div class="rc-price-box">
-                <span class="rc-price">195</span>
+                <span class="rc-price">110</span>
                 <span class="rc-curr">EGP</span>
               </div>
-              <button class="rc-reorder-btn" onclick="quickReorderDirect('burger-deluxe')" aria-label="Reorder Double Smash Burger">
+              <button class="rc-reorder-btn" onclick="quickReorderDirect('croissant-butter')" aria-label="Reorder Artisanal Butter Croissant">
                 <i class="fa-solid fa-plus"></i>
                 <span>Reorder</span>
               </button>
@@ -335,51 +336,25 @@
           </div>
         </article>
 
-        <!-- Reorder Item 2: Pizza -->
+        <!-- Reorder Item 2: Flat White -->
         <article class="reorder-card-item">
           <div class="rc-media-box">
-            <img src="images/pizza.jpg" alt="Artisanal Margherita Pizza" />
-            <div class="rc-media-overlay">
-              <span class="rc-tag-reorder"><i class="fa-solid fa-arrow-rotate-right"></i> Reorder</span>
-              <span class="rc-tag-rating"><i class="fa-solid fa-star"></i> 4.8</span>
-            </div>
-          </div>
-          <div class="rc-body">
-            <span class="rc-date">Ordered Sep 21</span>
-            <h4 class="rc-title" title="Margherita Pizza">Margherita Pizza</h4>
-            <p class="rc-options">Large (12") • Cheesy Stuffed Crust</p>
-            <div class="rc-footer">
-              <div class="rc-price-box">
-                <span class="rc-price">220</span>
-                <span class="rc-curr">EGP</span>
-              </div>
-              <button class="rc-reorder-btn" onclick="quickReorderDirect('pizza-margherita')" aria-label="Reorder Margherita Pizza">
-                <i class="fa-solid fa-plus"></i>
-                <span>Reorder</span>
-              </button>
-            </div>
-          </div>
-        </article>
-
-        <!-- Reorder Item 3: Wings -->
-        <article class="reorder-card-item">
-          <div class="rc-media-box">
-            <img src="images/deal_combo.jpg" alt="Crispy Honey Glazed Wings" />
+            <img src="images/coffee_latte.jpg" alt="Velvet Flat White" />
             <div class="rc-media-overlay">
               <span class="rc-tag-reorder"><i class="fa-solid fa-arrow-rotate-right"></i> Reorder</span>
               <span class="rc-tag-rating"><i class="fa-solid fa-star"></i> 4.9</span>
             </div>
           </div>
           <div class="rc-body">
-            <span class="rc-date">Ordered Sep 18</span>
-            <h4 class="rc-title" title="Honey BBQ Wings">Honey BBQ Wings</h4>
-            <p class="rc-options">12 Pcs Box • Honey BBQ Glaze</p>
+            <span class="rc-date">Ordered Today</span>
+            <h4 class="rc-title" title="Velvet Flat White">Velvet Flat White</h4>
+            <p class="rc-options">Whole Milk • Ethiopia Yirgacheffe</p>
             <div class="rc-footer">
               <div class="rc-price-box">
-                <span class="rc-price">240</span>
+                <span class="rc-price">125</span>
                 <span class="rc-curr">EGP</span>
               </div>
-              <button class="rc-reorder-btn" onclick="quickReorderDirect('wings-crispy')" aria-label="Reorder Honey BBQ Wings">
+              <button class="rc-reorder-btn" onclick="quickReorderDirect('coffee-flat-white')" aria-label="Reorder Velvet Flat White">
                 <i class="fa-solid fa-plus"></i>
                 <span>Reorder</span>
               </button>
@@ -387,25 +362,51 @@
           </div>
         </article>
 
-        <!-- Reorder Item 4: Mojito -->
+        <!-- Reorder Item 3: Pistachio Croissant -->
         <article class="reorder-card-item">
           <div class="rc-media-box">
-            <img src="images/drinks.jpg" alt="Passion Fruit Mojito" />
+            <img src="images/croissant_pistachio.jpg" alt="Royal Bronte Pistachio Croissant" />
             <div class="rc-media-overlay">
               <span class="rc-tag-reorder"><i class="fa-solid fa-arrow-rotate-right"></i> Reorder</span>
-              <span class="rc-tag-rating"><i class="fa-solid fa-star"></i> 4.7</span>
+              <span class="rc-tag-rating"><i class="fa-solid fa-star"></i> 5.0</span>
             </div>
           </div>
           <div class="rc-body">
-            <span class="rc-date">Ordered Sep 18</span>
-            <h4 class="rc-title" title="Passion Fruit Mojito">Passion Fruit Mojito</h4>
-            <p class="rc-options">Large Jar (650ml) • Regular Ice</p>
+            <span class="rc-date">Ordered Yesterday</span>
+            <h4 class="rc-title" title="Royal Pistachio Croissant">Royal Pistachio Croissant</h4>
+            <p class="rc-options">Bronte Praline • White Chocolate</p>
             <div class="rc-footer">
               <div class="rc-price-box">
-                <span class="rc-price">100</span>
+                <span class="rc-price">175</span>
                 <span class="rc-curr">EGP</span>
               </div>
-              <button class="rc-reorder-btn" onclick="quickReorderDirect('drinks-passion')" aria-label="Reorder Passion Fruit Mojito">
+              <button class="rc-reorder-btn" onclick="quickReorderDirect('croissant-pistachio')" aria-label="Reorder Royal Pistachio Croissant">
+                <i class="fa-solid fa-plus"></i>
+                <span>Reorder</span>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Reorder Item 4: Iced Spanish Latte -->
+        <article class="reorder-card-item">
+          <div class="rc-media-box">
+            <img src="images/iced_spanish_latte.jpg" alt="Signature Iced Spanish Latte" />
+            <div class="rc-media-overlay">
+              <span class="rc-tag-reorder"><i class="fa-solid fa-arrow-rotate-right"></i> Reorder</span>
+              <span class="rc-tag-rating"><i class="fa-solid fa-star"></i> 4.9</span>
+            </div>
+          </div>
+          <div class="rc-body">
+            <span class="rc-date">Ordered Yesterday</span>
+            <h4 class="rc-title" title="Signature Iced Spanish Latte">Iced Spanish Latte</h4>
+            <p class="rc-options">Maison Classic • Silky Cold Foam</p>
+            <div class="rc-footer">
+              <div class="rc-price-box">
+                <span class="rc-price">145</span>
+                <span class="rc-curr">EGP</span>
+              </div>
+              <button class="rc-reorder-btn" onclick="quickReorderDirect('coffee-latte-spanish')" aria-label="Reorder Iced Spanish Latte">
                 <i class="fa-solid fa-plus"></i>
                 <span>Reorder</span>
               </button>
@@ -420,7 +421,7 @@
       <div class="section-headline">
         <div>
           <h2>Culinary Categories</h2>
-          <p>Handcrafted gourmet dishes prepared fresh daily</p>
+          <p>Artisanal French viennoiserie & specialty coffee roasted daily</p>
         </div>
         <button class="see-all-link" id="seeAllCategoriesBtn" onclick="openAllCategoriesModal()">
           See All (6) <i class="fa-solid fa-chevron-right"></i>
@@ -429,45 +430,45 @@
       <div class="categories-modern-scroller" id="categoryChips">
         <button class="category-modern-card active" data-category="all" aria-label="All Categories">
           <div class="category-icon-squircle all">
-            <img src="images/deal_combo.jpg" alt="All Menu" class="category-circle-img" />
+            <img src="images/banner_morning_duo.jpg" alt="All Menu" class="category-circle-img" />
           </div>
           <span class="category-modern-label">All</span>
         </button>
-        <button class="category-modern-card" data-category="burgers" aria-label="Burgers">
-          <div class="category-icon-squircle burgers">
-            <img src="images/burger.jpg" alt="Burgers" class="category-circle-img" />
+        <button class="category-modern-card" data-category="croissants" aria-label="Croissants">
+          <div class="category-icon-squircle croissants">
+            <img src="images/croissant_butter.jpg" alt="Croissants" class="category-circle-img" />
           </div>
-          <span class="category-modern-label">Burgers</span>
+          <span class="category-modern-label">Croissants</span>
         </button>
-        <button class="category-modern-card" data-category="pizza" aria-label="Pizza">
-          <div class="category-icon-squircle pizza">
-            <img src="images/pizza.jpg" alt="Pizza" class="category-circle-img" />
+        <button class="category-modern-card" data-category="coffee" aria-label="Specialty Coffee">
+          <div class="category-icon-squircle coffee">
+            <img src="images/coffee_latte.jpg" alt="Specialty Coffee" class="category-circle-img" />
           </div>
-          <span class="category-modern-label">Pizza</span>
+          <span class="category-modern-label">Coffee</span>
         </button>
-        <button class="category-modern-card" data-category="chicken" aria-label="Chicken">
-          <div class="category-icon-squircle chicken">
-            <img src="images/chicken_tenders.jpg" alt="Crispy" class="category-circle-img" />
+        <button class="category-modern-card" data-category="viennoiserie" aria-label="Viennoiserie & Danishes">
+          <div class="category-icon-squircle viennoiserie">
+            <img src="images/pain_au_chocolat.jpg" alt="Viennoiserie" class="category-circle-img" />
           </div>
-          <span class="category-modern-label">Crispy</span>
+          <span class="category-modern-label">Viennoiserie</span>
         </button>
-        <button class="category-modern-card" data-category="meals" aria-label="Meals">
-          <div class="category-icon-squircle meals">
-            <img src="images/salad.jpg" alt="Meals" class="category-circle-img" />
+        <button class="category-modern-card" data-category="iced" aria-label="Iced Brews & Lattes">
+          <div class="category-icon-squircle iced">
+            <img src="images/iced_spanish_latte.jpg" alt="Iced Brews" class="category-circle-img" />
           </div>
-          <span class="category-modern-label">Meals</span>
+          <span class="category-modern-label">Iced Brews</span>
         </button>
-        <button class="category-modern-card" data-category="drinks" aria-label="Drinks">
-          <div class="category-icon-squircle drinks">
-            <img src="images/drinks.jpg" alt="Drinks" class="category-circle-img" />
+        <button class="category-modern-card" data-category="savory" aria-label="Savory & Brunch Croissants">
+          <div class="category-icon-squircle savory">
+            <img src="images/croissant_savory.jpg" alt="Savory & Brunch" class="category-circle-img" />
           </div>
-          <span class="category-modern-label">Drinks</span>
+          <span class="category-modern-label">Savory</span>
         </button>
-        <button class="category-modern-card" data-category="desserts" aria-label="Desserts">
-          <div class="category-icon-squircle desserts">
-            <img src="images/dessert.jpg" alt="Desserts" class="category-circle-img" />
+        <button class="category-modern-card" data-category="patisserie" aria-label="Patisserie & Sweets">
+          <div class="category-icon-squircle patisserie">
+            <img src="images/patisserie_millefeuille.jpg" alt="Patisserie" class="category-circle-img" />
           </div>
-          <span class="category-modern-label">Desserts</span>
+          <span class="category-modern-label">Patisserie</span>
         </button>
       </div>
     </section>
@@ -498,8 +499,8 @@
     <section class="featured-section">
       <div class="section-headline">
         <div>
-          <h2>Our Gourmet Menu</h2>
-          <p>Tap any dish to customize sauces, crusts & ingredients</p>
+          <h2>Our Café & Viennoiserie Menu</h2>
+          <p>Tap any item to customize roasts, milk options, warming & toppings</p>
         </div>
         <span class="items-found" id="itemsCountBadge">12 items</span>
       </div>
@@ -521,41 +522,41 @@
     <div class="all-categories-modal" id="allCategoriesModal">
       <div class="all-cat-card">
         <div class="all-cat-header">
-          <h3 id="allCatModalTitle">All Food Categories</h3>
+          <h3 id="allCatModalTitle">All Café Categories</h3>
           <button onclick="closeAllCategoriesModal()"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <button class="all-cat-all-btn" id="allCatFullMenuBtn" data-category="all" onclick="selectModalCategory('all')">
-          <div class="cat-modal-thumb-box"><img src="images/deal_combo.jpg" alt="All Menu" /></div>
-          <span class="cat-modal-name">View Complete Menu (All Dishes)</span>
+          <div class="cat-modal-thumb-box"><img src="images/banner_morning_duo.jpg" alt="All Menu" /></div>
+          <span class="cat-modal-name">View Complete Menu (All Items)</span>
         </button>
         <div class="all-cat-grid">
-          <div class="cat-modal-item" data-category="burgers" onclick="selectModalCategory('burgers')">
-            <div class="cat-modal-thumb-box"><img src="images/burger.jpg" alt="Burgers" /></div>
-            <strong class="cat-modal-name">Burgers</strong>
+          <div class="cat-modal-item" data-category="croissants" onclick="selectModalCategory('croissants')">
+            <div class="cat-modal-thumb-box"><img src="images/croissant_butter.jpg" alt="Croissants" /></div>
+            <strong class="cat-modal-name">Croissants</strong>
           </div>
-          <div class="cat-modal-item" data-category="pizza" onclick="selectModalCategory('pizza')">
-            <div class="cat-modal-thumb-box"><img src="images/pizza.jpg" alt="Pizza" /></div>
-            <strong class="cat-modal-name">Pizza</strong>
+          <div class="cat-modal-item" data-category="coffee" onclick="selectModalCategory('coffee')">
+            <div class="cat-modal-thumb-box"><img src="images/coffee_latte.jpg" alt="Specialty Coffee" /></div>
+            <strong class="cat-modal-name">Specialty Coffee</strong>
           </div>
-          <div class="cat-modal-item" data-category="chicken" onclick="selectModalCategory('chicken')">
-            <div class="cat-modal-thumb-box"><img src="images/chicken_tenders.jpg" alt="Chicken & Wings" /></div>
-            <strong class="cat-modal-name">Chicken & Wings</strong>
+          <div class="cat-modal-item" data-category="viennoiserie" onclick="selectModalCategory('viennoiserie')">
+            <div class="cat-modal-thumb-box"><img src="images/pain_au_chocolat.jpg" alt="Viennoiserie & Pain" /></div>
+            <strong class="cat-modal-name">Viennoiserie & Pain</strong>
           </div>
-          <div class="cat-modal-item" data-category="meals" onclick="selectModalCategory('meals')">
-            <div class="cat-modal-thumb-box"><img src="images/salad.jpg" alt="Bowls & Meals" /></div>
-            <strong class="cat-modal-name">Bowls & Meals</strong>
+          <div class="cat-modal-item" data-category="iced" onclick="selectModalCategory('iced')">
+            <div class="cat-modal-thumb-box"><img src="images/iced_spanish_latte.jpg" alt="Iced Brews & Lattes" /></div>
+            <strong class="cat-modal-name">Iced Brews & Lattes</strong>
           </div>
-          <div class="cat-modal-item" data-category="drinks" onclick="selectModalCategory('drinks')">
-            <div class="cat-modal-thumb-box"><img src="images/drinks.jpg" alt="Artisan Drinks" /></div>
-            <strong class="cat-modal-name">Artisan Drinks</strong>
+          <div class="cat-modal-item" data-category="savory" onclick="selectModalCategory('savory')">
+            <div class="cat-modal-thumb-box"><img src="images/croissant_savory.jpg" alt="Savory & Brunch" /></div>
+            <strong class="cat-modal-name">Savory & Brunch</strong>
           </div>
-          <div class="cat-modal-item" data-category="desserts" onclick="selectModalCategory('desserts')">
-            <div class="cat-modal-thumb-box"><img src="images/dessert.jpg" alt="Desserts" /></div>
-            <strong class="cat-modal-name">Desserts</strong>
+          <div class="cat-modal-item" data-category="patisserie" onclick="selectModalCategory('patisserie')">
+            <div class="cat-modal-thumb-box"><img src="images/patisserie_millefeuille.jpg" alt="Patisserie & Sweets" /></div>
+            <strong class="cat-modal-name">Patisserie & Sweets</strong>
           </div>
         </div>
       </div>
-    </div>
+    </div></div>
 
     <!-- 7. BOTTOM NAVIGATION BAR (4 DESTINATIONS: HOME | ORDERS | DEALS | PROFILE) -->
     <nav class="bottom-nav">
@@ -614,14 +615,14 @@
       if (!isAr) return;
 
       // 0. Page Title & Welcome Subtitle
-      document.title = 'بايت هَب - أشهى الأطباق وعروض التوصيل (ج.م)';
+      document.title = 'بايت هَب ميزون - مخبوزات باريسية وقهوة مختصة (ج.م)';
       const welcomeSub = document.querySelector('.greeting-subtitle');
-      if (welcomeSub) welcomeSub.textContent = 'ماذا تحب أن تطلب اليوم في الإسكندرية؟';
+      if (welcomeSub) welcomeSub.textContent = 'ماذا تحب أن تتذوق اليوم من القهوة والمخبوزات الطازجة؟';
 
       // 1. Search Bar & Trending Suggestions
       const searchInput = document.getElementById('searchInput');
       if (searchInput) {
-        searchInput.placeholder = 'ابحث عن برجر، بيتزا، أجنحة، عروض...';
+        searchInput.placeholder = 'ابحث عن كرواسون، فلات وايت، بان أو شوكولا، سبانش لاتيه...';
       }
       const trendingLabel = document.getElementById('trendingLabelText');
       if (trendingLabel) trendingLabel.textContent = 'الأكثر طلباً:';
@@ -636,37 +637,37 @@
       const slide1Desc = document.querySelector('.carousel-slide-item:nth-child(1) .slide-body-content p');
       const slide1Badge = document.querySelector('.carousel-slide-item:nth-child(1) .slide-main-badge');
       const slide1Cta = document.querySelector('.carousel-slide-item:nth-child(1) .slide-cta-btn span');
-      if (slide1Title) slide1Title.textContent = 'فلاش سيل: دبل برجر وأجنحة دجاج';
-      if (slide1Desc) slide1Desc.textContent = 'برجر أنجوس دبل سماش بالجبن الشيدر + 6 أجنحة دجاج مقرمشة + بطاطس كيرلي + مشروب بارد.';
-      if (slide1Badge) slide1Badge.innerHTML = `<i class="fa-solid fa-bolt"></i> فلاش سيل – خصم 45%`;
-      if (slide1Cta) slide1Cta.textContent = 'اطلب الفلاش سيل';
+      if (slide1Title) slide1Title.textContent = 'ثنائية الصباح الباريسية (قهوة وكرواسون)';
+      if (slide1Desc) slide1Desc.textContent = 'كرواسون زبدة فرنسي فاخر طازج + فلات وايت بحليب مخملي + زبدة بورديه ومربى الفراولة.';
+      if (slide1Badge) slide1Badge.innerHTML = `<i class="fa-solid fa-crown"></i> ثنائية مميزة – خصم 32%`;
+      if (slide1Cta) slide1Cta.textContent = 'اطلب ثنائية الصباح';
 
       const slide2Title = document.querySelector('.carousel-slide-item:nth-child(2) .slide-body-content h3');
       const slide2Desc = document.querySelector('.carousel-slide-item:nth-child(2) .slide-body-content p');
       const slide2Badge = document.querySelector('.carousel-slide-item:nth-child(2) .slide-main-badge');
       const slide2Cta = document.querySelector('.carousel-slide-item:nth-child(2) .slide-cta-btn span');
-      if (slide2Title) slide2Title.textContent = 'صينية الكومبو العائلية الضخمة';
-      if (slide2Desc) slide2Desc.textContent = 'بيتزا كبيرة + 2 برجر أنجوس سماش + 8 أجنحة دجاج + بطاطس و4 صصوصات + مشروب 1.5 لتر.';
-      if (slide2Badge) slide2Badge.innerHTML = `<i class="fa-solid fa-crown"></i> عرض اليوم – خصم 49%`;
-      if (slide2Cta) slide2Cta.textContent = 'تخصيص وطلب العرض';
+      if (slide2Title) slide2Title.textContent = 'باقة تذوق محامص الميزون';
+      if (slide2Desc) slide2Desc.textContent = 'سبانش لاتيه مثلج مميز بطبقات الحليب المكثف + بان أو شوكولا فالرونا ساخن + تذوق اسبريسو مختص.';
+      if (slide2Badge) slide2Badge.innerHTML = `<i class="fa-solid fa-mug-hot"></i> باقة المحمصة – خصم 32%`;
+      if (slide2Cta) slide2Cta.textContent = 'اطلب الباقة';
 
       const slide3Title = document.querySelector('.carousel-slide-item:nth-child(3) .slide-body-content h3');
       const slide3Desc = document.querySelector('.carousel-slide-item:nth-child(3) .slide-body-content p');
       const slide3Badge = document.querySelector('.carousel-slide-item:nth-child(3) .slide-main-badge');
       const slide3Chip = document.querySelector('.carousel-slide-item:nth-child(3) .slide-timer-chip');
       const slide3Cta = document.querySelector('.carousel-slide-item:nth-child(3) .slide-cta-btn span');
-      if (slide3Title) slide3Title.textContent = 'وليمة البيتزا والباستا المزدوجة';
-      if (slide3Desc) slide3Desc.textContent = 'اختيارك من أي 2 بيتزا كبيرة + خبز ثوم بالجبنة + مشروب 1 لتر منعش.';
-      if (slide3Badge) slide3Badge.innerHTML = `<i class="fa-solid fa-pizza-slice"></i> وليمة إيطالية – خصم 46%`;
+      if (slide3Title) slide3Title.textContent = 'كرواسون البستاشيو والشوكولاتة البيضاء';
+      if (slide3Desc) slide3Desc.textContent = 'محشو بكريمة برالين فستق برونتي الصقلي الفاخر، مزين بالفستق المحمص والشوكولاتة البيضاء.';
+      if (slide3Badge) slide3Badge.innerHTML = `<i class="fa-solid fa-star"></i> إبداع الشيف`;
       if (slide3Chip) slide3Chip.innerHTML = `<i class="fa-solid fa-fire"></i> الأكثر طلباً`;
-      if (slide3Cta) slide3Cta.textContent = 'اطلب الوليمة';
+      if (slide3Cta) slide3Cta.textContent = 'تذوق الفخامة';
 
       const slide4Title = document.querySelector('.carousel-slide-item:nth-child(4) .slide-body-content h3');
       const slide4Desc = document.querySelector('.carousel-slide-item:nth-child(4) .slide-body-content p');
       const slide4Badge = document.querySelector('.carousel-slide-item:nth-child(4) .slide-main-badge');
       const slide4Cta = document.querySelector('.carousel-slide-item:nth-child(4) .slide-cta-btn span');
       if (slide4Title) slide4Title.textContent = 'وفّر 50 ج.م على أول طلب لك';
-      if (slide4Desc) slide4Desc.textContent = 'استخدم كود WELCOME50 عند الدفع لتحصل على خصم فوري 50 ج.م للطلبات من 250 ج.م!';
+      if (slide4Desc) slide4Desc.textContent = 'استخدم كود MAISON50 عند الدفع لتحصل على خصم فوري 50 ج.م للطلبات من 200 ج.م!';
       if (slide4Badge) slide4Badge.innerHTML = `<i class="fa-solid fa-ticket"></i> كود ترحيبي`;
       if (slide4Cta) slide4Cta.textContent = 'تطبيق الكود';
 
@@ -677,65 +678,77 @@
       const ohbText = document.querySelector('.ohb-text');
       if (oahTitle) oahTitle.textContent = 'اطلب مجدداً';
       if (oahFav) oahFav.innerHTML = `<i class="fa-solid fa-heart"></i> المفضلة`;
-      if (oahSub) oahSub.textContent = 'إعادة طلب سريعة بنقرة واحدة من وجباتك السابقة';
+      if (oahSub) oahSub.textContent = 'إعادة طلب سريعة بنقرة واحدة لقهوتك ومخبوزاتك المفضلة';
       if (ohbText) ohbText.textContent = 'سجل الطلبات';
 
       const reorderCards = document.querySelectorAll('.reorder-card-item');
-      if (reorderCards.length >= 3) {
-        // Burger
+      if (reorderCards.length >= 4) {
+        // Butter Croissant
         const t0 = reorderCards[0].querySelector('.rc-title');
         const o0 = reorderCards[0].querySelector('.rc-options');
         const c0 = reorderCards[0].querySelector('.rc-curr');
         const b0 = reorderCards[0].querySelector('.rc-reorder-btn span');
         const tg0 = reorderCards[0].querySelector('.rc-tag-reorder');
-        if (t0) t0.textContent = 'ديلوكس دبل سماش برجر';
-        if (o0) o0.textContent = 'شريحتان 300جم • جبن شيدر';
+        if (t0) t0.textContent = 'كرواسون الزبدة الفرنسية';
+        if (o0) o0.textContent = 'ساخن ومقرمش • زبدة إيزيني AOP';
         if (c0) c0.textContent = 'ج.م';
         if (b0) b0.textContent = 'أعد الطلب';
         if (tg0) tg0.innerHTML = `<i class="fa-solid fa-arrow-rotate-right"></i> طلب متكرر`;
 
-        // Pizza
+        // Flat White
         const t1 = reorderCards[1].querySelector('.rc-title');
         const o1 = reorderCards[1].querySelector('.rc-options');
         const c1 = reorderCards[1].querySelector('.rc-curr');
         const b1 = reorderCards[1].querySelector('.rc-reorder-btn span');
         const tg1 = reorderCards[1].querySelector('.rc-tag-reorder');
-        if (t1) t1.textContent = 'بيتزا مارجريتا نابوليتان';
-        if (o1) o1.textContent = 'حجم كبير (12 بوصة) • أطراف محشوة جبن';
+        if (t1) t1.textContent = 'فلات وايت مخملي';
+        if (o1) o1.textContent = 'حليب كامل الدسم • بن إثيوبي';
         if (c1) c1.textContent = 'ج.م';
         if (b1) b1.textContent = 'أعد الطلب';
         if (tg1) tg1.innerHTML = `<i class="fa-solid fa-arrow-rotate-right"></i> طلب متكرر`;
 
-        // Wings
+        // Pistachio Croissant
         const t2 = reorderCards[2].querySelector('.rc-title');
         const o2 = reorderCards[2].querySelector('.rc-options');
         const c2 = reorderCards[2].querySelector('.rc-curr');
         const b2 = reorderCards[2].querySelector('.rc-reorder-btn span');
         const tg2 = reorderCards[2].querySelector('.rc-tag-reorder');
-        if (t2) t2.textContent = 'أجنحة دجاج مقرمشة بالعسل';
-        if (o2) o2.textContent = 'علبة 12 قطعة • صوص باربيكيو حلو';
+        if (t2) t2.textContent = 'كرواسون البستاشيو الملكي';
+        if (o2) o2.textContent = 'برالين برونتي • شوكولاتة بيضاء';
         if (c2) c2.textContent = 'ج.م';
         if (b2) b2.textContent = 'أعد الطلب';
         if (tg2) tg2.innerHTML = `<i class="fa-solid fa-arrow-rotate-right"></i> طلب متكرر`;
+
+        // Iced Spanish Latte
+        const t3 = reorderCards[3].querySelector('.rc-title');
+        const o3 = reorderCards[3].querySelector('.rc-options');
+        const c3 = reorderCards[3].querySelector('.rc-curr');
+        const b3 = reorderCards[3].querySelector('.rc-reorder-btn span');
+        const tg3 = reorderCards[3].querySelector('.rc-tag-reorder');
+        if (t3) t3.textContent = 'سبانش لاتيه مثلج';
+        if (o3) o3.textContent = 'كلاسيك ميزون • رغوة حليب باردة';
+        if (c3) c3.textContent = 'ج.م';
+        if (b3) b3.textContent = 'أعد الطلب';
+        if (tg3) tg3.innerHTML = `<i class="fa-solid fa-arrow-rotate-right"></i> طلب متكرر`;
       }
 
       // 4. Categories Section Header
       const catSecTitle = document.querySelector('.categories-section .section-headline h2');
       const catSecSub = document.querySelector('.categories-section .section-headline p');
       const seeAllBtn = document.getElementById('seeAllCategoriesBtn');
-      if (catSecTitle) catSecTitle.textContent = 'أقسام الطعام';
-      if (catSecSub) catSecSub.textContent = 'وصفات جورميه محضرة طازجة يومياً';
+      if (catSecTitle) catSecTitle.textContent = 'أقسام القهوة والمخبوزات';
+      if (catSecSub) catSecSub.textContent = 'مخبوزات باريسية طازجة وقهوة مختصة يومياً';
       if (seeAllBtn) seeAllBtn.innerHTML = `عرض الكل (6) <i class="fa-solid fa-chevron-left"></i>`;
 
       // 5. Category Scroller Cards
       const catLabelsMap = {
-        'all': 'جميع الأطباق',
-        'pizza': 'بيتزا',
-        'burgers': 'برجر',
-        'chicken': 'دجاج وأجنحة',
-        'meals': 'وجبات وبطاطس',
-        'drinks': 'مشروبات منعشة',
-        'desserts': 'حلويات وكيك'
+        'all': 'جميع الأصناف',
+        'croissants': 'كرواسون فرنسي',
+        'coffee': 'قهوة مختصة',
+        'viennoiserie': 'دانش وفينوازري',
+        'iced': 'مشروبات مثلجة',
+        'savory': 'كرواسون مالح وبرانش',
+        'patisserie': 'حلويات وتارت'
       };
       document.querySelectorAll('#categoryChips .category-modern-card').forEach(card => {
         const cat = card.getAttribute('data-category');
@@ -749,7 +762,7 @@
         'الكل',
         'الأكثر شهرة',
         'الأكثر مبيعاً',
-        'حار',
+        'ساخن ومقرمش',
         'نباتي',
         'جديد ومميز'
       ];
@@ -770,29 +783,30 @@
       // 8. Gourmet Menu Headline
       const menuTitle = document.querySelector('.featured-section .section-headline h2');
       const menuSub = document.querySelector('.featured-section .section-headline p');
-      if (menuTitle) menuTitle.textContent = 'قائمة أطباق جورميه';
-      if (menuSub) menuSub.textContent = 'اضغط على أي وجبة لتخصيص الصوصات والإضافات والمكونات';
+      if (menuTitle) menuTitle.textContent = 'قائمة القهوة والمخبوزات الفاخرة';
+      if (menuSub) menuSub.textContent = 'اضغط على أي صنف لتخصيص نوع الحليب، درجة التحميص والتسخين والإضافات';
 
       // 9. All Categories Modal
       const modalTitle = document.getElementById('allCatModalTitle');
-      if (modalTitle) modalTitle.textContent = 'جميع أقسام الطعام';
+      if (modalTitle) modalTitle.textContent = 'جميع أقسام القهوة والمخبوزات';
       const modalMap = {
-        'all': 'جميع الأطباق',
-        'pizza': 'بيتزا إيطالية',
-        'burgers': 'برجر جورميه',
-        'chicken': 'دجاج وأجنحة',
-        'meals': 'وجبات وبطاطس',
-        'drinks': 'مشروبات منعشة',
-        'desserts': 'حلويات وكيك'
+        'all': 'جميع الأصناف',
+        'croissants': 'كرواسون فرنسي فاخر',
+        'coffee': 'قهوة مختصة ساخنة',
+        'viennoiserie': 'دانش وفينوازري وشوكولا',
+        'iced': 'مشروبات مثلجة وبستاشيو',
+        'savory': 'كرواسون مالح وبرانش',
+        'patisserie': 'حلويات وتارت فرنسي'
       };
       document.querySelectorAll('.cat-modal-item').forEach(item => {
         const nameEl = item.querySelector('.cat-modal-name') || item.querySelector('strong');
-        const onclickAttr = item.getAttribute('onclick') || '';
-        const match = onclickAttr.match(/selectModalCategory\('([^']+)'\)/);
-        if (match && match[1] && modalMap[match[1]] && nameEl) {
-          nameEl.textContent = modalMap[match[1]];
+        const cat = item.getAttribute('data-category');
+        if (cat && modalMap[cat] && nameEl) {
+          nameEl.textContent = modalMap[cat];
         }
       });
+      const modalAllBtn = document.querySelector('.all-cat-all-btn .cat-modal-name');
+      if (modalAllBtn) modalAllBtn.textContent = 'عرض القائمة الكاملة (جميع الأصناف)';
     }
 
     /* ==========================================================================
