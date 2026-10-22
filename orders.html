@@ -16,7 +16,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="luxe.css?v=7" />
+  <link rel="stylesheet" href="luxe.css?v=8" />
 
   <!-- FontAwesome Icons -->
   <link
@@ -677,8 +677,8 @@
               <span>${isAr ? 'المجموع المدفوع' : 'Paid Total'}</span>
               <strong>${AppState.formatEGP(o.total)}</strong>
               ${o.discount && o.discount > 0 ? `
-                <span style="display:block; font-size:11px; color:var(--green); font-weight:700; margin-top:2px;">
-                  <i class="fa-solid fa-ticket"></i> ${isAr ? 'وفرت بالكوبون:' : 'Saved with coupon:'} -${AppState.formatEGP(o.discount)} ${o.voucherCode ? '(' + o.voucherCode + ')' : ''}
+                <span class="past-coupon-tag">
+                  <i class="fa-solid fa-ticket"></i> ${isAr ? 'وفرت:' : 'Saved:'} -${AppState.formatEGP(o.discount)} ${o.voucherCode ? '(' + o.voucherCode + ')' : ''}
                 </span>
               ` : ''}
             </div>
