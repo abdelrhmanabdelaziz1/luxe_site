@@ -477,13 +477,17 @@ const CartManager = {
 
     // Create an active order in localStorage for orders.html
     const newOrder = {
-      id: '#EGY-' + Math.floor(1000 + Math.random() * 9000),
+      id: '#MAISON-' + Math.floor(1000 + Math.random() * 9000),
       date: 'Just now',
-      status: 'In Kitchen',
-      statusStep: 2, // 1: Placed, 2: Kitchen, 3: On way, 4: Delivered
-      estimatedTime: '25-35 mins',
-      courier: 'Captain Mostafa',
-      courierPhone: '+20 112 345 6789',
+      status: 'In Roastery & Oven',
+      statusStep: 2, // 1: Placed, 2: Roastery, 3: Brewing & Baking, 4: On way, 5: Delivered
+      estimatedTime: '20-30 mins',
+      courier: {
+        name: 'Captain Mostafa',
+        phone: '+20 112 345 6789',
+        rating: 4.9,
+        badge: 'Maison Express Courier'
+      },
       address: 'Smouha, Victor Emmanuel Sq, Alexandria',
       items: cart,
       subtotal: subtotal,

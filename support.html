@@ -83,7 +83,7 @@
 
         <!-- Quick Question Suggestions -->
         <div style="display: flex; gap: 6px; overflow-x: auto; padding: 8px 12px; background: #f1f5f9; border-top: 1px solid var(--border);">
-          <button class="chat-quick-pill" onclick="sendQuickPrompt('Where is my order #EGY-8942?')">Where is my order?</button>
+          <button class="chat-quick-pill" onclick="sendQuickPrompt('Where is my order #MAISON-8942?')">Where is my order?</button>
           <button class="chat-quick-pill" onclick="sendQuickPrompt('How do I apply a voucher?')">Apply Voucher</button>
           <button class="chat-quick-pill" onclick="sendQuickPrompt('Do you deliver to Stanley?')">Delivery Areas</button>
         </div>
@@ -105,7 +105,7 @@
           <details class="faq-item" open>
             <summary>How can I track my order live?</summary>
             <p>
-              Navigate to the <strong>Orders</strong> tab at the bottom. Active orders feature a live interactive GPS delivery map showing Captain Mostafa's moving scooter and 5 order milestones from kitchen prep to arrival.
+              Navigate to the <strong>Orders</strong> tab at the bottom. Active orders feature live tracking showing Captain Mostafa's route and 5 order milestones from barista extraction & oven baking to arrival.
             </p>
           </details>
 
@@ -124,9 +124,9 @@
           </details>
 
           <details class="faq-item">
-            <summary>Can I customize pizza crust and burger patties?</summary>
+            <summary>Can I customize roast beans, warming temperature, and milk choice?</summary>
             <p>
-              Yes! Tap any pizza or burger to choose patty weights (150g, 300g, 450g), cheeses, artisan stuffed crusts, and special cooking notes.
+              Yes! Tap any croissant or specialty coffee to select bean roast origin (Ethiopian Yirgacheffe, Colombian Huila), milk types (Oat, Almond, Whole), warming temperature, and artisanal spreads.
             </p>
           </details>
         </div>
@@ -142,9 +142,9 @@
           <div class="form-group">
             <label>Related Order</label>
             <select id="ticketOrder" style="width: 100%; border: 1px solid var(--border); border-radius: 10px; padding: 12px; font-size: 13px; outline: none; background: #ffffff;">
-              <option value="#EGY-8942">Active Order #EGY-8942 (305 EGP)</option>
-              <option value="#EGY-7814">Past Order #EGY-7814 (400 EGP)</option>
-              <option value="#EGY-6290">Past Order #EGY-6290 (435 EGP)</option>
+              <option value="#MAISON-8942">Active Order #MAISON-8942 (370 EGP)</option>
+              <option value="#MAISON-7814">Past Order #MAISON-7814 (410 EGP)</option>
+              <option value="#MAISON-6590">Past Order #MAISON-6590 (400 EGP)</option>
               <option value="other">General Inquiry / App Feedback</option>
             </select>
           </div>
@@ -252,8 +252,8 @@
         let reply = "Thanks for asking! Our support supervisor is checking into this right away.";
         const lower = text.toLowerCase();
 
-        if (lower.includes('order') || lower.includes('egy-8942') || lower.includes('where')) {
-          reply = "Captain Mostafa is currently 8 minutes away with your order #EGY-8942 on Stanley Coast Road! You can also track the moving scooter on the Orders page.";
+        if (lower.includes('order') || lower.includes('maison-8942') || lower.includes('egy-8942') || lower.includes('where')) {
+          reply = "Captain Mostafa is currently 8 minutes away with your fresh coffee and warm croissant order #MAISON-8942 on Stanley Coast Road! You can also track the moving courier on the Orders page.";
         } else if (lower.includes('voucher') || lower.includes('code') || lower.includes('apply')) {
           reply = "You can enter your voucher code in the Vouchers Hub or inside your Cart drawer! Try code WELCOME50 for 50 EGP off orders of 250+ EGP.";
         } else if (lower.includes('stanley') || lower.includes('area') || lower.includes('deliver')) {

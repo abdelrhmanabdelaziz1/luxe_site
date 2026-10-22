@@ -673,3 +673,163 @@ a { color: inherit; }
 .instruction-chip { background: #f7f3ec; border: 1px solid #e5dfd2; border-radius: 5px; color: #5f5d50; }
 .instruction-chip.active { background: #ede5d6; color: #605138; border-color: #bba884; }
 .spec-notes-input { background: #fffcf7; border-color: #e5ded3; border-radius: 5px; }
+
+/* Maison Luxury Orders & Receipts Redesign */
+.user-order-card {
+  background: #fffefb;
+  border: 1px solid #e7dfd2;
+  border-radius: 12px;
+  box-shadow: 0 4px 18px rgba(36, 32, 22, 0.05);
+  padding: 16px;
+  margin-bottom: 18px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.user-order-card:hover {
+  box-shadow: 0 8px 24px rgba(36, 32, 22, 0.08);
+}
+.active-tracking-card {
+  border-color: #cbbba0;
+  background: linear-gradient(180deg, #fffdf8 0%, #faf6ee 100%);
+}
+.order-card-top h3 {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 700;
+  color: #30332e;
+  letter-spacing: -0.02em;
+}
+.ordered-item-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px dashed #eadecd;
+}
+.ordered-item-row:last-child {
+  border-bottom: none;
+}
+.ordered-item-thumb {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #ded5c5;
+  background: #faf8f5;
+  box-shadow: 0 2px 6px rgba(48, 51, 46, 0.06);
+}
+.ordered-item-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.item-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.item-title-row strong {
+  font-size: 13px;
+  font-weight: 700;
+  color: #30332e;
+  line-height: 1.3;
+}
+.ordered-item-row .item-qty {
+  font-size: 11px;
+  font-weight: 800;
+  color: #796138;
+  background: #f4ecdc;
+  border: 1px solid #e2d2bb;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.ordered-item-row .item-specs {
+  font-size: 11px;
+  color: #8c8273;
+  margin-top: 3px;
+}
+.ordered-item-row .item-price {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  color: #30332e;
+  margin-left: auto;
+}
+[dir="rtl"] .ordered-item-row .item-price {
+  margin-left: 0;
+  margin-right: auto;
+}
+.order-price-summary {
+  background: #faf7f0;
+  border: 1px solid #ebe4d8;
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin-top: 12px;
+}
+.past-order-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-top: 1px solid #eee7da;
+  padding-top: 12px;
+  margin-top: 10px;
+}
+.reorder-btn {
+  background: #30332e;
+  color: #fffefb;
+  border: 1px solid #30332e;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.reorder-btn:hover {
+  background: #846d47;
+  border-color: #846d47;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+.rate-order-btn {
+  background: #f5f0e6;
+  color: #6d5b3d;
+  border: 1px solid #ded3c0;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.rate-order-btn:hover {
+  background: #ece3d3;
+  border-color: #baa788;
+}
+.order-tabs .tab {
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 12px;
+  color: #7a756b;
+  background: transparent;
+  transition: all 0.2s ease;
+}
+.order-tabs .tab.active {
+  background: #30332e;
+  color: #fffefb;
+  box-shadow: 0 2px 8px rgba(48, 51, 46, 0.15);
+}
+.order-tabs .tab.active .tab-badge {
+  background: #9c7f4e;
+  color: #ffffff;
+}
+

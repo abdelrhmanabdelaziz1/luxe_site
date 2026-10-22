@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Orders & Live Tracking - BiteHub (EGP)</title>
+  <title>My Orders & Live Tracking - BiteHub Maison (EGP)</title>
 
   <!-- Favicon & App Icons -->
   <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
@@ -16,7 +16,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="luxe.css" />
+  <link rel="stylesheet" href="luxe.css?v=7" />
 
   <!-- FontAwesome Icons -->
   <link
@@ -28,13 +28,13 @@
 <body>
 
   <main class="app orders-app">
-    <div class="luxe-wordmark" aria-label="BiteHub Maison edition"><strong>BITE<span>HUB</span><span class="wordmark-stem"></span></strong><small>THE ART OF<br>GOOD FOOD</small></div>
+    <div class="luxe-wordmark" aria-label="BiteHub Maison edition"><strong>BITE<span>HUB</span><span class="wordmark-stem"></span></strong><small>MAISON DU CAFÉ &<br>CROISSANT</small></div>
 
     <!-- Top Header -->
     <header class="home-header">
       <div class="user-greeting-box">
         <h1>My Orders</h1>
-        <p class="greeting-subtitle">Track live delivery & review past meals</p>
+        <p class="greeting-subtitle">Track live delivery & review artisan pastries & brews</p>
       </div>
 
       <div class="header-actions">
@@ -59,7 +59,7 @@
 
       <button class="tab" id="tabPastBtn" onclick="switchOrderTab('past')">
         Past Orders
-        <span class="tab-badge" id="pastOrdersBadge">2</span>
+        <span class="tab-badge" id="pastOrdersBadge">3</span>
       </button>
     </section>
 
@@ -69,7 +69,7 @@
       <div class="section-headline">
         <div>
           <h2>Active Delivery Tracking</h2>
-          <p>Real-time status updates from our kitchen</p>
+          <p>Real-time status updates from our roastery & bakery</p>
         </div>
         <span class="live-pill"><i class="fa-solid fa-circle"></i> Live Tracking</span>
       </div>
@@ -79,7 +79,7 @@
         <div class="order-card-top">
           <div>
             <div class="order-id-row">
-              <h3 id="activeOrderId">#EGY-8942</h3>
+              <h3 id="activeOrderId">#MAISON-8942</h3>
               <span class="status-chip on-way" id="activeStatusChip">
                 <i class="fa-solid fa-motorcycle"></i> Out for Delivery
               </span>
@@ -103,8 +103,8 @@
           <div class="stepper-connector completed" id="stConn2"></div>
 
           <div class="step-node completed" id="stNode3">
-            <div class="step-circle"><i class="fa-solid fa-fire-burner"></i></div>
-            <span>Preparing</span>
+            <div class="step-circle"><i class="fa-solid fa-mug-hot"></i></div>
+            <span>Brewing & Baking</span>
           </div>
           <div class="stepper-connector active" id="stConn3"></div>
 
@@ -126,7 +126,7 @@
             <div class="eta-icon"><i class="fa-solid fa-stopwatch"></i></div>
             <div class="eta-info">
               <span>Estimated Arrival</span>
-              <strong id="activeEta">15 - 25 min</strong>
+              <strong id="activeEta">12 - 18 min</strong>
             </div>
           </div>
           <button class="sim-advance-btn" id="simAdvanceBtn" onclick="advanceLiveStage()" style="flex-shrink:0;">
@@ -142,7 +142,7 @@
           </div>
           <div class="courier-info">
             <strong id="courierName">Captain Mostafa</strong>
-            <p id="courierRole">Express Delivery Partner • Rating: 4.9</p>
+            <p id="courierRole">Maison Express Courier • Rating: 4.9</p>
           </div>
           <button class="call-courier-btn" title="Call Courier" onclick="openDriverCallModal()">
             <i class="fa-solid fa-phone"></i> Call
@@ -157,11 +157,11 @@
           <div class="order-price-summary">
             <div class="summary-line">
               <span>Subtotal</span>
-              <strong id="activeSubtotal">305 EGP</strong>
+              <strong id="activeSubtotal">410 EGP</strong>
             </div>
-            <div class="summary-line" id="activeDiscountRow" style="display:none; color:var(--green)">
-              <span>Coupon Discount (<strong id="activeDiscountCode"></strong>)</span>
-              <strong id="activeDiscountVal">-0 EGP</strong>
+            <div class="summary-line" id="activeDiscountRow" style="display:flex; color:var(--green)">
+              <span>Coupon Discount (<strong id="activeDiscountCode">MAISON50</strong>)</span>
+              <strong id="activeDiscountVal">-40 EGP</strong>
             </div>
             <div class="summary-line">
               <span>Delivery Fee</span>
@@ -169,7 +169,7 @@
             </div>
             <div class="summary-line total-highlight">
               <span>Total Paid</span>
-              <strong id="activeTotal">305 EGP</strong>
+              <strong id="activeTotal">370 EGP</strong>
             </div>
           </div>
         </div>
@@ -186,9 +186,9 @@
 
       <!-- Empty State for Active Orders -->
       <div class="empty-state" id="noActiveOrderState" style="display:none;">
-        <i class="fa-solid fa-utensils"></i>
+        <i class="fa-solid fa-mug-saucer"></i>
         <h4>No active orders right now</h4>
-        <p>Your freshly made meals will appear here as soon as you order.</p>
+        <p>Your freshly extracted coffee & golden pastries will appear here as soon as you order.</p>
         <button class="explore-btn" onclick="window.location.href='index.html'">Explore Menu</button>
       </div>
 
@@ -315,9 +315,9 @@
         chipClass: 'placed',
         chipIcon: 'fa-regular fa-clock',
         chipText: 'Order Placed',
-        headline: 'Stage 1 of 5: Placed at Kitchen',
-        etaText: '25 - 35 Minutes (Estimating ~5:00 PM)',
-        telemetry: 'Order ticket printed at Smouha Kitchen',
+        headline: 'Stage 1 of 5: Placed at Maison Roastery',
+        etaText: '20 - 30 Minutes (Estimating ~5:00 PM)',
+        telemetry: 'Order ticket printed at Smouha Roastery & Oven',
         speed: '0 km/h',
         scooterPos: { top: '80%', left: '16%' }
       },
@@ -325,19 +325,19 @@
         chipClass: 'confirmed',
         chipIcon: 'fa-solid fa-thumbs-up',
         chipText: 'Order Confirmed',
-        headline: 'Stage 2 of 5: Order Accepted',
-        etaText: '20 - 30 Minutes (Estimated arrival 4:55 PM)',
-        telemetry: 'Kitchen verified order & queued for grill',
+        headline: 'Stage 2 of 5: Order Accepted by Barista',
+        etaText: '18 - 25 Minutes (Estimated arrival 4:55 PM)',
+        telemetry: 'Barista calibrated grinder & queued artisan extraction',
         speed: '0 km/h',
         scooterPos: { top: '75%', left: '18%' }
       },
       3: {
         chipClass: 'preparing',
-        chipIcon: 'fa-solid fa-fire-burner',
-        chipText: 'Preparing in Kitchen',
-        headline: 'Stage 3 of 5: Chef Grilling & Baking',
-        etaText: '15 - 20 Minutes (Fresh from oven)',
-        telemetry: 'Chef Mahmoud is searing patties and packaging',
+        chipIcon: 'fa-solid fa-mug-hot',
+        chipText: 'Brewing & Baking',
+        headline: 'Stage 3 of 5: Barista Brewing & Oven Baking',
+        etaText: '12 - 18 Minutes (Fresh from oven & roaster)',
+        telemetry: 'Head Barista Julien is pulling single-origin espresso & baking croissants',
         speed: '0 km/h',
         scooterPos: { top: '70%', left: '22%' }
       },
@@ -345,9 +345,9 @@
         chipClass: 'on-way',
         chipIcon: 'fa-solid fa-motorcycle',
         chipText: 'Out for Delivery',
-        headline: 'Stage 4 of 5: Driver En Route',
-        etaText: '12 - 18 Minutes (Arriving soon)',
-        telemetry: 'GPS Live: On Albert Al Awal St (1.2 km away)',
+        headline: 'Stage 4 of 5: Courier En Route with Thermal Parcel',
+        etaText: '8 - 14 Minutes (Arriving soon)',
+        telemetry: 'GPS Live: On Albert Al Awal St (1.2 km away) • Temperature-Controlled',
         speed: '38 km/h',
         scooterPos: { top: '50%', left: '55%' }
       },
@@ -355,9 +355,9 @@
         chipClass: 'delivered',
         chipIcon: 'fa-solid fa-house-chimney',
         chipText: 'Delivered Successfully',
-        headline: 'Stage 5 of 5: Order Delivered! Enjoy your meal',
+        headline: 'Stage 5 of 5: Delivered! Savor your coffee & viennoiserie',
         etaText: 'Arrived & Handed to Customer',
-        telemetry: 'Courier arrived at destination building',
+        telemetry: 'Courier arrived at destination building with thermal package',
         speed: '0 km/h',
         scooterPos: { top: '25%', left: '85%' }
       }
@@ -430,24 +430,24 @@
       const chipText = isAr ? ({
         1: 'تم الطلب',
         2: 'تم تأكيد الطلب',
-        3: 'قيد التحضير في المطبخ',
+        3: 'التحضير والخبز',
         4: 'في الطريق إليك',
         5: 'تم التوصيل بنجاح'
       }[step] || cfg.chipText) : cfg.chipText;
 
       const headlineText = isAr ? ({
-        1: 'المرحلة 1 من 5: تم استلام الطلب في المطبخ',
-        2: 'المرحلة 2 من 5: تم تأكيد الطلب من المطعم',
-        3: 'المرحلة 3 من 5: الشيف يقوم بالتحضير والشوي',
-        4: 'المرحلة 4 من 5: المندوب في الطريق إليك',
-        5: 'المرحلة 5 من 5: تم تسليم الطلب! بالهناء والشفاء'
+        1: 'المرحلة 1 من 5: تم استلام الطلب في محمصتنا',
+        2: 'المرحلة 2 من 5: تم تأكيد الطلب من الباريستا والمخبز',
+        3: 'المرحلة 3 من 5: استخلاص القهوة المختصة وخبز الكرواسون',
+        4: 'المرحلة 4 من 5: المندوب في الطريق إليك بحقيبة حرارية',
+        5: 'المرحلة 5 من 5: تم تسليم الطلب! استمتع بقهوتك ومخبوزاتك'
       }[step] || cfg.headline) : cfg.headline;
 
       const etaText = isAr ? ({
-        1: '25 - 35 دقيقة (تقريباً 5:00 م)',
-        2: '20 - 30 دقيقة (تقريباً 4:55 م)',
-        3: '15 - 20 دقيقة (طازج من الفرن)',
-        4: '12 - 18 دقيقة (يصل قريباً)',
+        1: '20 - 30 دقيقة (تقريباً 5:00 م)',
+        2: '18 - 25 دقيقة (تقريباً 4:55 م)',
+        3: '12 - 18 دقيقة (طازج وساخن من الفرن)',
+        4: '8 - 14 دقيقة (يصل قريباً)',
         5: 'وصل المندوب وتم التسليم للعميل'
       }[step] || cfg.etaText) : cfg.etaText;
 
@@ -471,7 +471,7 @@
         const n5 = document.querySelector('#stNode5 span');
         if (n1) n1.textContent = 'تم الطلب';
         if (n2) n2.textContent = 'تم التأكيد';
-        if (n3) n3.textContent = 'قيد التحضير';
+        if (n3) n3.textContent = 'التحضير والخبز';
         if (n4) n4.textContent = 'في الطريق';
         if (n5) n5.textContent = 'تم التوصيل';
       }
@@ -506,11 +506,17 @@
         itemsList.innerHTML = order.items.map(it => {
           const catItem = AppState.catalog[it.id];
           const itemName = isAr ? (it.nameAr || (catItem && catItem.nameAr) || it.name) : it.name;
+          const itemImg = (catItem && catItem.image) || it.image || 'images/croissant_butter.jpg';
           return `
             <div class="ordered-item-row">
-              <span class="item-qty">${it.quantity}×</span>
+              <div class="ordered-item-thumb">
+                <img src="${itemImg}" alt="${itemName}" loading="lazy" />
+              </div>
               <div class="item-meta">
-                <strong>${itemName}</strong>
+                <div class="item-title-row">
+                  <span class="item-qty">${it.quantity}×</span>
+                  <strong>${itemName}</strong>
+                </div>
                 ${it.options ? `<p class="item-specs">${it.options}</p>` : ''}
               </div>
               <strong class="item-price">${AppState.formatEGP(it.unitPrice * it.quantity)}</strong>
@@ -648,10 +654,18 @@
             ${o.items.map(it => {
               const catItem = AppState.catalog[it.id];
               const name = isAr ? (it.nameAr || (catItem && catItem.nameAr) || it.name) : it.name;
+              const img = (catItem && catItem.image) || it.image || 'images/croissant_butter.jpg';
               return `
                 <div class="ordered-item-row">
-                  <span class="item-qty">${it.quantity}×</span>
-                  <div class="item-meta"><strong>${name}</strong></div>
+                  <div class="ordered-item-thumb">
+                    <img src="${img}" alt="${name}" loading="lazy" />
+                  </div>
+                  <div class="item-meta">
+                    <div class="item-title-row">
+                      <span class="item-qty">${it.quantity}×</span>
+                      <strong>${name}</strong>
+                    </div>
+                  </div>
                   <strong class="item-price">${AppState.formatEGP(it.unitPrice * it.quantity)}</strong>
                 </div>`;
             }).join('')}
@@ -694,7 +708,10 @@
 
     function openRatingModal(orderId) {
       activeRatingOrderId = orderId;
-      document.getElementById('ratingOrderTitle').textContent = `How was your experience with ${orderId}?`;
+      const isAr = AppState.getLanguage() === 'ar';
+      document.getElementById('ratingOrderTitle').textContent = isAr 
+        ? `كيف كانت تجربتك مع طلب ${orderId} من ميزون القهوة والكرواسون؟`
+        : `How was your Maison Coffee & Croissant experience with ${orderId}?`;
       document.getElementById('ratingModal')?.classList.add('open');
       setStars('food', 5);
       setStars('delivery', 5);

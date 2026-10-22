@@ -547,8 +547,8 @@ const AppState = {
 
   // 4. Notifications Data
   defaultNotifications: [
-    { id: 'notif-1', title: 'Order #EGY-8942 On the Way!', titleAr: 'طلبك رقم #EGY-8942 في الطريق!', time: '10 mins ago', type: 'order', unread: true },
-    { id: 'notif-2', title: 'Flash Sale: 45% OFF Wings & Burger', titleAr: 'فلاش سيل: خصم 45% على البرجر والأجنحة!', time: '1 hour ago', type: 'flash', unread: true },
+    { id: 'notif-1', title: 'Order #MAISON-8942 On the Way!', titleAr: 'طلبك رقم #MAISON-8942 في الطريق!', time: '10 mins ago', type: 'order', unread: true },
+    { id: 'notif-2', title: 'Morning Flight: 35% OFF Croissant & Coffee Duet', titleAr: 'ثنائية الصباح: خصم 35% على الكرواسون والقهوة المختصة!', time: '1 hour ago', type: 'flash', unread: true },
     { id: 'notif-3', title: 'You earned 50 Loyalty Points!', titleAr: 'حصلت على 50 نقطة مكافآت جديدة!', time: 'Yesterday', type: 'loyalty', unread: false },
     { id: 'notif-4', title: 'Your friend Sara joined using your code!', titleAr: 'صديقتك سارة انضمت باستخدام كودك!', time: '2 days ago', type: 'referral', unread: false }
   ],
@@ -1402,35 +1402,68 @@ const AppState = {
     }
   },
 
-  // 8. Orders Management & Real-Time Tracking
+  // 8. Orders Management & Real-Time Tracking (Maison Coffee & Croissants)
   getActiveOrder() {
     try {
       const data = localStorage.getItem(this.STORAGE_KEYS.ACTIVE_ORDER);
-      if (data) return JSON.parse(data);
-      // Default active order if none
+      if (data) {
+        const parsed = JSON.parse(data);
+        const isOldFood = (parsed.items || []).some(it => {
+          const n = (it.name || '').toLowerCase();
+          return n.includes('burger') || n.includes('smash') || n.includes('pizza') || n.includes('wings') || it.id === 'burger-deluxe' || it.id === 'pizza-margherita';
+        }) || (parsed.id && parsed.id.startsWith('#EGY'));
+        if (!isOldFood && parsed.id) return parsed;
+      }
+      // Default active order: Royal Pistachio Croissant, Iced Spanish Latte & Valrhona Pain au Chocolat
       const sample = {
-        id: '#EGY-8942',
+        id: '#MAISON-8942',
         placedAt: new Date(Date.now() - 15 * 60000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         status: 'Out for Delivery',
-        statusStep: 4, // 1: Placed, 2: Confirmed, 3: Preparing, 4: Out for Delivery, 5: Delivered
-        estimatedMinutes: '15-25 mins',
+        statusStep: 4, // 1: Placed, 2: Confirmed, 3: Brewing & Baking, 4: Out for Delivery, 5: Delivered
+        estimatedMinutes: '12-18 mins',
         courier: {
           name: 'Captain Mostafa',
           phone: '+20 112 345 6789',
           rating: 4.9,
-          badge: 'Top Rated Courier'
+          badge: 'Maison Express Courier'
         },
         address: '14 Victor Emmanuel Sq, Smouha, Alexandria',
         items: [
-          { name: 'Deluxe Double Smash Burger', quantity: 1, unitPrice: 230, options: 'Double (300g) • Cheddar • Extra Bacon' },
-          { name: 'Sparkling Passion Fruit Mojito', quantity: 1, unitPrice: 75, options: 'Regular (400ml) • Regular Ice' }
+          {
+            id: 'croissant-pistachio',
+            name: 'Royal Bronte Pistachio Croissant',
+            nameAr: 'كرواسون فستق برونتي الملكي',
+            image: 'images/croissant_pistachio.jpg',
+            quantity: 1,
+            unitPrice: 155,
+            options: 'Warm • Emerald Pistachio Praline • White Chocolate'
+          },
+          {
+            id: 'coffee-latte-spanish',
+            name: 'Maison Iced Spanish Latte',
+            nameAr: 'سبانش لاتيه ميزون مثلج',
+            image: 'images/iced_spanish_latte.jpg',
+            quantity: 1,
+            unitPrice: 130,
+            options: 'Iced • Whole Milk • Balanced Sweetness • Cold Foam'
+          },
+          {
+            id: 'viennoiserie-pain-chocolat',
+            name: 'Artisan Pain au Chocolat',
+            nameAr: 'بان أو شوكولا فرنسي بالزبدة',
+            image: 'images/pain_au_chocolat.jpg',
+            quantity: 1,
+            unitPrice: 125,
+            options: 'Warm • 66% Valrhona Dark Chocolate Batons'
+          }
         ],
-        subtotal: 305,
+        subtotal: 410,
         deliveryFee: 0,
-        discount: 0,
-        total: 305,
+        discount: 40,
+        voucherCode: 'MAISON50',
+        total: 370,
         isCancellable: false, // Cannot cancel once out for delivery
-        cancelPolicyNote: 'Order cannot be cancelled once cooking or out for delivery.'
+        cancelPolicyNote: 'Order cannot be cancelled once pastries are in the oven or out for delivery.'
       };
       localStorage.setItem(this.STORAGE_KEYS.ACTIVE_ORDER, JSON.stringify(sample));
       return sample;
@@ -1446,25 +1479,61 @@ const AppState = {
   getPastOrders() {
     try {
       const data = localStorage.getItem(this.STORAGE_KEYS.PAST_ORDERS);
-      if (data) return JSON.parse(data);
+      if (data) {
+        const parsed = JSON.parse(data);
+        const isOldFood = (parsed || []).some(o => {
+          const hasOldItems = (o.items || []).some(it => {
+            const n = (it.name || '').toLowerCase();
+            return n.includes('burger') || n.includes('pizza') || n.includes('wings') || it.id === 'pizza-margherita' || it.id === 'burger-truffle' || it.id === 'chicken-wings-honey';
+          });
+          return hasOldItems || (o.id && o.id.startsWith('#EGY'));
+        });
+        if (!isOldFood && Array.isArray(parsed) && parsed.length > 0) return parsed;
+      }
       const defaults = [
         {
-          id: '#EGY-7814',
-          date: '21 Sep 2026, 8:40 PM',
-          items: [
-            { id: 'pizza-margherita', name: 'Artisan Margherita Fresca', nameAr: 'مارجريتا إيطالية أصلية', quantity: 1, unitPrice: 195 },
-            { id: 'chicken-wings-honey', name: 'Honey BBQ Glazed Wings', nameAr: 'أجنحة دجاج بالعسل والباربيكيو', quantity: 1, unitPrice: 165 }
-          ],
-          total: 395
-        },
-        {
-          id: '#EGY-6590',
-          date: '14 Sep 2026, 7:15 PM',
+          id: '#MAISON-7814',
+          date: 'Yesterday, 8:40 AM',
           status: 'Delivered',
           items: [
-            { id: 'burger-truffle', name: 'Double Truffle Smash Burger', nameAr: 'برجر ترافل دبل سماش', quantity: 2, unitPrice: 210 }
+            { id: 'croissant-butter', name: 'Artisan French Butter Croissant', nameAr: 'كرواسون الزبدة الفرنسي الأصيل', image: 'images/croissant_butter.jpg', quantity: 2, unitPrice: 95 },
+            { id: 'coffee-flat-white', name: 'Velvet Flat White (Specialty Roast)', nameAr: 'فلات وايت مخملي بالقهوة المختصة', image: 'images/coffee_latte.jpg', quantity: 2, unitPrice: 110 }
           ],
-          total: 455
+          subtotal: 410,
+          discount: 0,
+          deliveryFee: 0,
+          total: 410,
+          rated: true
+        },
+        {
+          id: '#MAISON-6590',
+          date: '18 Oct 2026, 4:15 PM',
+          status: 'Delivered',
+          items: [
+            { id: 'croissant-almond', name: 'Parisian Almond Frangipane Croissant', nameAr: 'كرواسون اللوز الباريسي بالفرانجيبان', image: 'images/croissant_almond.jpg', quantity: 1, unitPrice: 140 },
+            { id: 'patisserie-millefeuille', name: 'Madagascar Vanilla Mille-Feuille', nameAr: 'ميل فوي الفانيليا المدغشقرية والتوت', image: 'images/patisserie_millefeuille.jpg', quantity: 1, unitPrice: 165 },
+            { id: 'coffee-latte-spanish', name: 'Maison Iced Spanish Latte', nameAr: 'سبانش لاتيه ميزون مثلج', image: 'images/iced_spanish_latte.jpg', quantity: 1, unitPrice: 130 }
+          ],
+          subtotal: 435,
+          discount: 35,
+          voucherCode: 'MORNINGDUO',
+          deliveryFee: 0,
+          total: 400,
+          rated: true
+        },
+        {
+          id: '#MAISON-5120',
+          date: '12 Oct 2026, 11:30 AM',
+          status: 'Delivered',
+          items: [
+            { id: 'croissant-savory-turkey', name: 'Smoked Turkey & Gruyère Melt Croissant', nameAr: 'كرواسون الديك الرومي والجبن السويسري', image: 'images/croissant_savory.jpg', quantity: 1, unitPrice: 185 },
+            { id: 'coffee-flat-white', name: 'Velvet Flat White (Specialty Roast)', nameAr: 'فلات وايت مخملي بالقهوة المختصة', image: 'images/coffee_latte.jpg', quantity: 1, unitPrice: 110 }
+          ],
+          subtotal: 295,
+          discount: 0,
+          deliveryFee: 25,
+          total: 320,
+          rated: true
         }
       ];
       localStorage.setItem(this.STORAGE_KEYS.PAST_ORDERS, JSON.stringify(defaults));
@@ -1472,6 +1541,59 @@ const AppState = {
     } catch(e) {
       return [];
     }
+  },
+
+  reorder(items) {
+    if (!items || !items.length) {
+      this.showToast(this.getLanguage() === 'ar' ? 'لا توجد عناصر لإعادة الطلب' : 'No items to reorder');
+      return;
+    }
+    const isAr = this.getLanguage() === 'ar';
+    items.forEach(it => {
+      const catItem = this.catalog[it.id];
+      this.addToCart({
+        id: it.id || (catItem ? catItem.id : 'croissant-butter'),
+        name: (catItem && catItem.name) || it.name || 'Artisan French Butter Croissant',
+        nameAr: (catItem && catItem.nameAr) || it.nameAr || 'كرواسون الزبدة الفرنسي الأصيل',
+        image: (catItem && catItem.image) || it.image || 'images/croissant_butter.jpg',
+        unitPrice: it.unitPrice || (catItem ? catItem.basePrice : 95),
+        selectedOptions: it.options || {},
+        quantity: it.quantity || 1
+      });
+    });
+    this.showToast(isAr ? 'تمت إضافة عناصر طلبك السابق إلى السلة!' : 'Previous order items added to your bag!');
+    this.openCartDrawer();
+  },
+
+  rateOrder(orderId, ratingData) {
+    const isAr = this.getLanguage() === 'ar';
+    const past = this.getPastOrders();
+    const idx = past.findIndex(o => o.id === orderId);
+    if (idx >= 0) {
+      past[idx].rated = true;
+      past[idx].rating = ratingData;
+      localStorage.setItem(this.STORAGE_KEYS.PAST_ORDERS, JSON.stringify(past));
+    }
+    const active = this.getActiveOrder();
+    if (active && active.id === orderId) {
+      active.rated = true;
+      active.rating = ratingData;
+      this.saveActiveOrder(active);
+    }
+    this.showToast(isAr ? 'شكراً لتقييمك! نسعد بخدمتك دائماً في الميزون.' : 'Thank you for your rating! We cherish your feedback at Maison.');
+  },
+
+  cancelActiveOrder() {
+    const isAr = this.getLanguage() === 'ar';
+    const active = this.getActiveOrder();
+    if (!active) return;
+    if (active.statusStep >= 3) {
+      this.showToast(isAr ? 'عذراً، لا يمكن إلغاء الطلب بعد بدء الخبز والتحضير.' : 'Order cannot be cancelled once baking or brewing has started.');
+      return;
+    }
+    localStorage.removeItem(this.STORAGE_KEYS.ACTIVE_ORDER);
+    this.showToast(isAr ? 'تم إلغاء الطلب بنجاح.' : 'Your order has been cancelled.');
+    if (typeof renderActiveOrder === 'function') renderActiveOrder();
   },
 
   updateHeaderProfileInfo() {
@@ -1538,11 +1660,11 @@ const AppState = {
           return parsed.map((item, idx) => ({
             id: item.id || `notif-${idx + 1}`,
             type: item.type || (item.title && item.title.includes('Deal') ? 'deal' : item.title && item.title.includes('order') ? 'order' : 'info'),
-            icon: item.icon || (item.type === 'deal' ? 'fa-solid fa-fire' : item.type === 'order' ? 'fa-solid fa-motorcycle' : item.type === 'loyalty' ? 'fa-solid fa-gift' : 'fa-solid fa-bell'),
+            icon: item.icon || (item.type === 'deal' ? 'fa-solid fa-crown' : item.type === 'order' ? 'fa-solid fa-motorcycle' : item.type === 'loyalty' ? 'fa-solid fa-gift' : 'fa-solid fa-bell'),
             title: item.title || 'Notification',
             titleAr: item.titleAr || item.title || 'إشعار جديد',
-            desc: item.desc || (item.type === 'deal' ? 'Get 2 double smash burgers, loaded fries & drinks at 49% discount today!' : item.type === 'order' ? 'Courier Mohamed has picked up your meal and is speeding to Smouha.' : 'Tap to view details and updates.'),
-            descAr: item.descAr || (item.type === 'deal' ? 'احصل على 2 ديلوكس سماش برجر وبطاطس ومشروبات بخصم 49% اليوم فقط!' : item.type === 'order' ? 'الكابتن محمد استلم وجبتك الساخنة وهو في الطريق إلى سموحة الآن.' : 'اضغط للاطلاع على التفاصيل والتحديثات.'),
+            desc: item.desc || (item.type === 'deal' ? 'Artisanal butter croissant, velvet flat white & Bordier preserves at special tasting price!' : item.type === 'order' ? 'Captain Mostafa has picked up your warm pastries & coffee parcel.' : 'Tap to view details and updates.'),
+            descAr: item.descAr || (item.type === 'deal' ? 'كرواسون الزبدة الفرنسي وفلات وايت مخملي ومربى بورديه بسعر تذوق استثنائي!' : item.type === 'order' ? 'الكابتن مصطفى استلم مخبوزاتك الساخنة وقهوتك وهو في الطريق إليك.' : 'اضغط للاطلاع على التفاصيل والتحديثات.'),
             time: item.time || 'Just now',
             timeAr: item.timeAr || 'الآن',
             read: typeof item.read === 'boolean' ? item.read : false,
@@ -1556,11 +1678,11 @@ const AppState = {
         {
           id: 'notif-1',
           type: 'deal',
-          icon: 'fa-solid fa-fire',
-          title: '49% OFF Mega Combo Deal',
-          titleAr: 'خصم 49% على وليمة الكومبو',
-          desc: 'Get 2 double smash burgers, loaded fries & drinks at 49% discount today only!',
-          descAr: 'احصل على 2 ديلوكس سماش برجر وبطاطس ومشروبات بخصم 49% اليوم فقط!',
+          icon: 'fa-solid fa-crown',
+          title: '32% OFF Parisian Morning Duet',
+          titleAr: 'خصم 32% على ثنائية الصباح الباريسية',
+          desc: 'Artisanal butter croissant, velvet flat white & Bordier preserves at special tasting price!',
+          descAr: 'كرواسون الزبدة الفرنسي وفلات وايت مخملي ومربى بورديه بسعر تذوق استثنائي!',
           time: '10m ago',
           timeAr: 'منذ 10 دقائق',
           read: false,
@@ -1572,10 +1694,10 @@ const AppState = {
           id: 'notif-2',
           type: 'order',
           icon: 'fa-solid fa-motorcycle',
-          title: 'Order #EGY-4419 is En Route',
-          titleAr: 'طلبك #EGY-4419 في الطريق إليك',
-          desc: 'Courier Mohamed has picked up your meal and is speeding to Smouha.',
-          descAr: 'الكابتن محمد استلم وجبتك الساخنة وهو في الطريق إلى سموحة الآن.',
+          title: 'Order #MAISON-8942 is En Route',
+          titleAr: 'طلبك #MAISON-8942 في الطريق إليك',
+          desc: 'Captain Mostafa has picked up your warm pastries & coffee parcel and is en route to Smouha.',
+          descAr: 'الكابتن مصطفى استلم مخبوزاتك الساخنة وقهوتك وهو في الطريق إليك إلى سموحة.',
           time: '25m ago',
           timeAr: 'منذ 25 دقيقة',
           read: false,
@@ -2220,21 +2342,21 @@ const AppState = {
     const hasFreeDelivery = this.selectedDeliveryMethod === 'pickup' || subtotal >= 300 || (voucher && voucher.freeDelivery && discountInfo.isQualified);
     const deliveryFee = hasFreeDelivery ? 0 : 25;
     const total = Math.max(0, subtotal - discountAmount + deliveryFee);
-    const orderId = '#EGY-' + Math.floor(1000 + Math.random() * 9000);
+    const orderId = '#MAISON-' + Math.floor(1000 + Math.random() * 9000);
 
     const newActiveOrder = {
       id: orderId,
       placedAt: 'Just now',
       status: 'Order Placed',
       statusStep: 1, // Stage 1 of 5
-      estimatedMinutes: this.selectedDeliveryMethod === 'pickup' ? '15-20 mins (Pickup)' : '25-35 mins (Delivery)',
+      estimatedMinutes: this.selectedDeliveryMethod === 'pickup' ? '15-20 mins (Pickup)' : '20-30 mins (Delivery)',
       courier: {
-        name: 'Captain Tarek',
-        phone: '+20 115 998 8776',
+        name: 'Captain Mostafa',
+        phone: '+20 112 345 6789',
         rating: 4.9,
-        badge: 'Express Courier'
+        badge: 'Maison Express Courier'
       },
-      address: this.selectedDeliveryMethod === 'pickup' ? 'Pickup at Smouha Kitchen' : this.getActiveAddress().address,
+      address: this.selectedDeliveryMethod === 'pickup' ? 'Pickup at Smouha Maison Roastery' : this.getActiveAddress().address,
       items: cart,
       subtotal: subtotal,
       discount: discountAmount,
@@ -2243,7 +2365,7 @@ const AppState = {
       total: total,
       paymentMethod: this.selectedPaymentMethod === 'cod' ? 'Cash on Delivery' : 'Online Payment',
       isCancellable: true,
-      cancelPolicyNote: 'You can cancel within 5 minutes before cooking starts.'
+      cancelPolicyNote: 'You can cancel within 5 minutes before oven baking starts.'
     };
 
     if (voucher) {
@@ -2612,10 +2734,10 @@ function injectSharedComponents() {
       <div class="confirmed-modal-content">
         <div class="celebration-icon"><i class="fa-solid fa-circle-check"></i></div>
         <h2>${isAr ? 'تم تأكيد طلبك بنجاح!' : 'Order Confirmed!'}</h2>
-        <p class="confirmed-msg">${isAr ? 'المطبخ يقوم الآن بإعداد وجبتك بمكونات طازجة 100%.' : 'We are preparing your feast with fresh ingredients right now.'}</p>
+        <p class="confirmed-msg">${isAr ? 'محمصتنا ومخبزنا الباريسي يقومان الآن بإعداد قهوتك وخبز الكرواسون الطازج.' : 'Our master baristas and bakers are extracting your roast and warming your croissants now.'}</p>
 
         <div class="confirmed-summary-box">
-          <div class="conf-row"><span>${isAr ? 'رقم الطلب' : 'Order Number'}</span><strong id="confirmedOrderId">#EGY-8942</strong></div>
+          <div class="conf-row"><span>${isAr ? 'رقم الطلب' : 'Order Number'}</span><strong id="confirmedOrderId">#MAISON-8942</strong></div>
           <div class="conf-row"><span>${isAr ? 'الوقت المقدر' : 'Estimated Time'}</span><strong id="confirmedEta">${isAr ? '25-35 دقيقة' : '25-35 mins'}</strong></div>
           <div class="conf-row"><span>${isAr ? 'المبلغ الإجمالي' : 'Total Amount'}</span><strong id="confirmedTotal">305 ${isAr ? 'ج.م' : 'EGP'}</strong></div>
           <div class="conf-row"><span>${isAr ? 'مكان التوصيل' : 'Destination'}</span><p id="confirmedAddress">${isAr ? 'سموحة، الإسكندرية' : 'Smouha, Alexandria'}</p></div>
