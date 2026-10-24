@@ -16,7 +16,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="luxe.css?v=8" />
+  <link rel="stylesheet" href="luxe.css?v=9" />
 
   <!-- FontAwesome Icons -->
   <link
@@ -673,14 +673,21 @@
 
           <!-- Total row -->
           <div class="past-order-footer">
-            <div class="past-total">
-              <span>${isAr ? 'المجموع المدفوع' : 'Paid Total'}</span>
-              <strong>${AppState.formatEGP(o.total)}</strong>
-              ${o.discount && o.discount > 0 ? `
-                <span class="past-coupon-tag">
-                  <i class="fa-solid fa-ticket"></i> ${isAr ? 'وفرت:' : 'Saved:'} -${AppState.formatEGP(o.discount)} ${o.voucherCode ? '(' + o.voucherCode + ')' : ''}
-                </span>
-              ` : ''}
+            <div class="past-total-block">
+              <div class="past-total-label-row">
+                <span class="past-total-label">${isAr ? 'المجموع المدفوع' : 'Paid Total'}</span>
+                ${o.discount && o.discount > 0 ? `
+                  <span class="past-discount-pill">
+                    <i class="fa-solid fa-tag"></i> ${isAr ? 'وفرت' : 'Saved'} ${AppState.formatEGP(o.discount)}
+                  </span>
+                ` : ''}
+              </div>
+              <div class="past-total-price-row">
+                <strong class="past-total-amount">${AppState.formatEGP(o.total)}</strong>
+                ${o.discount && o.discount > 0 ? `
+                  <span class="past-original-price">${AppState.formatEGP(o.total + o.discount)}</span>
+                ` : ''}
+              </div>
             </div>
             <div class="past-actions-group">
               <button class="rate-order-btn" onclick="openRatingModal('${o.id}')">

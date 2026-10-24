@@ -775,42 +775,61 @@ a { color: inherit; }
   gap: 16px;
   border-top: 1px dashed #e8dfd1;
   padding-top: 14px;
-  margin-top: 14px;
+  margin-top: 12px;
 }
-.past-total {
+.past-total-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
   flex: 1;
   min-width: 0;
 }
-.past-total span {
-  display: block;
-  font-size: 10px;
-  color: #8c8273;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-.past-total strong {
-  display: block;
-  font-family: var(--font-display);
-  font-size: 17px;
-  font-weight: 700;
-  color: #30332e;
-  line-height: 1.2;
-  margin-top: 2px;
-}
-.past-coupon-tag {
-  display: inline-flex;
+.past-total-label-row {
+  display: flex;
   align-items: center;
-  gap: 5px;
-  font-size: 11px;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.past-total-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: #8c8273;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  line-height: 1;
+}
+.past-discount-pill {
+  font-size: 10px;
   font-weight: 700;
   color: #276749;
-  background: #e6f4ea;
-  border: 1px solid #c2e7cc;
-  padding: 3px 8px;
+  background: #eef7ee;
+  border: 1px solid #cde9cd;
+  padding: 1px 6px;
   border-radius: 4px;
-  margin-top: 5px;
+  line-height: 1.2;
   white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+.past-total-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+}
+.past-total-amount {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: #30332e;
+  line-height: 1.1;
+}
+.past-original-price {
+  font-size: 12px;
+  color: #9c9486;
+  text-decoration: line-through;
+  font-weight: 500;
+  line-height: 1;
 }
 .past-actions-group {
   display: flex;
@@ -822,16 +841,16 @@ a { color: inherit; }
   background: #30332e;
   color: #fffefb;
   border: 1px solid #30332e;
-  height: 38px;
-  padding: 0 16px;
-  border-radius: 8px;
-  font-size: 12px;
+  height: 36px;
+  padding: 0 14px;
+  border-radius: 7px;
+  font-size: 11.5px;
   font-weight: 700;
   letter-spacing: 0.02em;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 7px;
+  gap: 6px;
   cursor: pointer;
   white-space: nowrap !important;
   flex-shrink: 0;
@@ -845,18 +864,18 @@ a { color: inherit; }
   transform: translateY(-1px);
 }
 .rate-order-btn {
-  background: #f5f0e6;
+  background: #f7f3ec;
   color: #6d5b3d;
-  border: 1px solid #ded3c0;
-  height: 38px;
-  padding: 0 14px;
-  border-radius: 8px;
-  font-size: 12px;
+  border: 1px solid #ded5c5;
+  height: 36px;
+  padding: 0 12px;
+  border-radius: 7px;
+  font-size: 11.5px;
   font-weight: 700;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 5px;
   cursor: pointer;
   white-space: nowrap !important;
   flex-shrink: 0;
@@ -864,7 +883,7 @@ a { color: inherit; }
   transition: all 0.2s ease;
 }
 .rate-order-btn:hover {
-  background: #ece3d3;
+  background: #ede4d4;
   border-color: #baa788;
 }
 .order-tabs .tab {
